@@ -160,6 +160,7 @@ return [
          * Third Party Providers
          */
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        AdamWathan\BootForms\BootFormsServiceProvider::class,
 
     ],
 
@@ -208,6 +209,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
 
     ],
 
