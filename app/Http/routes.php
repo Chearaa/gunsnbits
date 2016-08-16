@@ -11,10 +11,61 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+ * Authentication Routes
+ */
+$this->get('login', [
+    'as' => 'auth.login',
+    'uses' => 'Auth\AuthController@showLoginForm'
+]);
+$this->post('login', [
+    'as' => 'auth.login',
+    'uses' => 'Auth\AuthController@login'
+]);
+$this->get('logout', [
+    'as' => 'auth.logout',
+    'uses' => 'Auth\AuthController@logout'
+]);
 
-Route::auth();
+/*
+ * Registration Routes
+ */
+$this->get('register', [
+    'as' => 'auth.register',
+    'uses' => 'Auth\AuthController@showRegistrationForm'
+]);
+$this->post('register', [
+    'as' => 'auth.register',
+    'uses' => 'Auth\AuthController@register'
+]);
 
-Route::get('/home', 'HomeController@index');
+/*
+ * Password Reset Routes
+ */
+$this->get('password/reset/{token?}', [
+    'as' => 'auth.password.reset',
+    'uses' => 'Auth\PasswordController@showResetForm'
+]);
+$this->post('password/email', [
+    'as' => 'auth.password.email',
+    'uses' => 'Auth\PasswordController@sendResetLinkEmail'
+]);
+$this->post('password/reset', [
+    'as' => 'auth.password.reset',
+    'uses' => 'Auth\PasswordController@reset'
+]);
+
+/*
+ * HomeController
+ */
+Route::get('/', [
+    'as' => 'welcome',
+    'uses' => 'HomeController@welcome'
+]);
+
+Route::get('/home', [
+    'as' => 'home',
+    'uses' => 'HomeController@home'
+]);
+
+

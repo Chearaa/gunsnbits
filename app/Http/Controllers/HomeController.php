@@ -14,16 +14,24 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
-     * Show the application dashboard.
+     * Home view
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
-    {
+    public function home() {
         return view('home');
+    }
+
+    /**
+     * Welcome view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function welcome() {
+        return view('welcome');
     }
 }
