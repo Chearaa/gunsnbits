@@ -158,6 +158,109 @@ class FacebookController extends Controller
                 }
             }
         }
+        //login
+        elseif (Session::get('facebook_function') == 'register') {
+            //check if facebook user exists in facebookusers table
+            $facebookuser = Facebookuser::where('id', $facebook_user['id'])->first();
+            if (! $facebookuser) {
+                //if facebook-id not exists in facebookusers table, lets try to find someone with the same email-address
+                $user = User::where('email', $facebook_user['email'])->first();
+                if (! $user) {
+                    //new user registration by facebookuser!
+
+                    //create new user
+                    $user = new User([
+                        'name' => $facebook_user['name'],
+                        'email' => $facebook_user['email']
+                    ]);
+                    $user->save();
+
+                    //create new facebookuser
+                    $facebookuser = new Facebookuser([
+                        'id' => $facebook_user['id'],
+                        'name' => $facebook_user['name'],
+                        'email' => $facebook_user['email']
+                    ]);
+                    $user->facebookuser()->save($facebookuser);
+
+                    //GNB-Coins
+                    //TODO: add 5 GnB Coins to user for first registration
+
+                    //login user with id and the "remember me" cookie
+                    if (Auth::loginUsingId($user->id, true)) {
+                        // Authentication passed...
+                        return redirect()->intended( route('home') );
+                    }
+                    else {
+                        return redirect( route('facebook.error') )
+                            ->with('alerts', [
+                                [
+                                    'class' => 'danger',
+                                    'msg' =>'<h4>Login fehlgeschlagen</h4><br/>
+                                         Wir haben dich zwar als Benutzer anlegen können, jedoch gab es ein technisches Problem beim automatischen Login.<br/>
+                                         Versuche es später noch einmal einzuloggen.<br/><br/>
+                                         <a href="' . route('auth.login') . '" class="btn btn-default"><i class="fa fa-sign-in"></i> direkt zum Login</a>'
+                                ]
+                            ]);
+                    }
+                }
+                else {
+                    //user found with same email-address
+                    //let's connect facebookuser with user
+
+                    //create new facebookuser
+                    $facebookuser = new Facebookuser([
+                        'id' => $facebook_user['id'],
+                        'name' => $facebook_user['name'],
+                        'email' => $facebook_user['email']
+                    ]);
+                    $user->facebookuser()->save($facebookuser);
+
+                    //login user with id and the "remember me" cookie
+                    if (Auth::loginUsingId($user->id, true)) {
+                        // Authentication passed...
+                        return redirect()->intended( route('home') );
+                    }
+                    else {
+                        return redirect( route('facebook.error') )
+                            ->with('alerts', [
+                                [
+                                    'class' => 'danger',
+                                    'msg' =>'<h4>Login fehlgeschlagen</h4><br/>
+                                         Wir haben dich zwar als Benutzer finden können, es gab aber ein technisches Problem beim einloggen.<br/>
+                                         Versuche es später noch einmal.<br/><br/>
+                                         <a href="' . route('auth.login') . '" class="btn btn-default"><i class="fa fa-sign-in"></i> direkt zum Login</a>'
+                                ]
+                            ]);
+                    }
+
+                }
+            }
+            else {
+                //facebookuser exists in facebookusers table
+
+                //get user
+                $user = $facebookuser->user()->first();
+
+                //login user with id and the "remember me" cookie
+                if (Auth::loginUsingId($user->id, true)) {
+                    // Authentication passed...
+                    return redirect()->intended( route('home') );
+                }
+                else {
+                    return redirect( route('facebook.error') )
+                        ->with('alerts', [
+                            [
+                                'class' => 'danger',
+                                'msg' =>'<h4>Login fehlgeschlagen</h4><br/>
+                                         Wir haben dich zwar als Benutzer finden können, es gab aber ein technisches Problem beim einloggen.<br/>
+                                         Versuche es später noch einmal.<br/><br/>
+                                         <a href="' . route('auth.login') . '" class="btn btn-default"><i class="fa fa-sign-in"></i> direkt zum Login</a>'
+                            ]
+                        ]);
+                }
+            }
+        }
     }
 
     public function error() {
