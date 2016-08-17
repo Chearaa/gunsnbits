@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Facebookuser extends Model
 {
     /**
+     * The table of this model.
+     *
+     * @var string
+     */
+    protected $table = 'facebookusers';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

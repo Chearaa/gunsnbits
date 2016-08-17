@@ -32,4 +32,22 @@ class User extends Authenticatable
     public function facebookuser() {
         return $this->hasOne('App\Facebookuser');
     }
+
+    /**
+     * Get roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles() {
+        return $this->belongsToMany('App\Role', 'user_has_roles');
+    }
+
+    /**
+     * Get permissions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions() {
+        return $this->belongsToMany('App\Permission', 'user_has_permissions');
+    }
 }

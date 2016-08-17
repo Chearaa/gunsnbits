@@ -160,6 +160,7 @@ return [
          * Third Party Providers
          */
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         AdamWathan\BootForms\BootFormsServiceProvider::class,
 
     ],
