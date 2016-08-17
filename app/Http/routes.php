@@ -58,9 +58,13 @@ $this->post('password/reset', [
 /*
  * Facebook Routes
  */
-Route::get('/facebook/callback/login', [
-    'as' => 'facebook.callback.login',
+Route::get('/facebook/callback', [
+    'as' => 'facebook.callback',
     'uses' => 'Auth\FacebookController@callback'
+]);
+Route::get('/facebook/error', [
+    'as' => 'facebook.error',
+    'uses' => 'Auth\FacebookController@error'
 ]);
 
 /*

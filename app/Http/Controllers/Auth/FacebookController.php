@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Facebookuser;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Validator;
@@ -9,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class FacebookController extends Controller
 {
+    /**
+     * Callback function.
+     *
+     * @param LaravelFacebookSdk $fb
+     */
     public function callback(LaravelFacebookSdk $fb) {
 
         // Obtain an access token.
@@ -64,6 +71,52 @@ class FacebookController extends Controller
         // Convert the response to a `Facebook/GraphNodes/GraphUser` collection
         $facebook_user = $response->getGraphUser();
 
-        dd($facebook_user);
+        /**
+         * now we have a GraphUser
+         *
+         * GraphUser {
+         *  'id' => '...'
+         *  'name' => '...'
+         *  'email' => '...'
+         * }
+         *
+         * lets see what we do...
+         */
+
+        //login
+        if (Session::get('facebook_function') == 'login') {
+
+            //check if facebook user exists in facebookusers table
+            $facebookuser = Facebookuser::where('id', $facebook_user['id'])->first();
+            if (! $facebookuser) {
+                //if facebook-id not exists in facebookusers table, lets try to find someone with the same email-address
+                $user = User::where('email', $facebook_user['email'])->first();
+                if (! $user) {
+                    //cant find a user with same email-address
+                    return redirect( route('facebook.error') )
+                        ->with('alerts', [
+                            [
+                                'class' => 'danger',
+                                'msg' =>'<h4>Wir konnten deinen Benutzer-Account leider nicht finden</h4><br/>
+                                         Bitte <a href="' . route('auth.register') . '"><i class="fa fa-user-plus"></i> registriere</a> einen neuen Account oder verbinde deinen bestehenden Benutzer-Account mit Facebook auf deiner Profil-Seite.<br/><br/>
+                                         <a href="' . route('auth.login') . '" class="btn btn-default"><i class="fa fa-chevron-left"></i> zurück zum Login</a>'
+                            ]
+                        ]);
+                }
+                else {
+                    dd($user);
+                }
+            }
+            else {
+                dd($facebookuser);
+            }
+        }
+
+    }
+
+    public function error() {
+        return view('auth.error', [
+            'alerts' => (session()->has('alerts')) ? session('alerts') : []
+        ]);
     }
 }
