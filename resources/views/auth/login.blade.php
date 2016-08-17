@@ -62,5 +62,10 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <a href="{{ $login_url }}">Facebook Login</a>
+        </div>
+    </div>
 </div>
 @endsection
