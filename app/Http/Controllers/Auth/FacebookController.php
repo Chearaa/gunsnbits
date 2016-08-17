@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Facebookuser;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Validator;
@@ -104,7 +105,34 @@ class FacebookController extends Controller
                         ]);
                 }
                 else {
-                    dd($user);
+                    //user found with same email-address
+                    //let's connect facebookuser with user
+
+                    //create new facebookuser
+                    $facebookuser = new Facebookuser([
+                        'id' => $facebook_user['id'],
+                        'name' => $facebook_user['name'],
+                        'email' => $facebook_user['email']
+                    ]);
+                    $user->facebookuser()->save($facebookuser);
+
+                    //login user with id and the "remember me" cookie
+                    if (Auth::loginUsingId($user->id, true)) {
+                        // Authentication passed...
+                        return redirect()->intended( route('home') );
+                    }
+                    else {
+                        return redirect( route('facebook.error') )
+                            ->with('alerts', [
+                                [
+                                    'class' => 'danger',
+                                    'msg' =>'<h4>Login fehlgeschlagen</h4><br/>
+                                         Es gab ein technisches Problem beim Login. Bitte versuchen Sie es später noch einmal.<br/><br/>
+                                         <a href="' . route('auth.login') . '" class="btn btn-default"><i class="fa fa-chevron-left"></i> zurück zum Login</a>'
+                                ]
+                            ]);
+                    }
+
                 }
             }
             else {

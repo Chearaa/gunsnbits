@@ -19,6 +19,8 @@ class CreateFacebookusersTable extends Migration
             $table->string('id')->unique();
             $table->string('name');
             $table->string('email')->unique();
+
+            $table->timestamps();
         });
     }
 
