@@ -5,4 +5,6 @@ bootstrap/cache/
 .idea/*
 **/artisan
 readme.md
+public/build/**/*
+public/build/*
 

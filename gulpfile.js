@@ -15,17 +15,14 @@ elixir(function(mix) {
     mix.sass('app.scss');
 
     mix.scripts([
-            'libs/jquery/jquery-2.2.4.min.js',
-            'libs/bootstrap/js/bootstrap.min.js',
-            'js/gunsnbits.js'
-        ],
-        'public/build/js/app.js',
-        'resources/assets'
-    );
+        '../libs/jquery/jquery-2.2.4.min.js',
+        '../libs/bootstrap/js/bootstrap.min.js',
+        'gunsnbits.js'
+    ]);
 
     mix.version([
         'public/css/app.css',
-        'public/js/app.js'
+        'public/js/all.js'
     ]);
 
     mix.copy('resources/assets/libs/fontawesome/fonts', 'public/build/fonts');
