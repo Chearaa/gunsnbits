@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "sammyk/laravel-facebook-sdk": "^3.0",
         "adamwathan/bootforms": "^0.8.1",
-        "spatie/laravel-permission": "^1.4"
+        "spatie/laravel-permission": "^1.4",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

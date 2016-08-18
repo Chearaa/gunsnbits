@@ -157,6 +157,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         * Image Service Provider
+         */
+        Intervention\Image\ImageServiceProvider::class,
+
+        /*
          * Third Party Providers
          */
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
@@ -208,6 +213,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Image' => Intervention\Image\Facades\Image::class,
 
         'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
