@@ -1,0 +1,15 @@
+form {
+  .form-group {
+    &.has-error {
+      p:first-of-type.help-block {
+        color: $brand-danger;
+      }
+    }
+  }
+}
+
+.panel {
+  .panel-heading {
+    font-weight: 700;
+  }
+}

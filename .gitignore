@@ -7,4 +7,6 @@ bootstrap/cache/
 readme.md
 public/build/**/*
 public/build/*
+!/vendor/adamwathan/bootforms/src/AdamWathan/BootForms/Elements/CheckGroup.php
+!/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
 

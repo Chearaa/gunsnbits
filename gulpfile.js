@@ -26,4 +26,5 @@ elixir(function(mix) {
     ]);
 
     mix.copy('resources/assets/libs/fontawesome/fonts', 'public/build/fonts');
+    mix.copy('resources/assets/libs/bootstrap/fonts', 'public/build/fonts/bootstrap');
 });
