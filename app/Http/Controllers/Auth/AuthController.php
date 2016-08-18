@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -70,7 +71,61 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Register success view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registerSuccess() {
         return view('auth.registersuccess');
+    }
+
+    /**
+     * OVERRIDE!
+     *
+     * Show the application login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm(LaravelFacebookSdk $fb)
+    {
+        session(['facebook_function' => 'login']);
+        $login_url = $fb->getLoginUrl(['email'], '/facebook/callback');
+
+        $view = property_exists($this, 'loginView')
+            ? $this->loginView : 'auth.authenticate';
+
+        if (view()->exists($view)) {
+            return view($view, [
+                'login_url' => $login_url
+            ]);
+        }
+
+        return view('auth.login', [
+            'login_url' => $login_url
+        ]);
+    }
+
+    /**
+     * OVERRIDE!
+     *
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm(LaravelFacebookSdk $fb)
+    {
+        session(['facebook_function' => 'register']);
+        $login_url = $fb->getLoginUrl(['email'], '/facebook/callback');
+
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView, [
+                'login_url' => $login_url
+            ]);
+        }
+
+        return view('auth.register', [
+            'login_url' => $login_url
+        ]);
     }
 }

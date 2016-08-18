@@ -158,7 +158,7 @@ class FacebookController extends Controller
                 }
             }
         }
-        //login
+        //register
         elseif (Session::get('facebook_function') == 'register') {
             //check if facebook user exists in facebookusers table
             $facebookuser = Facebookuser::where('id', $facebook_user['id'])->first();
