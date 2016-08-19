@@ -1,3 +1,16 @@
+.text-success {
+  color: $brand-success;
+}
+.text-danger {
+  color: $brand-danger;
+}
+
+i {
+  &.switch {
+    cursor: hand;
+  }
+}
+
 form {
   .form-group {
     &.has-error {

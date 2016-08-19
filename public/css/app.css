@@ -7918,6 +7918,15 @@ button.close {
     width: 60px;
     text-align: center; }
 
+.text-success {
+  color: #77B300; }
+
+.text-danger {
+  color: #CC0000; }
+
+i.switch {
+  cursor: hand; }
+
 form .form-group.has-error p:first-of-type.help-block {
   color: #CC0000; }
 

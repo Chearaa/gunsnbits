@@ -63,4 +63,19 @@ $(function () {
         }
         init();
     });
+
+    $('.switch').each(function() {
+        var $switch = $(this);
+
+        $switch.on('click', function() {
+            if ($this.hasClass('fa-check-square-o')) {
+                $this.removeClass('fa-check-square-o');
+                $this.addClass('fa-square-o');
+            }
+            else {
+                $this.removeClass('fa-square-o');
+                $this.addClass('fa-check-square-o');
+            }
+        });
+    });
 });

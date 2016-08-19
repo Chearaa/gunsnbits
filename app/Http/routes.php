@@ -80,4 +80,19 @@ Route::get('/home', [
     'uses' => 'HomeController@home'
 ]);
 
+/*
+ * AdminUserController
+ */
+Route::get('/admin/user/permissions', [
+    'as' => 'admin.user.permissions',
+    'uses' => 'Admin\UserController@permissions'
+]);
+Route::GET('/admin/user/permissions/ajax/delete/{userid}', [
+    'as' => 'admin.user.permissions.ajax.delete',
+    'uses' => 'Admin\UserController@permissionsAjaxDelete'
+]);
+Route::GET('/admin/user/permissions/ajax/add/{userid}', [
+    'as' => 'admin.user.permissions.ajax.add',
+    'uses' => 'Admin\UserController@permissionsAjaxAdd'
+]);
 

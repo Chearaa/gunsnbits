@@ -10,4 +10,4 @@ public/css
 public/js
 !/vendor/adamwathan/bootforms/src/AdamWathan/BootForms/Elements/CheckGroup.php
 !/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
-
+!/public/js/gunsbits.js

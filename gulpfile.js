@@ -16,8 +16,7 @@ elixir(function(mix) {
 
     mix.scripts([
         '../libs/jquery/jquery-2.2.4.min.js',
-        '../libs/bootstrap/js/bootstrap.min.js',
-        'gunsnbits.js'
+        '../libs/bootstrap/js/bootstrap.min.js'
     ]);
 
     mix.version([
