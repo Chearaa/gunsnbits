@@ -33,7 +33,16 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function facebookuser() {
-        return $this->hasOne('App\Facebookuser');
+        return $this->hasOne(Facebookuser::class);
+    }
+
+    /**
+     * Get paypal transactions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function paypals() {
+        return $this->hasMany(Paypal::class);
     }
 
 }

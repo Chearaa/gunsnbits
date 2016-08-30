@@ -24,5 +24,23 @@ class RolesTableSeeder extends Seeder
             'name' => 'permissionmanager'
         ]);
         User::find(1)->roles()->save($role);
+
+        $role = new Role([
+            'id' => 3,
+            'name' => 'lanpartymanager'
+        ]);
+        User::find(1)->roles()->save($role);
+
+        $role = new Role([
+            'id' => 4,
+            'name' => 'imagemanager'
+        ]);
+        User::find(1)->roles()->save($role);
+
+        $role = new Role([
+            'id' => 5,
+            'name' => 'cateringmanager'
+        ]);
+        User::find(1)->roles()->save($role);
     }
 }

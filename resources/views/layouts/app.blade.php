@@ -48,7 +48,10 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 @role('permissionmanager')
-                                <li><a href="{{ route('admin.user.permissions') }}"><i class="fa fa-btn fa-users"></i>Benutzer-Berechtigungen</a></li>
+                                <li><a href="{{ route('admin.user.permissions') }}"><i class="fa fa-btn fa-users"></i> Benutzer-Berechtigungen</a></li>
+                                @endrole
+                                @role('lanpartymanager')
+                                <li><a href="{{ route('admin.lanparty.listing') }}"><i class="fa fa-btn fa-gamepad"></i> Lanparties</a></li>
                                 @endrole
                             </ul>
                         </li>
@@ -67,10 +70,18 @@
         </div>
     </nav>
 
+    <div class="container">
+        <div class="col-sm-12">
+            @include('flash::message')
+        </div>
+    </div>
+
     @yield('content')
 
     <!-- JavaScripts -->
     <script src="{{ elixir('js/all.js') }}"></script>
     <script src="/js/gunsnbits.js"></script>
+
+    @yield('scripts')
 </body>
 </html>

@@ -87,10 +87,10 @@ class CreatePermissionTables extends Migration
     {
         $config = config('laravel-permission.table_names');
 
-        Schema::drop($config['role_has_permissions']);
-        Schema::drop($config['user_has_roles']);
-        Schema::drop($config['user_has_permissions']);
-        Schema::drop($config['roles']);
-        Schema::drop($config['permissions']);
+        Schema::dropIfExists($config['role_has_permissions']);
+        Schema::dropIfExists($config['user_has_roles']);
+        Schema::dropIfExists($config['user_has_permissions']);
+        Schema::dropIfExists($config['roles']);
+        Schema::dropIfExists($config['permissions']);
     }
 }

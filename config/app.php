@@ -167,6 +167,7 @@ return [
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         AdamWathan\BootForms\BootFormsServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 
@@ -218,6 +219,7 @@ return [
 
         'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
+        'Flash' => Laracasts\Flash\Flash::class,
 
     ],
 

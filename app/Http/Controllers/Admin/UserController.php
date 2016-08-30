@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,16 +31,17 @@ class UserController extends Controller
     }
 
     /**
-     * Ajax action to delete permissionmanager role.
+     * Ajax action to delete roles from user.
      *
      * @param $userid
      * @return string
      */
-    public function permissionsAjaxDelete($userid) {
+    public function permissionsAjaxDelete($userid, $roleid) {
         $user = User::findOrFail($userid);
-        if (!is_null($user) && $user->id != Auth::user()->id) {
-            if ($user->hasRole('permissionmanager')) {
-                $user->removeRole('permissionmanager');
+        $role = Role::findOrFail($roleid);
+        if ((!is_null($user) && !is_null($role) && !($user->id == Auth::user()->id && $role->name == 'permissionmanager')) || Auth::user()->isAdmin()) {
+            if ($user->hasRole($role->name)) {
+                $user->removeRole($role->name);
                 return 'success';
             }
         }
@@ -47,16 +49,17 @@ class UserController extends Controller
     }
 
     /**
-     * Ajax action to add permissionmanager role.
+     * Ajax action to add roles to user.
      *
      * @param $userid
      * @return string
      */
-    public function permissionsAjaxAdd($userid) {
+    public function permissionsAjaxAdd($userid, $roleid) {
         $user = User::findOrFail($userid);
-        if (!is_null($user)) {
-            if (!$user->hasRole('permissionmanager')) {
-                $user->assignRole('permissionmanager');
+        $role = Role::findOrFail($roleid);
+        if ((!is_null($user) && !is_null($role) && !($user->id == Auth::user()->id && $role->name == 'permissionmanager')) || Auth::user()->isAdmin()) {
+            if (!$user->hasRole($role->name)) {
+                $user->assignRole($role->name);
                 return 'success';
             }
         }
