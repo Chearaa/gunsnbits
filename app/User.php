@@ -45,4 +45,39 @@ class User extends Authenticatable
         return $this->hasMany(Paypal::class);
     }
 
+    /**
+     * get regular seats of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function regularseats() {
+        return $this->hasMany(Regularseat::class);
+    }
+
+    /**
+     * get seats of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function seats() {
+        return $this->hasMany(Seat::class);
+    }
+
+    /**
+     * get the coins of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function coins() {
+        return $this->hasMany(Coin::class);
+    }
+
+    /**
+     * get the codes of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function codes() {
+        return $this->hasMany(Code::class);
+    }
 }

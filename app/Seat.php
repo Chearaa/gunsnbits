@@ -48,7 +48,7 @@ class Seat extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function lanparty() {
-    	return $this->belongsTo('App\Lanparty');
+    	return $this->belongsTo(Lanparty::class);
     }
     
     /**
@@ -57,7 +57,7 @@ class Seat extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user() {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class);
     }
     
     /**

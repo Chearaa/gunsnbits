@@ -19,6 +19,21 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->boolean('active')->default(true);
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('street');
+            $table->string('postcode');
+            $table->string('city');
+            $table->string('country');
+            $table->double('geo_lat');
+            $table->double('geo_long');
+            $table->string('phone');
+            $table->date('birthday');
+            $table->string('avatar');
+
+            $table->integer('maxseats')->default(1);
         });
     }
 

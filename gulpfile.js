@@ -16,7 +16,11 @@ elixir(function(mix) {
 
     mix.scripts([
         '../libs/jquery/jquery-2.2.4.min.js',
-        '../libs/bootstrap/js/bootstrap.min.js'
+        '../libs/bootstrap/js/bootstrap.min.js',
+        '../libs/typeahead/bootstrap-typeahead.min.js',
+        '../../../node_modules/moment/moment.js',
+        '../../../node_modules/moment/locale/de.js',
+        '../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js'
     ]);
 
     mix.version([
@@ -26,4 +30,5 @@ elixir(function(mix) {
 
     mix.copy('resources/assets/libs/fontawesome/fonts', 'public/build/fonts');
     mix.copy('resources/assets/libs/bootstrap/fonts', 'public/build/fonts/bootstrap');
+    mix.copy('resources/assets/libs/countdownTimer/jquery.countdownTimer.min.js', 'public/js')
 });

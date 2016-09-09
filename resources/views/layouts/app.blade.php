@@ -32,6 +32,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -52,6 +53,7 @@
                                 @endrole
                                 @role('lanpartymanager')
                                 <li><a href="{{ route('admin.lanparty.listing') }}"><i class="fa fa-btn fa-gamepad"></i> Lanparties</a></li>
+                                <li><a href="{{ route('admin.lanparty.regularseats') }}"><i class="fa fa-btn fa-th-large"></i> Stammplätze</a></li>
                                 @endrole
                             </ul>
                         </li>

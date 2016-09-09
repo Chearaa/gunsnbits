@@ -356,6 +356,25 @@ Route::post('/admin/coins/user/{user_id}/delete', [
 ]);
 
 /*
+ * Service Controller
+ */
+Route::get('/contact', [
+    'as'        => 'service.contact',
+    'uses'      => 'ServiceController@contact'
+]);
+
+Route::post('/contact', [
+    'before'    => 'csrf',
+    'as'        => 'service.contact.post',
+    'uses'      => 'ServiceController@postContact'
+]);
+
+Route::get('/teamspeak', [
+    'as'        => 'teamspeak.viewer',
+    'uses'      => 'ServiceController@teamspeak'
+]);
+
+/*
  * AjaxController
  */
 Route::get('/ajax/users', [

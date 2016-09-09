@@ -24,7 +24,7 @@ class AjaxController extends Controller
 	 * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
 	 */
     public function users() {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+    	if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	return User::where('active', '=', true)->get()->jsonSerialize();

@@ -41,18 +41,18 @@ class LanpartyController extends Controller
 	 * get reservation view
 	 */
 	public function reservation() {
-		
 		$reservedseats = null;
+        $usercanreserveseats = 0;
 
+        //get next lanparty
 		$lanparty = Lanparty::getNextLan();
 		$user = (Auth::check()) ? Auth::user() : null;
 		
-		if ($lanparty != null) {
+		if ($lanparty instanceof Lanparty) {
 			$reservedseats = $lanparty->getReservedSeats();
+            $usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->get()->count()) : 0;
 		}
-		
-		$usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->get()->count()) : 0;
-		
+
 		return view('lanparty.reservation')
 			->with('lanparty', $lanparty)
 			->with('user', $user)
@@ -340,7 +340,7 @@ class LanpartyController extends Controller
      * @param Request $request
      */
     public function postAdd(Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -433,24 +433,14 @@ class LanpartyController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function edit($id = 0) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
+
     	$lanparty = Lanparty::findOrFail($id);
-    	$lan = array(
-    		'id' => $lanparty->id,
-    		'title' => $lanparty->title,
-    		'subtitle' => $lanparty->subtitle,
-    		'description' => $lanparty->description,
-    		'start' => $lanparty->start->format('d.m.Y'),
-    		'end' => $lanparty->end->format('d.m.Y'),
-    		'registrationstart' => $lanparty->registrationstart->format('d.m.Y'),
-    		'registrationend' => $lanparty->registrationend->format('d.m.Y'),
-    		'reasonforpayment' => $lanparty->reasonforpayment
-    	);
-    	
+
     	return view('admin.lanparty.edit')
-    		->with('lan', $lan);
+    		->with('lanparty', $lanparty);
     }
     
     /**
@@ -459,7 +449,7 @@ class LanpartyController extends Controller
      * @param Request $request
      */
     public function postEdit(Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -522,7 +512,7 @@ class LanpartyController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function postDelete(Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	$lanparty = Lanparty::findOrFail($request->id);
@@ -538,7 +528,7 @@ class LanpartyController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function getRegularseats() {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -560,7 +550,7 @@ class LanpartyController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function postRegularseats(Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -609,20 +599,26 @@ class LanpartyController extends Controller
      * @param number $id
      */
     public function seatingplan($id = 0) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
-    	
+
+    	$reservedseats = [];
+        $freeseats = [];
+
+    	//get the next lanparty
     	$lanparty = Lanparty::findOrFail($id);
-    	$reservedseats = $lanparty->getReservedSeats();
-    	
-    	$freeseats = array();
-    	for ($i=1; $i<=220; $i++) {
-    		if (!isset($reservedseats[$i])) {
-    			$freeseats[$i] = $i;
-    		}
-    	}
-    	
+        if ($lanparty instanceof Lanparty) {
+            $reservedseats = $lanparty->getReservedSeats();
+
+            $freeseats = array();
+            for ($i=1; $i<=220; $i++) {
+                if (!isset($reservedseats[$i])) {
+                    $freeseats[$i] = $i;
+                }
+            }
+        }
+
     	return view('admin.lanparty.seatingplan')
     		->with('lanparty', $lanparty)
     		->with('reservedseats', $reservedseats)
@@ -637,7 +633,7 @@ class LanpartyController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function postSeatingplan($id = 0, Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	

@@ -44,17 +44,21 @@
                                             @elseif ($now->diffInDays($lanparty->registrationstart) > 0)
                                                 <span>öffnet morgen</span>
                                             @else
-                                                <span>öffnet in {{ $now->diffInHours($lanparty->registrationstart) }} Stunden</span>
+                                                @if ($now->diffInHours($lanparty->registrationstart) > 0)
+                                                    <span>öffnet in {{ $now->diffInHours($lanparty->registrationstart) }} {{ ($now->diffInHours($lanparty->registrationstart) == 1) ? 'Stunde' : 'Stunden'  }}</span>
+                                                @else
+                                                    <span>öffnet in {{ $now->diffInMinutes($lanparty->registrationstart) }} {{ ($now->diffInMinutes($lanparty->registrationstart) == 1) ? 'Minute' : 'Minuten'  }}</span>
+                                                @endif
                                             @endif
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('admin.lanparty.edit', [$lanparty->id]) }}" class="btn btn-default"><i class="fa fa-fw fa-edit"></i></a>
-                                        <a href="{{ route('admin.lanparty.seatingplan', [$lanparty->id]) }}" class="btn btn-default"><i class="fa fa-fw fa-th-large"></i></a>
-                                        <a href="{{ route('admin.lanparty.memberlist', [$lanparty->id]) }}" class="btn btn-default"><i class="fa fa-fw fa-list"></i></a>
+                                        <a href="{{ route('admin.lanparty.edit', [$lanparty->id]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-edit"></i></a>
+                                        <a href="{{ route('admin.lanparty.seatingplan', [$lanparty->id]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-th-large"></i></a>
+                                        <a href="{{ route('admin.lanparty.memberlist', [$lanparty->id]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-list"></i></a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger pull-right" data-container="body" data-toggle="modal" data-target="#modal-{{ $lanparty->id }}"><i class="fa fa-fw fa-close"></i></button>
+                                        <button class="btn btn-sm btn-danger pull-right" data-container="body" data-toggle="modal" data-target="#modal-{{ $lanparty->id }}"><i class="fa fa-fw fa-close"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
