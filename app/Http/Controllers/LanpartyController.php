@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 use Mockery\CountValidator\Exception;
 use Validator;
 use App\User;
@@ -370,16 +371,18 @@ class LanpartyController extends Controller
     		'reasonforpayment.max' => 'Der Verwendungszweck darf nicht länger als 10 Zeichen sein.',
     		'reasonforpayment.unique' => 'Dieser Verwendungszweck wurde schon benutzt.'
     	];
+
+        $rules = [
+            'title' => 'required|max:255',
+            'subtitle' => 'max:255',
+            'start' => 'required|date_format:d.m.Y H:i',
+            'end' => 'required|date_format:d.m.Y H:i|after:start',
+            'registrationstart' => 'required|date_format:d.m.Y H:i|before:start',
+            'registrationend' => 'required|date_format:d.m.Y H:i|after:registrationstart|before:start',
+            'reasonforpayment' => 'required|max:10|unique:lanparties,deleted_at,null'
+        ];
     	
-    	$validator = Validator::make($request->all(), [
-    		'title' => 'required|max:255',
-    		'subtitle' => 'max:255',
-    		'start' => 'required|date_format:d.m.Y H:i',
-    		'end' => 'required|date_format:d.m.Y H:i|after:start',
-    		'registrationstart' => 'required|date_format:d.m.Y H:i|before:start',
-    		'registrationend' => 'required|date_format:d.m.Y H:i|after:registrationstart|before:start',
-    		'reasonforpayment' => 'required|max:10|unique:lanparties'
-    	], $messages);
+    	$validator = Validator::make($request->all(), $rules, $messages);
     	
     	if ($validator->fails()) {
     		return redirect(route('admin.lanparty.add'))
@@ -449,13 +452,15 @@ class LanpartyController extends Controller
     	return view('admin.lanparty.edit')
     		->with('lanparty', $lanparty);
     }
-    
+
     /**
      * edit a lanparty
      *
      * @param Request $request
+     * @param int $id
+     * @return Redirect
      */
-    public function postEdit(Request $request) {
+    public function postEdit(Request $request, $id = 0) {
         if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
@@ -483,27 +488,27 @@ class LanpartyController extends Controller
     	$validator = Validator::make($request->all(), [
     		'title' => 'required|max:255',
     		'subtitle' => 'max:255',
-    		'start' => 'required|date_format:d.m.Y',
-    		'end' => 'required|date_format:d.m.Y|after:start',
-    		'registrationstart' => 'required|date_format:d.m.Y|before:start',
-    		'registrationend' => 'required|date_format:d.m.Y|after:registrationstart|before:start',
+    		'start' => 'required|date_format:d.m.Y H:i',
+    		'end' => 'required|date_format:d.m.Y H:i|after:start',
+    		'registrationstart' => 'required|date_format:d.m.Y H:i|before:start',
+    		'registrationend' => 'required|date_format:d.m.Y H:i|after:registrationstart|before:start',
     		'reasonforpayment' => 'required|max:10|unique:lanparties,id,' . $request->id
     	], $messages);
     	 
     	if ($validator->fails()) {
-    		return redirect(route('admin.lanparty.edit', [$request->id]))
-    		->withErrors($validator)
-    		->withInput();
+    		return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
     	}
     	else {
-    		$lanparty = Lanparty::findOrFail($request->id);
+    		$lanparty = Lanparty::findOrFail($id);
     		$lanparty->title = $request->title;
     		$lanparty->subtitle = $request->subtitle;
     		$lanparty->description = $request->description;
-    		$lanparty->start = Carbon::createFromFormat('d.m.Y', $request->start)->startOfDay()->addHours(12)->format('Y-m-d H:i:s');
-    		$lanparty->end = Carbon::createFromFormat('d.m.Y', $request->end)->startOfDay()->addHours(14)->format('Y-m-d H:i:s');
-    		$lanparty->registrationstart = Carbon::createFromFormat('d.m.Y', $request->registrationstart)->startOfDay()->format('Y-m-d H:i:s');
-    		$lanparty->registrationend = Carbon::createFromFormat('d.m.Y', $request->registrationend)->startOfDay()->addHours(12)->format('Y-m-d H:i:s');
+    		$lanparty->start = Carbon::createFromFormat('d.m.Y H:i', $request->start)->startOfDay()->format('Y-m-d H:i:s');
+    		$lanparty->end = Carbon::createFromFormat('d.m.Y H:i', $request->end)->startOfDay()->format('Y-m-d H:i:s');
+    		$lanparty->registrationstart = Carbon::createFromFormat('d.m.Y H:i', $request->registrationstart)->format('Y-m-d H:i:s');
+    		$lanparty->registrationend = Carbon::createFromFormat('d.m.Y H:i', $request->registrationend)->format('Y-m-d H:i:s');
     		$lanparty->reasonforpayment = $request->reasonforpayment;
     		$lanparty->update();
     
