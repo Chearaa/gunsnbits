@@ -108,7 +108,7 @@ class CateringController extends Controller
 
             $catering->save();
 
-            $request->session()->flash('alert-success', 'Der Eintrag wurde hinzugefügt.');
+            flash('Der Eintrag wurde hinzugefügt.', 'success');
             return redirect(route('admin.catering.list'));
         }
     }
@@ -152,10 +152,10 @@ class CateringController extends Controller
         if ($catering instanceof Catering) {
             $catering->delete();
 
-            $request->session()->flash('alert-success', 'Die Speise wurde gelöscht.');
+            flash('Die Speise wurde gelöscht.', 'success');
         }
         else {
-            $request->session()->flash('alert-danger', 'Die Speise wurde nicht gefunden.');
+            flash('Die Speise wurde nicht gefunden.', 'danger');
         }
 
         return redirect(route('admin.catering.list'));

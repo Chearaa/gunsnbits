@@ -42,7 +42,7 @@ class CoinController extends Controller
 			$user = DB::table('users')->where('name', 'like', $request->name)->first();
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Benutzer wurde nicht gefunden!');
+			flash('Benutzer wurde nicht gefunden!', 'danger');
 			return redirect(route('admin.coin.user'));
 		}
 		
@@ -50,7 +50,7 @@ class CoinController extends Controller
 			return redirect(route('admin.coin.user.list', [$user->id]));
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Benutzer wurde nicht gefunden!');
+			flash('Benutzer wurde nicht gefunden!', 'danger');
 			return redirect(route('admin.coin.user'));
 		}
 	}
@@ -103,7 +103,7 @@ class CoinController extends Controller
 			$coin = new Coin($request->all());
 			$user->coins()->save($coin);
 			
-			$request->session()->flash('alert-success', 'Die Coins wurden hinzugefügt/abgezogen.');
+			flash('Die Coins wurden hinzugefügt/abgezogen.', 'success');
 		}
 		
 		return redirect(route('admin.coin.user.list', [$user->id]));
@@ -123,10 +123,10 @@ class CoinController extends Controller
 			if ($coin instanceof Coin) {
 				$coin->delete();
 				
-				$request->session()->flash('alert-success', 'Der Eintrag wurde gelöscht.');
+				flash('Der Eintrag wurde gelöscht.', 'success');
 			}
 			else {
-				$request->session()->flash('alert-danger', 'Wir konnten keinen Eintrag zur Löschung finden.');
+				flash('Wir konnten keinen Eintrag zur Löschung finden.', 'danger');
 			}
 		}
 		

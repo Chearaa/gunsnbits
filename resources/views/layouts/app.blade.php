@@ -99,6 +99,9 @@
     <!-- JavaScripts -->
     <script src="{{ elixir('js/all.js') }}"></script>
     <script src="/js/gunsnbits.js"></script>
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    </script>
 
     @yield('scripts')
 </body>

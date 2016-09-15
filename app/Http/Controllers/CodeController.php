@@ -68,11 +68,11 @@ class CodeController extends Controller
 			}
 			while ($i < $request->counter);
 			
-			$request->session()->flash('alert-success', 'Gutschein-Codes wurden generiert.');
+			flash('Gutschein-Codes wurden generiert.', 'success');
 			return redirect(route('admin.code.listing'));
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Es konnten keine Gutschein-Codes generiert werden.');
+			flash('Es konnten keine Gutschein-Codes generiert werden.', 'danger');
 		}
 		return redirect(route('admin.code.add'));
 	}

@@ -86,26 +86,26 @@ class LanpartyController extends Controller
 						$seat->marked_at = $now;
 						$lanparty->seats()->save($seat);
 						
-						$request->session()->flash('alert-success', 'Die Reservierung wurde erfolgreich durchgeführt.');
+						flash('Die Reservierung wurde erfolgreich durchgeführt.', 'success');
 						return redirect(route('lanparty.reservation'));
 					}
 					else {
-						$request->session()->flash('alert-danger', 'Die Reservierung konnte nicht gespeichert werden.');
+						flash('Die Reservierung konnte nicht gespeichert werden.', 'danger');
 						return redirect(route('lanparty.reservation'));
 					}
 				}
 				else {
-					$request->session()->flash('alert-danger', 'Zur Zeit kann leider keine Reservierung durchgeführt werden.');
+					flash('Zur Zeit kann leider keine Reservierung durchgeführt werden.', 'danger');
 					return redirect(route('lanparty.reservation'));
 				}
 			}
 			else {
-				$request->session()->flash('alert-danger', 'Die Lanparty wurde nicht gefunden.');
+				flash('Die Lanparty wurde nicht gefunden.', 'danger');
 				return redirect(route('lanparty.reservation'));
 			}
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Fehler bei der Reservierung.');
+			flash('Fehler bei der Reservierung.', 'danger');
 			return redirect(route('lanparty.reservation'));
 		}
 	}
@@ -125,7 +125,7 @@ class LanpartyController extends Controller
 			$seat->delete();
 		}
 		
-		$request->session()->flash('alert-success', 'Die Reservierung wurde storniert.');
+		flash('Die Reservierung wurde storniert.', 'success');
 		return redirect(route('lanparty.reservation'));
 	}
 	
@@ -177,10 +177,10 @@ class LanpartyController extends Controller
 									$coin->description = 'Sitzplatz #' . $seat->seatnumber . ' der ' . $lanparty->title . ' wurde per Gutschein bezahlt.';
 									$user->coins()->save($coin);
 									
-									$request->session()->flash('alert-success', 'Code akzeptiert! Der Sitzplatz wurde bezahlt.');
+									flash('Code akzeptiert! Der Sitzplatz wurde bezahlt.', 'success');
 								}
 								else {
-									$request->session()->flash('alert-danger', 'Der Code kann für diese Lanparty nicht genutzt werden.');
+									flash('Der Code kann für diese Lanparty nicht genutzt werden.', 'danger');
 								}
 							}
 							else {
@@ -202,27 +202,27 @@ class LanpartyController extends Controller
 								$coin->description = 'Sitzplatz #' . $seat->seatnumber . ' der ' . $lanparty->title . ' wurde per Gutschein bezahlt.';
 								$user->coins()->save($coin);
 								
-								$request->session()->flash('alert-success', 'Code akzeptiert! Der Sitzplatz wurde bezahlt.');
+								flash('Code akzeptiert! Der Sitzplatz wurde bezahlt.', 'success');
 							}
 						}
 						else {
-							$request->session()->flash('alert-danger', 'Dieser Code wurde bereits benutzt.');
+							flash('Dieser Code wurde bereits benutzt.', 'danger');
 						}
 					}
 					else {
-						$request->session()->flash('alert-danger', 'Dieser Code ist nicht aktiv.');
+						flash('Dieser Code ist nicht aktiv.', 'danger');
 					}
 				}
 				else {
-					$request->session()->flash('alert-warning', 'Dieser Code ist uns nicht bekannt.');
+					flash('Dieser Code ist uns nicht bekannt.', 'warning');
 				}
 			}
 			else {
-				$request->session()->flash('alert-warning', 'Dieser Code ist uns nicht bekannt.');
+				flash('Dieser Code ist uns nicht bekannt.', 'warning');
 			}
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Es trat ein Fehler auf.');
+			flash('Es trat ein Fehler auf.', 'danger');
 		}
 		return redirect(route('lanparty.reservation'));
 	}
@@ -257,18 +257,18 @@ class LanpartyController extends Controller
 					$seat->payed_at = $now;
 					$seat->save();
 					
-					$request->session()->flash('alert-success', 'Der Sitzplatz wurde mit deinen GnB-Coins reserviert und bezahlt.');
+					flash('Der Sitzplatz wurde mit deinen GnB-Coins reserviert und bezahlt.', 'success');
 				}
 				else {
-					$request->session()->flash('alert-danger', 'Du hast nicht genug GnB-Coins.');
+					flash('Du hast nicht genug GnB-Coins.', 'danger');
 				}
 			}
 			else {
-				$request->session()->flash('alert-danger', 'Es trat ein Fehler auf.');
+				flash('Es trat ein Fehler auf.', 'danger');
 			}
 		}
 		else {
-			$request->session()->flash('alert-danger', 'Es trat ein Fehler auf.');
+			flash('Es trat ein Fehler auf.', 'danger');
 		}
 		return redirect(route('lanparty.reservation'));
 	}
@@ -432,7 +432,7 @@ class LanpartyController extends Controller
     			}
     		}
     		
-    		$request->session()->flash('alert-success', 'Die Lanparty wurde angelegt.');
+    		flash('Die Lanparty wurde angelegt.', 'success');
     		return redirect(route('admin.lanparty.listing'));
     	}
     }
@@ -512,7 +512,7 @@ class LanpartyController extends Controller
     		$lanparty->reasonforpayment = $request->reasonforpayment;
     		$lanparty->update();
     
-    		$request->session()->flash('alert-success', 'Die Lanparty wurde aktualisiert.');
+    		flash('Die Lanparty wurde aktualisiert.', 'success');
     		return redirect(route('admin.lanparty.listing'));
     	}
     }
@@ -530,7 +530,7 @@ class LanpartyController extends Controller
     	$lanparty = Lanparty::findOrFail($request->id);
     	$lanparty->delete();
     	
-    	$request->session()->flash('alert-success', 'Die Lanparty wurde gelöscht.');
+    	flash('Die Lanparty wurde gelöscht.', 'success');
     	return redirect(route('admin.lanparty.listing'));
     }
     
@@ -570,7 +570,7 @@ class LanpartyController extends Controller
     	if ($request->action == 'delete') {
     		DB::table('regularseats')->where('id', $request->id)->delete();
     		
-    		$request->session()->flash('alert-success', 'Stammplatz wurde erfolgreich gelöscht.');
+    		flash('Stammplatz wurde erfolgreich gelöscht.', 'success');
     		return redirect(route('admin.lanparty.regularseats'));
     	}
     	
@@ -581,7 +581,7 @@ class LanpartyController extends Controller
     		$regularseat->status = $request->status;
     		$regularseat->save();
     		
-    		$request->session()->flash('alert-success', 'Stammplatz wurde erfolgreich vergeben.');
+    		flash('Stammplatz wurde erfolgreich vergeben.', 'success');
     		return redirect(route('admin.lanparty.regularseats'));
     	}
     	else {
@@ -595,11 +595,11 @@ class LanpartyController extends Controller
     			$regularseat->status = $request->status;
     			$regularseat->save();
     			
-    			$request->session()->flash('alert-success', 'Stammplatz wurde erfolgreich vergeben.');
+    			flash('Stammplatz wurde erfolgreich vergeben.', 'success');
     			return redirect(route('admin.lanparty.regularseats'));
     		}
     		else {
-    			$request->session()->flash('alert-danger', 'Benutzer wurde nicht gefunden! Der Stammplatz konnte nicht vergeben werden.');
+    			flash('Benutzer wurde nicht gefunden! Der Stammplatz konnte nicht vergeben werden.', 'danger');
     			return redirect(route('admin.lanparty.regularseats'));
     		}
     	}
@@ -661,7 +661,7 @@ class LanpartyController extends Controller
 	    		$seat->status = -1;
 	    		$lanparty->seats()->save($seat);
 	    		
-	    		$request->session()->flash('alert-success', 'Der Sitzplatz wurde deaktiviert.');
+	    		flash('Der Sitzplatz wurde deaktiviert.', 'success');
 	    		return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    	}
 	    	
@@ -669,7 +669,7 @@ class LanpartyController extends Controller
 	    	if ($request->action == 'activate') {
 	    		DB::table('seats')->where('id', $request->id)->delete();
 	    		
-	    		$request->session()->flash('alert-success', 'Der Sitzplatz ist wieder aktiv.');
+	    		flash('Der Sitzplatz ist wieder aktiv.', 'success');
 	    		return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    	}
 	    	
@@ -690,7 +690,7 @@ class LanpartyController extends Controller
 	    		}
 	    		$lanparty->seats()->save($seat);
 	    	
-	    		$request->session()->flash('alert-success', 'Der Sitzplatz wurde erfolgreich reserviert.');
+	    		flash('Der Sitzplatz wurde erfolgreich reserviert.', 'success');
 	    		return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    	}
 	    	elseif ($request->action == 'reserve') {
@@ -713,11 +713,11 @@ class LanpartyController extends Controller
 	    			}
 	    			$lanparty->seats()->save($seat);
 	    			
-	    			$request->session()->flash('alert-success', 'Der Sitzplatz wurde erfolgreich vergeben.');
+	    			flash('Der Sitzplatz wurde erfolgreich vergeben.', 'success');
 	    			return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    		}
 	    		else {
-	    			$request->session()->flash('alert-danger', 'Benutzer wurde nicht gefunden! Der Sitzplatz konnte nicht reserviert werden.');
+	    			flash('Benutzer wurde nicht gefunden! Der Sitzplatz konnte nicht reserviert werden.', 'danger');
 	    			return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    		}
 	    	}
@@ -728,7 +728,7 @@ class LanpartyController extends Controller
 	    		$seat->seatnumber = $request->seatnumber;
 	    		$seat->update();
 	    		
-	    		$request->session()->flash('alert-success', 'Der Sitzplatz wurde erfolgreich aktualisiert.');
+	    		flash('Der Sitzplatz wurde erfolgreich aktualisiert.', 'success');
 	    		return redirect(route('admin.lanparty.seatingplan', [$lanparty->id]));
 	    	}
     	}
@@ -765,7 +765,7 @@ class LanpartyController extends Controller
     		if ($request->action == 'free') {
     			DB::table('seats')->where('id', $request->seat)->delete();
     		
-    			$request->session()->flash('alert-success', 'Der Sitzplatz wurde wieder freigegeben.');
+    			flash('Der Sitzplatz wurde wieder freigegeben.', 'success');
     		}
     		
     		//reserve a seat
@@ -776,7 +776,7 @@ class LanpartyController extends Controller
     				$seat->status = 2;
     				$seat->save();
     				
-    				$request->session()->flash('alert-success', 'Der Sitzplatz wurde reserviert.');
+    				flash('Der Sitzplatz wurde reserviert.', 'success');
     			}
     		}
     		
@@ -798,7 +798,7 @@ class LanpartyController extends Controller
     					$user->coins()->save($coin);
     				}
     		
-    				$request->session()->flash('alert-success', 'Der Sitzplatz wurde bezahlt.');
+    				flash('Der Sitzplatz wurde bezahlt.', 'success');
     			}
     		}
     	}

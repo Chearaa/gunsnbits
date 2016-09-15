@@ -115,7 +115,7 @@ class SponsorController extends Controller
     		$sponsor->logo = 'sponsor-' . $sponsor->id. '.' . $extension;
     		$sponsor->save();
     		
-    		$request->session()->flash('alert-success', 'Der Sponsor wurde angelegt.');
+    		flash('Der Sponsor wurde angelegt.', 'success');
 			return redirect(route('admin.sponsor.list'));
     	}
     }
@@ -190,7 +190,7 @@ class SponsorController extends Controller
     		
     		$sponsor->save();
     
-    		$request->session()->flash('alert-success', 'Der Sponsor wurde aktualisiert.');
+    		flash('Der Sponsor wurde aktualisiert.', 'success');
     		return redirect(route('admin.sponsor.edit', [$sponsor->id]));
     	}
     }
@@ -202,10 +202,10 @@ class SponsorController extends Controller
     	if ($sponsor instanceof Sponsor) {
     		$sponsor->delete();
     		
-    		$request->session()->flash('alert-success', 'Der Sponsor wurde gelöscht.');
+    		flash('Der Sponsor wurde gelöscht.', 'success');
     	}
     	else {
-    		$request->session()->flash('alert-danger', 'Der Sponsor wurde nicht gefunden.');
+    		flash('Der Sponsor wurde nicht gefunden.', 'danger');
     	}
     	
     	return redirect(route('admin.sponsor.list'));
