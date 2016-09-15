@@ -69,6 +69,7 @@
                                 @role('lanpartymanager')
                                 <li><a href="{{ route('admin.lanparty.listing') }}"><i class="fa fa-btn fa-gamepad"></i> Lanparties</a></li>
                                 <li><a href="{{ route('admin.lanparty.regularseats') }}"><i class="fa fa-btn fa-th-large"></i> Stammplätze</a></li>
+                                <li><a href="{{ route('admin.code.listing') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
                                 @endrole
                             </ul>
                         </li>
