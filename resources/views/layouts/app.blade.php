@@ -12,6 +12,20 @@
 
 </head>
 <body id="app-layout">
+    <!-- background slider -->
+    <div class="carousel slide carousel-fade" data-ride="carousel" data-interval="7000">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+            </div>
+            <div class="item">
+            </div>
+            <div class="item">
+            </div>
+        </div>
+    </div>
+
+    <!-- navigation -->
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
