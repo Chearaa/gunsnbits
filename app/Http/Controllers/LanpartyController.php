@@ -276,11 +276,15 @@ class LanpartyController extends Controller
 	 * get seatingplan view
 	 */
 	public function plan() {
-	
+
+	    $reservedseats = null;
 		$lanparty = Lanparty::getNextLan();
 		$user = (Auth::check()) ? Auth::user() : null;
-		$reservedseats = $lanparty->getReservedSeats();
-	
+
+        if ($lanparty instanceof Lanparty) {
+            $reservedseats = $lanparty->getReservedSeats();
+        }
+
 		return view('lanparty.seatingplan')
 		->with('lanparty', $lanparty)
 		->with('user', $user)
@@ -291,11 +295,14 @@ class LanpartyController extends Controller
 	 * get member list view
 	 */
 	public function member() {
-	
+
+	    $reservedseats = null;
 		$lanparty = Lanparty::getNextLan();
-		$reservedseats = $lanparty->getReservedSeats();
-		ksort($reservedseats);
-	
+        if ($lanparty instanceof Lanparty) {
+            $reservedseats = $lanparty->getReservedSeats();
+            ksort($reservedseats);
+        }
+
 		return view('lanparty.member')
 		->with('lanparty', $lanparty)
 		->with('reservedseats', $reservedseats);

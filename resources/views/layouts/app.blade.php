@@ -47,6 +47,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
+                    <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
