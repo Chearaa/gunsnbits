@@ -7,8 +7,8 @@ bootstrap/cache/
 readme.md
 public/build/*
 public/css/*
-public/js/*
+public/js/all.js
+public/js/all.js.map
 !/vendor/adamwathan/bootforms/src/AdamWathan/BootForms/Elements/CheckGroup.php
 !/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
-!/public/js/gunsbits.js
 .idea/
