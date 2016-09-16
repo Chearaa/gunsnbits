@@ -22,7 +22,7 @@ class CreateCoinsTable extends Migration
 
             $table->unsignedInteger('lanparty_id')->nullable()->default(null);
 
-        	$table->unsignedInteger('coins')->default(0);
+        	$table->integer('coins')->default(0);
         	$table->string('description');
         });
     }
