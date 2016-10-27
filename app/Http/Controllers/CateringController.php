@@ -31,7 +31,7 @@ class CateringController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function adminList() {
-        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('cateringmanager')) {
             return redirect(route('home'));
         }
 
@@ -47,7 +47,7 @@ class CateringController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function adminAdd() {
-        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('cateringmanager')) {
             return redirect(route('home'));
         }
         return view('admin.catering.add');
@@ -136,6 +136,11 @@ class CateringController extends Controller
         }
 
         return '';
+    }
+
+    public function adminAjaxFileUpload(Request $request) {
+        dd($request);
+        return true;
     }
 
     /**

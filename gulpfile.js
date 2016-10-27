@@ -31,4 +31,5 @@ elixir(function(mix) {
     mix.copy('resources/assets/libs/fontawesome/fonts', 'public/build/fonts');
     mix.copy('resources/assets/libs/bootstrap/fonts', 'public/build/fonts/bootstrap');
     mix.copy('resources/assets/libs/countdownTimer/jquery.countdownTimer.min.js', 'public/js')
+    mix.copy('resources/assets/libs/dropzone/dropzone.js', 'public/js')
 });

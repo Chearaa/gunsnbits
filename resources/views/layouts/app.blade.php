@@ -72,6 +72,9 @@
                                 <li><a href="{{ route('admin.coin.user') }}"><i class="fa fa-btn fa-gg-circle"></i> GnB-Coins</a></li>
                                 <li><a href="{{ route('admin.code.listing') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
                                 @endrole
+                                @role('cateringmanager')
+                                <li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>
+                                @endrole
                             </ul>
                         </li>
                         @endhasanyrole

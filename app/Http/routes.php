@@ -305,6 +305,11 @@ Route::post('/admin/catering/ajaxsort', [
     'uses'      => 'CateringController@adminAjaxSort'
 ]);
 
+Route::post('/admin/catering/file/upload', [
+    'as'        => 'admin.catering.file.upload',
+    'uses'      => 'CateringController@adminAjaxFileUpload'
+]);
+
 /*
  * CodeController
  */
