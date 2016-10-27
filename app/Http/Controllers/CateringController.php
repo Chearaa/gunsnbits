@@ -61,7 +61,7 @@ class CateringController extends Controller
      */
     public function adminAddCheck(Request $request) {
 
-        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+        if (!Auth::check() || !Auth::user()->hasRole('cateringmanager')) {
             return redirect(route('home'));
         }
 
@@ -72,7 +72,7 @@ class CateringController extends Controller
             'title.max' => 'Die Bezeichnung darf nicht länger als 255 Zeichen sein.',
             'image.required' => 'Bitte lade ein Bild hoch.',
             'image.mimetypes' => 'Falsches Format. Nur JPG und PNG sind erlaubt.',
-            'image.max' => 'Das Bild darf nicht größer als 200kb sein.',
+            'image.max' => 'Das Bild darf nicht größer als 500kb sein.',
             'description.required' => 'Bitte gebe eine Beschreibung an.',
             'costs.required' => 'Bitte gebe einen Preis an',
             'costs.regex' => 'Bitte gebe eine Kommazahl im Format 0,00 an.'
@@ -80,7 +80,7 @@ class CateringController extends Controller
 
         $rules = [
             'title' => 'required|max:255',
-            'image' => 'required|mimetypes:image/jpeg,image/png|max:200',
+            'image' => 'required|mimetypes:image/jpeg,image/png|max:500',
             'description' => 'required',
             'costs' => 'required|regex:"[0-9]*\,[0-9]*"'
         ];
@@ -99,10 +99,15 @@ class CateringController extends Controller
             $catering->costs = str_replace(',', '.', $request->costs);
             $catering->save();
             
-            if (!is_null($request->file('image'))) {
-                $file = $request->file('image');
-                $extension = $file->getClientOriginalExtension();
-                Storage::disk('catering')->put('catering-' . $catering->id . '.' . $extension,  File::get($file));
+            if (!is_null($request->file('image')) && $request->cropped_image != '') {
+                $orgfile = $request->file('image');
+                $extension = $orgfile->getClientOriginalExtension();
+
+                $cropped_file = str_replace('data:image/png;base64,', '', $request->cropped_image);
+                $cropped_image = str_replace(' ', '+', $cropped_file);
+                $cropped_data = base64_decode($cropped_image);
+
+                Storage::disk('catering')->put('catering-' . $catering->id . '.' . $extension,  $cropped_data);
                 $catering->image = 'catering-' . $catering->id . '.' . $extension;
             }
 

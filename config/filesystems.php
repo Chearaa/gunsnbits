@@ -54,6 +54,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'catering' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/catering'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

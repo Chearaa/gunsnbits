@@ -20,7 +20,8 @@ elixir(function(mix) {
         '../libs/typeahead/bootstrap-typeahead.min.js',
         '../../../node_modules/moment/moment.js',
         '../../../node_modules/moment/locale/de.js',
-        '../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js'
+        '../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js',
+        '../../../node_modules/croppie/croppie.js'
     ]);
 
     mix.version([

@@ -1,0 +1,12 @@
+.file-btn {
+  cursor: pointer;
+
+  .croppie-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 40px;
+    opacity: 0;
+  }
+}

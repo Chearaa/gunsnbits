@@ -21,7 +21,7 @@
                                 <li id="catering-{{ $catering->id }}">
                                     <div class="row catering">
                                         <div class="col-sm-6">
-                                            <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '../images/catering/' . $catering->image : 'images/catering/default.png' !!}">
+                                            <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '../catering/' . $catering->image : 'images/catering/default.png' !!}">
                                         </div>
                                         <div class="col-sm-6">
                                             <button type="button" data-container="body" data-toggle="modal" data-target="#modal-{{ $catering->id }}" class="btn btn-danger pull-right"><i class="fa fa-fw fa-close"></i></button>
