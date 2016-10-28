@@ -92,6 +92,10 @@ Route::get('/', [
     'uses' => 'HomeController@welcome'
 ]);
 
+Route::get('/home', [
+    'as' => 'home',
+    'uses' => 'HomeController@home'
+]);
 
 /*
  * AdminUserController
@@ -154,7 +158,7 @@ Route::get('/lanparty/member', [
 //admin routes
 
 Route::get('/admin/lanparty', [
-    'as'        => 'admin.lanparty.listing',
+    'as'        => 'admin.lanparty.list',
     'uses'      => 'LanpartyController@listing'
 ]);
 
@@ -269,7 +273,7 @@ Route::post('/admin/sponsors', [
  * CateringController
  */
 Route::get('/catering', [
-    'as'        => 'catering.listing',
+    'as'        => 'catering.list',
     'uses'      => 'CateringController@listing'
 ]);
 
@@ -314,7 +318,7 @@ Route::post('/admin/catering/file/upload', [
  * CodeController
  */
 Route::get('/admin/codes', [
-    'as'        => 'admin.code.listing',
+    'as'        => 'admin.code.list',
     'uses'      => 'CodeController@listing'
 ]);
 

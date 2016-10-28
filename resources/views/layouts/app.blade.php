@@ -47,7 +47,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                     <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
-                    <li><a href="{{ route('catering.listing') }}">Catering</a></li>
+                    <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
+                    <li><a href="{{ route('catering.list') }}">Catering</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -67,10 +68,11 @@
                                 <li><a href="{{ route('admin.user.permissions') }}"><i class="fa fa-btn fa-users"></i> Benutzer-Berechtigungen</a></li>
                                 @endrole
                                 @role('lanpartymanager')
-                                <li><a href="{{ route('admin.lanparty.listing') }}"><i class="fa fa-btn fa-gamepad"></i> Lanparties</a></li>
+                                <li><a href="{{ route('admin.lanparty.list') }}"><i class="fa fa-btn fa-gamepad"></i> Lanparties</a></li>
                                 <li><a href="{{ route('admin.lanparty.regularseats') }}"><i class="fa fa-btn fa-th-large"></i> Stammplätze</a></li>
                                 <li><a href="{{ route('admin.coin.user') }}"><i class="fa fa-btn fa-gg-circle"></i> GnB-Coins</a></li>
-                                <li><a href="{{ route('admin.code.listing') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
+                                <li><a href="{{ route('admin.code.list') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
+                                <li><a href="{{ route('admin.sponsor.list') }}"><i class="fa fa-btn fa-star"></i> Sponsoren</a></li>
                                 @endrole
                                 @role('cateringmanager')
                                 <li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>
