@@ -9,6 +9,9 @@ public/build/*
 readme.md
 
 public/css/*
+public/css/app.css
+public/css/app.css.map
+public/images/catering/*
 
 public/js/all.js
 public/js/all.js.map

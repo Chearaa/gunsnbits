@@ -48,6 +48,7 @@
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                     <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
+                    <li><a href="{{ route('catering.listing') }}">Catering</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

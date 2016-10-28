@@ -56,7 +56,7 @@ return [
 
         'catering' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/catering'),
+            'root' => storage_path('app/public/images/catering'),
             'visibility' => 'public',
         ],
 

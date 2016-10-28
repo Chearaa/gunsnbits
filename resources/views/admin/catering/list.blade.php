@@ -21,11 +21,12 @@
                                 <li id="catering-{{ $catering->id }}">
                                     <div class="row catering">
                                         <div class="col-sm-6">
-                                            <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '../catering/' . $catering->image : 'images/catering/default.png' !!}">
+                                            <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '../images/catering/' . $catering->image : 'images/catering/default.png' !!}">
                                         </div>
                                         <div class="col-sm-6">
                                             <button type="button" data-container="body" data-toggle="modal" data-target="#modal-{{ $catering->id }}" class="btn btn-danger pull-right"><i class="fa fa-fw fa-close"></i></button>
-                                            <span class="btn btn-default pull-right"><i class="fa fa-fw fa-arrows-v" title="Verschieben um Sortierung zu ändern"></i></span>
+                                            {{-- <a href="{{ route('admin.catering.edit', $catering) }}" class="btn btn-default pull-right"><i class="fa fa-fw fa-edit"></i></a> --}}
+                                            {{--<span class="btn btn-default pull-right"><i class="fa fa-fw fa-arrows-v" title="Verschieben um Sortierung zu ändern"></i></span> --}}
                                             <h4>{{ $catering->title }}</h4>
                                             <p>{!! nl2br($catering->description) !!}</p>
                                             <h5 class="pull-right">{{ number_format($catering->costs, 2, ',', '.') }} &euro;</h5>

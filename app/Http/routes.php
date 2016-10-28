@@ -274,7 +274,7 @@ Route::post('/admin/sponsors', [
  * CateringController
  */
 Route::get('/catering', [
-    'as'        => 'catering.list',
+    'as'        => 'catering.listing',
     'uses'      => 'CateringController@listing'
 ]);
 
@@ -292,6 +292,11 @@ Route::post('/admin/catering/add/check', [
     'before'    => 'csrf',
     'as'        => 'admin.catering.add.check',
     'uses'      => 'CateringController@adminAddCheck'
+]);
+
+Route::get('/admin/catering/edit/{$catering}', [
+    'as'        => 'admin.catering.edit',
+    'uses'      => 'CateringController@adminEdit'
 ]);
 
 Route::post('/admin/catering/delete', [
