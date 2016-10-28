@@ -119,7 +119,7 @@ class FacebookController extends Controller
                     //login user with id and the "remember me" cookie
                     if (Auth::loginUsingId($user->id, true)) {
                         // Authentication passed...
-                        return redirect()->intended( route('home') );
+                        return redirect()->intended( route('welcome') );
                     }
                     else {
                         return redirect( route('facebook.error') )
@@ -143,7 +143,7 @@ class FacebookController extends Controller
                 //login user with id and the "remember me" cookie
                 if (Auth::loginUsingId($user->id, true)) {
                     // Authentication passed...
-                    return redirect()->intended( route('home') );
+                    return redirect()->intended( route('welcome') );
                 }
                 else {
                     return redirect( route('facebook.error') )
@@ -189,7 +189,7 @@ class FacebookController extends Controller
                     //login user with id and the "remember me" cookie
                     if (Auth::loginUsingId($user->id, true)) {
                         // Authentication passed...
-                        return redirect()->intended( route('home') );
+                        return redirect()->intended( route('welcome') );
                     }
                     else {
                         return redirect( route('facebook.error') )
@@ -219,7 +219,7 @@ class FacebookController extends Controller
                     //login user with id and the "remember me" cookie
                     if (Auth::loginUsingId($user->id, true)) {
                         // Authentication passed...
-                        return redirect()->intended( route('home') );
+                        return redirect()->intended( route('welcome') );
                     }
                     else {
                         return redirect( route('facebook.error') )
@@ -245,7 +245,7 @@ class FacebookController extends Controller
                 //login user with id and the "remember me" cookie
                 if (Auth::loginUsingId($user->id, true)) {
                     // Authentication passed...
-                    return redirect()->intended( route('home') );
+                    return redirect()->intended( route('welcome') );
                 }
                 else {
                     return redirect( route('facebook.error') )

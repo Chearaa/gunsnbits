@@ -92,11 +92,6 @@ Route::get('/', [
     'uses' => 'HomeController@welcome'
 ]);
 
-Route::get('/home', [
-    'as' => 'home',
-    'uses' => 'HomeController@home'
-]);
-
 
 /*
  * AdminUserController

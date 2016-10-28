@@ -39,13 +39,12 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ route('home') }}"><i class="fa fa-home"></i></a>
+                <a class="navbar-brand" href="{{ route('welcome') }}"><i class="fa fa-home"></i></a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                     <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
                     <li><a href="{{ route('catering.listing') }}">Catering</a></li>
