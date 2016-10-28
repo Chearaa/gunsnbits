@@ -16,7 +16,57 @@
                 <div class="panel-heading">Unsere nächste Lanparty</div>
 
                 <div class="panel-body">
-                    Welcome
+
+                    <ul class="timeline">
+                        @foreach($posts as $post)
+                            <li class="">
+                                <div class="timeline-badge text-warning">
+                                    @if($post->type == 'event')
+                                        <i class="fa fa-fw fa-calendar"></i>
+                                    @elseif($post->type == 'video')
+                                        <i class="fa fa-fw fa-play"></i>
+                                    @elseif($post->type == 'status')
+                                        <i class="fa fa-fw fa-comment"></i>
+                                    @elseif($post->type == 'photo')
+                                        <i class="fa fa-fw fa-camera"></i>
+                                    @elseif($post->type == 'link')
+                                        <i class="fa fa-fw fa-link"></i>
+                                    @endif
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-body">
+                                        <article class="post-wrap thumbnail">
+                                            <div class="post-media">
+                                                <div class="post-meta clearfix">
+                                                    <span class="pull-left text-warning"><span class="post-date"><i class="fa fa-calendar-o"></i> {{ $post->created_time->format('d.m.Y') }} <i class="fa fa-clock-o"></i> {{ $post->created_time->format('H:i') }} Uhr</span></span>
+                                                </div>
+                                            </div>
+                                            <div class="post-header">
+                                                @if ($post->story)
+                                                    <h4 class="post-title"><a href="#">{{ $post->story }}</a></h4>
+                                                @endif
+                                            </div>
+                                            <div class="post-body">
+                                                @if ($post->images()->get()->count() > 0)
+                                                    <div class="pull-right" style="margin-bottom: 10px;">
+                                                        @if ($post->images()->get()->count() == 1)
+                                                            <figure>
+                                                                <img class="img-responsive img-thumbnail" src="images/facebook/{{ $post->images()->first()->basename }}" width="200">
+                                                            </figure>
+                                                        @else
+
+                                                        @endif
+                                                    </div>
+                                                @endif
+                                                <div class="post-excerpt">{!! $post->message !!}</div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+
                 </div>
             </div>
         </div>

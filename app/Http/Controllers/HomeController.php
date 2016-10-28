@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Fbpost;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,11 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function welcome() {
-        return view('welcome');
+
+        $posts = Fbpost::all()->sortByDesc('created_time');
+
+        return view('welcome', compact(
+            'posts'
+        ));
     }
 }
