@@ -60,6 +60,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'sponsors' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/sponsors'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',
