@@ -69,7 +69,7 @@ class CodeController extends Controller
 			while ($i < $request->counter);
 			
 			flash('Gutschein-Codes wurden generiert.', 'success');
-			return redirect(route('admin.code.listing'));
+			return redirect(route('admin.code.list'));
 		}
 		else {
 			flash('Es konnten keine Gutschein-Codes generiert werden.', 'danger');

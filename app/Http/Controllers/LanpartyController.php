@@ -433,7 +433,7 @@ class LanpartyController extends Controller
     		}
     		
     		flash('Die Lanparty wurde angelegt.', 'success');
-    		return redirect(route('admin.lanparty.listing'));
+    		return redirect(route('admin.lanparty.list'));
     	}
     }
     
@@ -513,7 +513,7 @@ class LanpartyController extends Controller
     		$lanparty->update();
     
     		flash('Die Lanparty wurde aktualisiert.', 'success');
-    		return redirect(route('admin.lanparty.listing'));
+    		return redirect(route('admin.lanparty.list'));
     	}
     }
     
@@ -531,7 +531,7 @@ class LanpartyController extends Controller
     	$lanparty->delete();
     	
     	flash('Die Lanparty wurde gelöscht.', 'success');
-    	return redirect(route('admin.lanparty.listing'));
+    	return redirect(route('admin.lanparty.list'));
     }
     
     /**
