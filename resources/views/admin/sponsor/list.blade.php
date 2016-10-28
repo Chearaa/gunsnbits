@@ -1,38 +1,45 @@
-@extends('layouts.admin')
-
-@section('title', 'Sponsoren')
-@section('bodyclass', 'welcome bgpic-5')
-@section('contentclass', 'container bg-dark')
+@extends('layouts.app')
 
 @section('content')
 
-	<h1 class="title">Sponsoren</h1>
-    
-    <div class="row box">
-    	<div class="col-sm-12">
-			
-			@foreach ($sponsors as $sponsor)
-			<div class="media">
-				<div class="media-left">
-					<a href="">
-						<img class="media-object img-thumbnail img-responsive" alt="" src="{!! ($sponsor->logo) ? '../images/sponsors/' . $sponsor->logo : 'images/sponsors/default.png' !!}" width="300">
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						{{ $sponsor->name }}
-						<button type="button" data-container="body" data-toggle="modal" data-target="#modal-{{ $sponsor->id }}" class="btn btn-danger pull-right"><i class="fa fa-fw fa-close"></i></button>
-						<a href="{{ route('admin.sponsor.edit', [$sponsor->id]) }}" class="btn btn-default pull-right" style="margin-right: 5px;"><i class="fa fa-fw fa-edit"></i></a>
-						
-					</h4>
-					
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-offset-2 col-lg-8">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="btn-group pull-right">
+							<a href="{{ route('admin.sponsor.add') }}" class="btn btn-sm btn-success"><i class="fa fa-fw fa-plus"></i></a>
+						</div>
+						<h6>Unsere Sponsoren</h6>
+					</div>
+					<div class="panel-body">
+
+                        @foreach ($sponsors as $sponsor)
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="">
+                                        <img class="media-object img-thumbnail img-responsive" alt="" src="{!! ($sponsor->logo) ? '../images/sponsors/' . $sponsor->logo : 'images/sponsors/default.png' !!}" width="300">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        {{ $sponsor->name }}
+                                        <button type="button" data-container="body" data-toggle="modal" data-target="#modal-{{ $sponsor->id }}" class="btn btn-danger pull-right"><i class="fa fa-fw fa-close"></i></button>
+                                        <a href="{{ route('admin.sponsor.edit', [$sponsor->id]) }}" class="btn btn-default pull-right" style="margin-right: 5px;"><i class="fa fa-fw fa-edit"></i></a>
+
+                                    </h4>
+
+                                </div>
+                            </div>
+                        @endforeach
+
+					</div>
 				</div>
 			</div>
-			@endforeach
-			
-    	</div>
-    </div>
-    
+		</div>
+	</div>
+
     @foreach ($sponsors as $sponsor)
     <div class="modal fade" id="modal-{{ $sponsor->id }}" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-sm">

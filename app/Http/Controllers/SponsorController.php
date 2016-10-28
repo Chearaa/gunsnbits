@@ -41,7 +41,7 @@ class SponsorController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function adminListing() {
-		if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+		if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
 			return redirect(route('home'));
 		}
 		
@@ -57,7 +57,7 @@ class SponsorController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function adminAdd() {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+    	if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -70,7 +70,7 @@ class SponsorController extends Controller
      * @param Request $request
      */
     public function adminPostAdd(Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+    	if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
             return redirect(route('home'));
         }
     	
@@ -79,7 +79,7 @@ class SponsorController extends Controller
     		'name.max' => 'Der Name des Sponsors darf maximal 255 Zeichen lang sein.',
     		'logo.required' => 'Bitte lade ein Bild hoch.',
     		'logo.mimes' => 'Bitte lade ein Bild hoch. (JPG, PNG)',
-    		'logo.max' => 'Das Bild darf nicht größer als 200kb sein.',
+    		'logo.max' => 'Das Bild darf nicht größer als 500kb sein.',
     		'url.url' => 'Bitte gebe eine korrekte URL an.',
     		'facebook.url' => 'Bitte gebe eine korrekte URL an.',
     		'twitter.url' => 'Bitte gebe eine korrekte URL an.',
@@ -87,7 +87,7 @@ class SponsorController extends Controller
     	
     	$validator = Validator::make($request->all(), [
     		'name' => 'required|max:255',
-    		'logo' => 'required|mimes:jpeg,jpg,png|max:200',
+    		'logo' => 'required|mimes:jpeg,jpg,png|max:500',
     		'url' => 'url',
     		'facebook' => 'url',
     		'twitter' => 'url'
@@ -107,14 +107,21 @@ class SponsorController extends Controller
     		$sponsor->facebook = $request->facebook;
     		$sponsor->twitter = $request->twitter;
     		$sponsor->save();
-    		
-    		$file = $request->file('logo');
-    		$extension = $file->getClientOriginalExtension();
-    		Storage::disk('sponsors')->put('sponsor-' . $sponsor->id. '.' . $extension,  File::get($file));
-    			
-    		$sponsor->logo = 'sponsor-' . $sponsor->id. '.' . $extension;
-    		$sponsor->save();
-    		
+
+            if (!is_null($request->file('logo')) && $request->cropped_image != '') {
+                $orgfile = $request->file('logo');
+                $extension = $orgfile->getClientOriginalExtension();
+
+                $cropped_file = str_replace('data:image/png;base64,', '', $request->cropped_image);
+                $cropped_image = str_replace(' ', '+', $cropped_file);
+                $cropped_data = base64_decode($cropped_image);
+
+                Storage::disk('sponsors')->put('sponsor-' . $sponsor->id . '.' . $extension,  $cropped_data);
+                $sponsor->logo = 'sponsor-' . $sponsor->id . '.' . $extension;
+
+                $sponsor->save();
+            }
+
     		flash('Der Sponsor wurde angelegt.', 'success');
 			return redirect(route('admin.sponsor.list'));
     	}
@@ -126,7 +133,7 @@ class SponsorController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function adminEdit($sponsor_id = 0) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+    	if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -142,7 +149,7 @@ class SponsorController extends Controller
      * @param Request $request
      */
     public function adminPostEdit($sponsor_id = 0, Request $request) {
-    	if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+    	if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
     		return redirect(route('home'));
     	}
     	
@@ -180,18 +187,23 @@ class SponsorController extends Controller
     		$sponsor->url = $request->url;
     		$sponsor->facebook = $request->facebook;
     		$sponsor->twitter = $request->twitter;
-    
-    		if (!is_null($request->file('logo'))) {
-	    		$file = $request->file('logo');
-	    		$extension = $file->getClientOriginalExtension();
-	    		Storage::disk('sponsors')->put('sponsor-' . $sponsor->id. '-' . $now->format('Y-m-d_H-i-s') . '.' . $extension,  File::get($file));
-	    		$sponsor->logo = 'sponsor-' . $sponsor->id. '-' . $now->format('Y-m-d_H-i-s') . '.' . $extension;
-    		}
-    		
+
+            if (!is_null($request->file('logo')) && $request->cropped_image != '') {
+                $orgfile = $request->file('logo');
+                $extension = $orgfile->getClientOriginalExtension();
+
+                $cropped_file = str_replace('data:image/png;base64,', '', $request->cropped_image);
+                $cropped_image = str_replace(' ', '+', $cropped_file);
+                $cropped_data = base64_decode($cropped_image);
+
+                Storage::disk('sponsors')->put('sponsor-' . $sponsor->id . '.' . $extension, $cropped_data);
+                $sponsor->logo = 'sponsor-' . $sponsor->id . '.' . $extension;
+            }
+
     		$sponsor->save();
     
     		flash('Der Sponsor wurde aktualisiert.', 'success');
-    		return redirect(route('admin.sponsor.edit', [$sponsor->id]));
+    		return redirect(route('admin.sponsor.list'));
     	}
     }
     
