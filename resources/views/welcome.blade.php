@@ -10,9 +10,97 @@
             <h3>Die LAN der Region<br/>Köln-Düren-Aachen</h3>
         </div>
         <div class="col-lg-6" data-mh="row1">
-            <div class="panel panel-default" data-mh="row1">
+            <div class="panel panel-default">
                 <div class="panel-heading">Alles auf einen Blick!</div>
                 <div class="panel-body">
+
+                    @if ($lanparty instanceof \App\Lanparty)
+
+                        @if ($lanparty->registrationstart < \Carbon\Carbon::now() && $lanparty->registrationend > \Carbon\Carbon::now())
+
+                            <h5>Die Anmeldung zur {{ $lanparty->title }} ist <span class="text-success">offen</span>!</h5>
+
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="progress">
+
+                                        <div class="progress-bar progress-bar-info progress-bar-striped" style="width: {{ $progress['deactivated']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['deactivated']['value'] }} Plätze sind bisher noch deaktiviert">
+                                            <span class="sr-only">{{ $progress['deactivated']['value'] }} reserviert</span>
+                                        </div>
+                                        <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: {{ $progress['reserved']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['reserved']['value'] }} Plätze sind bereits reserviert">
+                                            <span class="sr-only">{{ $progress['reserved']['value'] }} reserviert</span>
+                                        </div>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ $progress['marked']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['marked']['value'] }} Plätze sind bereits vorgemerkt">
+                                            <span class="sr-only">{{ $progress['marked']['value'] }} vorgemerkt</span>
+                                        </div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" style="width: {{ $progress['free']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['free']['value'] }} Plätze sind noch frei">
+                                            <span class="sr-only">{{ $progress['free']['value'] }} frei</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <a href="{{ route('lanparty.reservation') }}" class="btn btn-default"><i class="fa fa-fw fa-chevron-right"></i> Jetzt anmelden</a>
+                                </div>
+                            </div>
+
+                            <dl>
+                                <dt><i class="fa fa-fw fa-users"></i> Maximale Teilnehmer</dt>
+                                <dd>{{ config('lanparty')['maxseats'] }}</dd>
+
+                                <dt><i class="fa fa-fw fa-calendar-check-o"></i> Start</dt>
+                                <dd>{{ $lanparty->start->format('d.m.Y') }} - 16:00 Uhr</dd>
+
+                                <dt><i class="fa fa-fw fa-calendar"></i> Ende</dt>
+                                <dd>{{ $lanparty->end->format('d.m.Y') }} - 14:00 Uhr</dd>
+
+                                <dt><i class="fa fa-fw fa-map-marker"></i> Wo?</dt>
+                                <dd>{{ config('lanparty')['location']['name'] }}<br/>{{ config('lanparty')['location']['address'] }}</dd>
+
+                                <dt><i class="fa fa-fw fa-money"></i> Kosten</dt>
+                                <dd>{{ config('lanparty')['costs'] }} &euro;</dd>
+
+                                <dt><i class="fa fa-fw fa-star"></i> Was wir bieten!</dt>
+                                <dd>{{ config('lanparty')['specials'] }}</dd>
+                            </dl>
+
+
+                        @elseif ($lanparty->registrationstart > \Carbon\Carbon::now())
+
+                            <p>Die Anmeldung für die <span class="text-warning">{{ $lanparty->title }}</span> öffnet in ...</p>
+                            <div id="countdown" data-timer="{{ $lanparty->registrationstart->format('Y/m/d H:i:s') }}" style="margin-bottom: 30px;"></div>
+                            <p><span class="text-warning">Macht euch bereit!</span></p>
+                            <p>Es gibt wie immer die beste Unterhaltung, besondere Turniere, großartige Preise und die einzigartige Atmosphäre der Guns'n Bits.</p>
+                            <p>Einen kleinen Vorgeschmack findet ihr in unserer Bilder-Galerie oder direkt und persönlich in unserem TeamSpeak.</p>
+                            <p><span class="text-warning">Also kommt vorbei!</span></p>
+
+                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start > \Carbon\Carbon::now())
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        Gleich gehts los!
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start > \Carbon\Carbon::now())
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <h6>Gleich gehts los!</h6>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endif
+
+                    @endif
 
                 </div>
             </div>
@@ -82,4 +170,21 @@
 
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="/js/jquery.countdownTimer.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            'use strict';
+
+            var countdowntime = $('#countdown').data('timer') ? $('#countdown').data('timer') : '2020/01/01 00:00:00';
+
+            $('#countdown').countdowntimer({
+                dateAndTime: countdowntime,
+                size: 'lg'
+            });
+
+        });
+    </script>
 @endsection

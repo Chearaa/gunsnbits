@@ -30,3 +30,23 @@ form {
 h6 {
   line-height: 10px;
 }
+
+.progress {
+  height: 38px;
+
+  .progress-bar {
+
+  }
+}
+
+dl {
+  margin-top: 10px;
+
+  dt {
+    color: #fff;
+  }
+  dd {
+    margin-left: 22px;
+    margin-bottom: 20px;
+  }
+}

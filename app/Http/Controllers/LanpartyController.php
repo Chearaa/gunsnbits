@@ -659,6 +659,7 @@ class LanpartyController extends Controller
 	    		$seat = new Seat();
 	    		$seat->seatnumber = $request->seatnumber;
 	    		$seat->status = -1;
+                $seat->user_id = Auth::user()->id;
 	    		$lanparty->seats()->save($seat);
 	    		
 	    		flash('Der Sitzplatz wurde deaktiviert.', 'success');

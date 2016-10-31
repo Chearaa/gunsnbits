@@ -14,6 +14,11 @@ return [
 	'bic' => 'BYLADEM1001',
 	'reserveregularseats' => true,
 	'paywithcode' => true,
-	'paybycoins' => 101
+	'paybycoins' => 101,
+    'location' => [
+        'name' => 'Kulturhalle Langerwehe',
+        'address' => 'Exmouthplatz, 52379 Langerwehe'
+    ],
+    'specials' => '100 MBit Internet, viele Turniere mit super Preisen, eine Kaffee-Flatrate, Catering (fast) rund um die Uhr und eine Tombola!'
 ];
 ?>
