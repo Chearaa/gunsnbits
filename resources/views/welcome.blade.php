@@ -43,25 +43,55 @@
                                 </div>
                             </div>
 
-                            <dl>
-                                <dt><i class="fa fa-fw fa-users"></i> Maximale Teilnehmer</dt>
-                                <dd>{{ config('lanparty')['maxseats'] }}</dd>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                        <h6>Letzter Kontocheck:
+                                            @if (Auth::check() && Auth::user()->hasRole('lanpartymanager'))
+                                                <a href="{{ route('bankaccountcheck') }}" class="btn btn-sm btn-default pull-right" style="margin-right: 10px;"><i class="fa fa-fw fa-refresh"></i> jetzt checken</a>
+                                            @endif
+                                            @if ($last_bankaccount_check)
+                                                {!! $last_bankaccount_check->last_check->format('d.m.Y - H:i:s') !!} Uhr
+                                            @else
+                                                <i class="fa fa-times"></i>
+                                            @endif
+                                        </h6>
 
-                                <dt><i class="fa fa-fw fa-calendar-check-o"></i> Start</dt>
-                                <dd>{{ $lanparty->start->format('d.m.Y') }} - 16:00 Uhr</dd>
 
-                                <dt><i class="fa fa-fw fa-calendar"></i> Ende</dt>
-                                <dd>{{ $lanparty->end->format('d.m.Y') }} - 14:00 Uhr</dd>
+                                </div>
+                            </div>
 
-                                <dt><i class="fa fa-fw fa-map-marker"></i> Wo?</dt>
-                                <dd>{{ config('lanparty')['location']['name'] }}<br/>{{ config('lanparty')['location']['address'] }}</dd>
 
-                                <dt><i class="fa fa-fw fa-money"></i> Kosten</dt>
-                                <dd>{{ config('lanparty')['costs'] }} &euro;</dd>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <dl>
+                                        <dt><i class="fa fa-fw fa-users"></i> Maximale Teilnehmer</dt>
+                                        <dd>{{ config('lanparty')['maxseats'] }}</dd>
 
-                                <dt><i class="fa fa-fw fa-star"></i> Was wir bieten!</dt>
-                                <dd>{{ config('lanparty')['specials'] }}</dd>
-                            </dl>
+                                        <dt><i class="fa fa-fw fa-calendar-check-o"></i> Start</dt>
+                                        <dd>{{ $lanparty->start->format('d.m.Y') }} - 16:00 Uhr</dd>
+
+                                        <dt><i class="fa fa-fw fa-calendar"></i> Ende</dt>
+                                        <dd>{{ $lanparty->end->format('d.m.Y') }} - 14:00 Uhr</dd>
+                                    </dl>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dl>
+                                        <dt><i class="fa fa-fw fa-map-marker"></i> Wo?</dt>
+                                        <dd>{{ config('lanparty')['location']['name'] }}<br/>{{ config('lanparty')['location']['address'] }}</dd>
+
+                                        <dt><i class="fa fa-fw fa-money"></i> Kosten</dt>
+                                        <dd>{{ config('lanparty')['costs'] }} &euro;</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <dl>
+                                        <dt><i class="fa fa-fw fa-star"></i> Was wir bieten!</dt>
+                                        <dd>{!! config('lanparty')['specials'] !!}</dd>
+                                    </dl>
+                                </div>
+                            </div>
 
 
                         @elseif ($lanparty->registrationstart > \Carbon\Carbon::now())

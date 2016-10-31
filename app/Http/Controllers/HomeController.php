@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Bankaccountcheck;
 use App\Http\Requests;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Fbpost;
@@ -58,6 +60,7 @@ class HomeController extends Controller
                 'value' => 0
             ]
         ];
+        $last_bankaccount_check = null;
 
         //get next lanparty
         $lanparty = Lanparty::getNextLan();
@@ -78,6 +81,9 @@ class HomeController extends Controller
             $progress['marked']['percent'] = (100/$progress['max']) * $progress['marked']['value'];
             $progress['deactivated']['percent'] = (100/$progress['max']) * $progress['deactivated']['value'];
             $progress['free']['percent'] = (100/$progress['max']) * $progress['free']['value'];
+
+            //get last check
+            $last_bankaccount_check = Bankaccountcheck::all()->last();
         }
 
         $posts = Fbpost::all()
@@ -89,7 +95,24 @@ class HomeController extends Controller
             'user',
             'usercanreserveseats',
             'reservedseats',
-            'progress'
+            'progress',
+            'last_bankaccount_check'
         ));
+    }
+
+    public function bankaccountcheck() {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
+            return redirect(route('home'));
+        }
+
+        $now = new Carbon();
+
+        $check = new Bankaccountcheck([
+            'user_id' => Auth::user()->id,
+            'last_check' => $now
+        ]);
+        $check->save();
+
+        return redirect(route('home'));
     }
 }

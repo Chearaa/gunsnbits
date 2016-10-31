@@ -19,6 +19,6 @@ return [
         'name' => 'Kulturhalle Langerwehe',
         'address' => 'Exmouthplatz, 52379 Langerwehe'
     ],
-    'specials' => '100 MBit Internet, viele Turniere mit super Preisen, eine Kaffee-Flatrate, Catering (fast) rund um die Uhr und eine Tombola!'
+    'specials' => '<i class="fa fa-sitemap"></i> 100 MBit Internet, viele <i class="fa fa-trophy"></i> Turniere mit super Preisen, eine <i class="fa fa-coffee"></i> Kaffee-Flatrate, <i class="fa fa-cutlery"></i> Catering (fast) rund um die Uhr und eine Tombola!'
 ];
 ?>

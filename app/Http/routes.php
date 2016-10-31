@@ -97,6 +97,11 @@ Route::get('/home', [
     'uses' => 'HomeController@home'
 ]);
 
+Route::get('/bankaccountcheck', [
+    'as' => 'bankaccountcheck',
+    'uses' => 'HomeController@bankaccountcheck'
+]);
+
 /*
  * AdminUserController
  */
