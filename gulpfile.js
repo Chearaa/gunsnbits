@@ -21,7 +21,8 @@ elixir(function(mix) {
         '../../../node_modules/moment/moment.js',
         '../../../node_modules/moment/locale/de.js',
         '../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js',
-        '../../../node_modules/croppie/croppie.js'
+        '../../../node_modules/croppie/croppie.js',
+        '../../../node_modules/jquery-match-height/jquery.matchHeight.js'
     ]);
 
     mix.version([

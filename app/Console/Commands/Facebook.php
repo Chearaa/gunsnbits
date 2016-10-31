@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class Facebook extends Command
@@ -138,7 +139,7 @@ class Facebook extends Command
                                         $fbpostimage->basename = $sha1 . '.' . $ext;
 
                                         //get image
-                                        if (!file_exists(public_path('images/facebook/' . $fbpostimage->basename))) {
+                                        if (!file_exists(public_path('images/facebook/' . $fbpostimage->basename)) || sizeof(public_path('images/facebook/' . $fbpostimage->basename)) == 0) {
 
                                             $url = $attachmentdata['media']['image']['src'];
 
@@ -155,6 +156,12 @@ class Facebook extends Command
 
                                             file_put_contents(public_path('images/facebook/' . $fbpostimage->basename), $result);
                                             //Image::make($attachmentdata['media']['image']['src'])->save(public_path('images/facebook/' . $fbpostimage->basename));
+                                        }
+
+                                        //check if image loaded successfully
+                                        if (sizeof(public_path('images/facebook/' . $fbpostimage->basename)) == 0) {
+                                            Storage::delete('images/facebook/' . $fbpostimage->basename);
+                                            $fbpostimage->basename = '';
                                         }
 
                                         //save
@@ -195,9 +202,9 @@ class Facebook extends Command
                                     $fbpostimage->basename = $sha1 . '.' . $ext;
 
                                     //get image
-                                    if (!file_exists(public_path('images/facebook/' . $fbpostimage->basename))) {
+                                    if (!file_exists(public_path('images/facebook/' . $fbpostimage->basename)) || sizeof(public_path('images/facebook/' . $fbpostimage->basename)) == 0) {
 
-                                        $url = $attachmentdata['media']['image']['src'];
+                                        $url = $attachment['media']['image']['src'];
 
                                         $ch = curl_init();
                                         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -211,19 +218,21 @@ class Facebook extends Command
                                         curl_close($ch);
 
                                         file_put_contents(public_path('images/facebook/' . $fbpostimage->basename), $result);
-                                        //Image::make($attachment['media']['image']['src'])->save(public_path('images/facebook/' . $fbpostimage->basename));
+
+                                    }
+
+                                    //check if image loaded successfully
+                                    if (sizeof(public_path('images/facebook/' . $fbpostimage->basename)) == 0) {
+                                        Storage::delete('images/facebook/' . $fbpostimage->basename);
+                                        $fbpostimage->basename = '';
                                     }
 
                                     //save
                                     $fbpost->images()->save($fbpostimage);
-
                                 }
-
                             }
                         }
-
                     }
-
                 }
 
                 //insert comments

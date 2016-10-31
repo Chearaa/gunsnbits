@@ -34,7 +34,8 @@ class HomeController extends Controller
      */
     public function welcome() {
 
-        $posts = Fbpost::all()->sortByDesc('created_time');
+        $posts = Fbpost::all()
+            ->sortByDesc('created_time');
 
         return view('welcome', compact(
             'posts'

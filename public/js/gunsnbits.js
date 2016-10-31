@@ -1,6 +1,11 @@
 $(function () {
 
     /**
+     * matchHeight
+     */
+    $("div[data-mh='row1']").matchHeight();
+
+    /**
      * popover @ seatingplan
      */
     $('[data-popover="true"]').popover({

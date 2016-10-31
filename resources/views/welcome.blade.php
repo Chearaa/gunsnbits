@@ -3,18 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row" style="margin-bottom: 50px;">
-        <div class="col-lg-offset-3 col-lg-6 text-center">
+        <div class="col-lg-6 text-center" data-mh="row1">
             <figure>
                 <img class="img-responsive" src="images/gnb/logo.svg">
             </figure>
-            <h3>Die LAN der Region<br/>Aachen, Düren, Köln</h3>
+            <h3>Die LAN der Region<br/>Köln-Düren-Aachen</h3>
+        </div>
+        <div class="col-lg-6" data-mh="row1">
+            <div class="panel panel-default" data-mh="row1">
+                <div class="panel-heading">Alles auf einen Blick!</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Unsere nächste Lanparty</div>
-
                 <div class="panel-body">
 
                     <ul class="timeline">
@@ -43,7 +51,7 @@
                                             </div>
                                             <div class="post-header">
                                                 @if ($post->story)
-                                                    <h4 class="post-title"><a href="#">{{ $post->story }}</a></h4>
+                                                    <p>{{ $post->story }}</p>
                                                 @endif
                                             </div>
                                             <div class="post-body">
