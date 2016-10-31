@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Bankaccountcheck;
 use App\Http\Requests;
+use App\Sponsor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Fbpost;
 use App\Lanparty;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -87,7 +89,24 @@ class HomeController extends Controller
         }
 
         $posts = Fbpost::all()
-            ->sortByDesc('created_time');
+            ->sortByDesc('created_time')->take(5);
+
+        $sponsors = Sponsor::all()->shuffle();
+
+        $users = User::all()->where('deleted_at', null);
+
+        $max_coins = null;
+        foreach ($users as $user) {
+
+            if (is_null($max_coins)) {
+                $max_coins = $user;
+            }
+
+            if ($max_coins->coins()->sum('coins') < $user->coins->sum('coins')) {
+                $max_coins = $user;
+            }
+
+        }
 
         return view('welcome', compact(
             'posts',
@@ -96,10 +115,18 @@ class HomeController extends Controller
             'usercanreserveseats',
             'reservedseats',
             'progress',
-            'last_bankaccount_check'
+            'last_bankaccount_check',
+            'sponsors',
+            'users',
+            'max_coins'
         ));
     }
 
+    /**
+     * bankaccount check function
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function bankaccountcheck() {
         if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
             return redirect(route('home'));

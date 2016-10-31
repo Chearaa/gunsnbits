@@ -8,6 +8,7 @@
     <title>GNB</title>
 
     <!-- Styles -->
+    <link href="css/owl.carousel.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
 </head>

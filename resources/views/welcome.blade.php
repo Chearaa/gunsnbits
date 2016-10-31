@@ -7,7 +7,7 @@
             <figure>
                 <img class="img-responsive" src="images/gnb/logo.svg">
             </figure>
-            <h3>Die LAN der Region<br/>Köln-Düren-Aachen</h3>
+            <h4>Die LAN der Region<br/>Köln-Düren-Aachen</h4>
         </div>
         <div class="col-lg-6" data-mh="row1">
             <div class="panel panel-default">
@@ -45,7 +45,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                        <h6>Letzter Kontocheck:
+                                        <p>Letzter Kontocheck:
                                             @if (Auth::check() && Auth::user()->hasRole('lanpartymanager'))
                                                 <a href="{{ route('bankaccountcheck') }}" class="btn btn-sm btn-default pull-right" style="margin-right: 10px;"><i class="fa fa-fw fa-refresh"></i> jetzt checken</a>
                                             @endif
@@ -54,9 +54,7 @@
                                             @else
                                                 <i class="fa fa-times"></i>
                                             @endif
-                                        </h6>
-
-
+                                        </p>
                                 </div>
                             </div>
 
@@ -137,10 +135,49 @@
 
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default" data-mh="row2">
+                <div class="panel-heading">Spiele & Turniere</div>
+                <div class="panel-body">
+                    <ul>
+                        <li>CounterStrike GO</li>
+                        <li>League of Legens</li>
+                        <li>DOTA2</li>
+                        <li>Starcraft 2 - Wings of Liberty</li>
+                        <li>Trackmania Nations</li>
+                        <li>Blobby Volley</li>
+                        <li>...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default" data-mh="row2">
+                <div class="panel-heading">Unsere Sponsoren</div>
+                <div class="panel-body">
+                    <div class="owl-carousel owl-theme owl-sponsors">
+                        @foreach($sponsors as $sponsor)
+                            <div>
+                                <figure>
+                                    <a href="{{ route('sponsor.show', [$sponsor->slug]) }}">
+                                        <img src="images/sponsors/{{ $sponsor->logo }}" class="img-responsive">
+                                    </a>
+                                </figure>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Unsere nächste Lanparty</div>
+                <div class="panel-heading">Facebook News</div>
                 <div class="panel-body">
 
                     <ul class="timeline">
@@ -197,6 +234,44 @@
             </div>
         </div>
 
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Checkliste</div>
+                <div class="panel-body">
+
+                    <p>Damit ihr zu unserer Lanparty auch nix vergesst, hier eine kleine Checkliste, was so alles bei euch im Koffer(raum) sein sollte.</p>
+
+                    <ul>
+                        <li>Rechner</li>
+                        <li>Monitor</li>
+                        <li>Tastatur und Maus</li>
+                        <li>Stromkabel</li>
+                        <li>Netzwerkkabel (min. 5 Meter)</li>
+                        <li>3er Steckdose</li>
+                        <li>Kopfhörer</li>
+                        <li>Ladegeräte (z.B. fürs Handy)</li>
+                        <li>...</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Statistik</div>
+                <div class="panel-body">
+
+                    <dl class="dl-horizontal iconlist">
+                        <dt><i class="fa fa-fw fa-users"></i></dt>
+                        <dd>wir haben insgesamt <span class="text-warning">{{ $users->count() }}</span> registrierte Benutzer</dd>
+                        <dt><i class="fa fa-fw fa-circle-thin"></i></dt>
+                        <dd><span class="text-warning">{{ $max_coins->name }}</span> hat mit <span class="text-warning">{{ $max_coins->coins()->sum('coins') }}</span> Coins bisher die meisten GnB-Coins gesammelt</dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -213,6 +288,15 @@
             $('#countdown').countdowntimer({
                 dateAndTime: countdowntime,
                 size: 'lg'
+            });
+
+            $('.owl-sponsors').owlCarousel({
+                items: 1,
+                loop: true,
+                lazyLoad: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+
             });
 
         });

@@ -50,3 +50,14 @@ dl {
     margin-bottom: 10px;
   }
 }
+
+@media (min-width: 768px) {
+  .dl-horizontal {
+    dt {
+      width: 20px;
+    }
+    dd {
+      margin-left: 30px;
+    }
+  }
+}

@@ -20,3 +20,14 @@
     text-align: center;
   }
 }
+
+.panel {
+  background-color: rgba(0,0,0,0.8);
+  //border-radius: 0px;
+
+  .panel-heading {
+    color: #fff;
+    //background-color: #D6183F;
+    //border-radius: 0px;
+  }
+}
