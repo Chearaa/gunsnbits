@@ -102,6 +102,12 @@ Route::get('/bankaccountcheck', [
     'uses' => 'HomeController@bankaccountcheck'
 ]);
 
+Route::get('/impressum', [
+    'as' => 'impressum',
+    'uses' => 'HomeController@impressum'
+]);
+
+
 /*
  * AdminUserController
  */
@@ -158,6 +164,11 @@ Route::get('/lanparty/seatingplan', [
 Route::get('/lanparty/member', [
     'as'        => 'lanparty.member',
     'uses'      => 'LanpartyController@member'
+]);
+
+Route::get('/lanparty/location', [
+    'as' => 'lanparty.location',
+    'uses' => 'LanpartyController@location'
 ]);
 
 //admin routes

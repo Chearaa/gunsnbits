@@ -47,8 +47,14 @@
                                                     <button class="btn btn-lg btn-warning pull-left">{{ $seat->seatnumber }}</button>
                                                     <p>Platz <span class="text-warning">{{ $seat->seatnumber }}</span> wurde am {{ $seat->marked_at->format('d.m.Y H:i') }} Uhr <span class="text-warning">vorgemerkt</span> aber <span class="text-danger">noch nicht bezahlt</span>.<p>
                                                     <p>Bitte überweise den Teilnehmerbetrag bis zum <span class="text-warning">{{ $seat->marked_at->addDays(14)->format('d.m.Y') }}</span>, damit dir dieser Platz wirklich sicher ist. Andernfalls kann es sein, dass wir den Platz für andere wieder freigeben.</p>
+
+                                                    <div class="well well-sm">
+                                                        <h6>Überweisungs-Infos für Platz #{{ $seat->seatnumber }}</h6>
+                                                        <p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>
+                                                    </div>
+
                                                     <p>
-                                                        <button class="btn btn-default" data-popover="true" data-trigger="click" data-placement="right" title="Überweisungs-Infos für Platz #{{ $seat->seatnumber }}" data-content="<p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>"><i class="fa fa-fw fa-info-circle"></i> Überweisung-Info</button>
+                                                        {{--<button class="btn btn-default" data-popover="true" data-trigger="click" data-placement="right" title="Überweisungs-Infos für Platz #{{ $seat->seatnumber }}" data-content="<p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>"><i class="fa fa-fw fa-info-circle"></i> Überweisung-Info</button>--}}
                                                         @if (config('lanparty')['paywithcode'])
                                                             <button class="btn btn-success" data-container="body" data-toggle="modal" data-target="#code-{{ $seat->seatnumber }}"><i class="fa fa-fw fa-qrcode"></i> Gutschein</button>
                                                         @endif
@@ -63,8 +69,13 @@
                                                     <button class="btn btn-lg btn-success pull-left">{{ $seat->seatnumber }}</button>
                                                     <p>Platz <span class="text-success">{{ $seat->seatnumber }}</span> wurde am {{ $seat->reserved_at->format('d.m.Y H:i') }} Uhr <span class="text-success">reserviert</span> aber <span class="text-danger">noch nicht bezahlt</span>.<p>
                                                     <p>Gerne kannst du den Teilnehmerbetrag schon jetzt überweisen, oder erst vor Ort auf unserer Lan.</p>
+
+                                                    <div class="well well-sm">
+                                                        <h6>Überweisungs-Infos für Platz #{{ $seat->seatnumber }}</h6>
+                                                        <p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>
+                                                    </div>
                                                     <p>
-                                                        <button class="btn btn-default" data-popover="true" data-trigger="click" data-placement="right" title="Überweisungs-Infos für Platz #{{ $seat->seatnumber }}" data-content="<p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>"><i class="fa fa-fw fa-info-circle"></i> Überweisung-Info</button>
+                                                        {{--<button class="btn btn-default" data-popover="true" data-trigger="click" data-placement="right" title="Überweisungs-Infos für Platz #{{ $seat->seatnumber }}" data-content="<p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>"><i class="fa fa-fw fa-info-circle"></i> Überweisung-Info</button>--}}
                                                         @if (config('lanparty')['paywithcode'])
                                                             <button class="btn btn-success" data-container="body" data-toggle="modal" data-target="#code-{{ $seat->seatnumber }}"><i class="fa fa-fw fa-qrcode"></i> Gutschein</button>
                                                         @endif
@@ -76,7 +87,7 @@
                                                     <p>{{ config('lanparty')['coins'] }} GnB-Coins wurden dir gutgeschrieben.</p>
                                                 @endif
 
-                                            <!-- MODAL RESERVATION DELETE -->
+                                                <!-- MODAL RESERVATION DELETE -->
                                                 <div class="modal fade" id="modal-{{ $seat->seatnumber }}" tabindex="-1" role="dialog">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
@@ -171,7 +182,7 @@
                             <div class="panel-body">
 
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="panel panel-default">
                                             <div class="panel-body bg-darker">
                                                 <h6>Bühne</h6>
@@ -224,10 +235,11 @@
                                                 <h6>Saal</h6>
 
                                                 <div class="row">
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-3 col-sm-6 col-xs-12">
                                                         <div class="row">
                                                             <!-- ROW 1 -->
-                                                            <div class="col-lg-6">
+                                                            <p class="hidden-lg text-center">Reihe 1</p>
+                                                            <div class="col-xs-6 leftside">
                                                                 @for ($i=1; $i<=25; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
@@ -245,7 +257,7 @@
                                                                 @endfor
                                                             </div>
                                                             <!-- ROW 2 -->
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xs-6 rightside">
                                                                 @for ($i=26; $i<=50; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
@@ -264,10 +276,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-3 col-sm-6 col-xs-12">
                                                         <div class="row">
                                                             <!-- ROW 3 -->
-                                                            <div class="col-lg-6">
+                                                            <p class="hidden-lg text-center">Reihe 2</p>
+                                                            <div class="col-xs-6 leftside">
                                                                 @for ($i=51; $i<=75; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
@@ -285,7 +298,7 @@
                                                                 @endfor
                                                             </div>
                                                             <!-- ROW 4 -->
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xs-6 rightside">
                                                                 @for ($i=76; $i<=100; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
@@ -304,10 +317,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-3 col-sm-6 col-xs-12">
                                                         <div class="row">
                                                             <!-- ROW 5 -->
-                                                            <div class="col-lg-6">
+                                                            <p class="hidden-lg text-center">Reihe 3</p>
+                                                            <div class="col-xs-6 leftside">
                                                                 @for ($i=101; $i<=125; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
@@ -325,7 +339,7 @@
                                                                 @endfor
                                                             </div>
                                                             <!-- ROW 6 -->
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xs-6 rightside">
                                                                 @for ($i=126; $i<=150; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
@@ -344,10 +358,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-3 col-sm-6 col-xs-12">
                                                         <div class="row">
                                                             <!-- ROW 7 -->
-                                                            <div class="col-lg-6">
+                                                            <p class="hidden-lg text-center">Reihe 4</p>
+                                                            <div class="col-xs-6 leftside">
                                                                 @for ($i=151; $i<=175; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
@@ -365,7 +380,7 @@
                                                                 @endfor
                                                             </div>
                                                             <!-- ROW 8 -->
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xs-6 rightside">
                                                                 @for ($i=176; $i<=200; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
@@ -392,7 +407,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="panel panel-default">
                                             <div class="panel-body text-center bg-darker">
                                                 <h6>Catering</h6>

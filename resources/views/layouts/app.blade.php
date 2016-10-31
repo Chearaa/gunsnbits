@@ -8,7 +8,7 @@
     <title>GNB</title>
 
     <!-- Styles -->
-    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -50,6 +50,7 @@
                     <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
+                    <li><a href="{{ route('lanparty.location') }}">Location</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -102,6 +103,17 @@
     </div>
 
     @yield('content')
+
+    <!-- navigation footer -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="{{ route('impressum') }}">Impressum</a></li>
+                <!-- <li><a href="{{ route('impressum') }}">Datenschutz</a></li> -->
+                <li><a href="{{ route('service.contact') }}">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- JavaScripts -->
     <script src="{{ elixir('js/all.js') }}"></script>

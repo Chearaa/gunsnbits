@@ -2,10 +2,39 @@
   background-color: rgba(0,0,0,0.2);
 }
 
+.col-xs-6 {
+  &.leftside {
+    margin-bottom: 50px;
+
+    .seat {
+      margin-left: 40px;
+
+      @media screen and (max-width: 425px) {
+        margin-left: 60px;
+      }
+    }
+  }
+  &.rightside {
+    margin-bottom: 50px;
+
+    .seat {
+      margin-right: 40px;
+
+      @media screen and (max-width: 425px) {
+        margin-right: 60px;
+      }
+    }
+  }
+}
+
 .seat {
   display: inline-block;
   margin: 2px;
   min-width: 60px;
+  
+  @media screen and (max-width: 768px) {
+    min-width: 50px;
+  }
 }
 
 .reservations {

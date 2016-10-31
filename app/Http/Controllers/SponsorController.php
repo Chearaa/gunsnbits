@@ -18,7 +18,7 @@ class SponsorController extends Controller
      * get sponsor list view
      */
 	public function listing() {
-		$sponsors = Sponsor::all();
+		$sponsors = Sponsor::all()->shuffle();
 
 		return view('sponsor.list')
 			->with('sponsors', $sponsors->shuffle());

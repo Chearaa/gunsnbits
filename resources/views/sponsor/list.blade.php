@@ -14,7 +14,7 @@
 
                         <div class="row">
                             @foreach($sponsors as $sponsor)
-                                <div class="col-sm-4" style="margin-bottom: 10px;">
+                                <div class="col-sm-6" style="margin-bottom: 10px;">
                                     <a href="{{ route('sponsor.show', str_slug($sponsor->name)) }}">
                                         <img class="img-thumbnail img-responsive" alt="" src="{!! ($sponsor->logo) ? '../images/sponsors/' . $sponsor->logo : 'images/sponsors/default.png' !!}">
                                     </a>
