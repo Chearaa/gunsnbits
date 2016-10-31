@@ -51,7 +51,7 @@ class LanpartyController extends Controller
 		
 		if ($lanparty instanceof Lanparty) {
 			$reservedseats = $lanparty->getReservedSeats();
-            $usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->get()->count()) : 0;
+            $usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count()) : 0;
 		}
 
 		return view('lanparty.reservation')
@@ -82,12 +82,38 @@ class LanpartyController extends Controller
 						$seat = new Seat();
 						$seat->user_id = Auth::user()->id;
 						$seat->seatnumber = $request->seatnumber;
-						$seat->status = 1;
-						$seat->marked_at = $now;
+
+                        //check if user have a free lan
+                        $userpaymentisfree = false;
+
+                        if (Auth::user()->coins()->sum('coins')%1000 < config('lanparty')['coins'] && Auth::user()->coins()->sum('coins') >= 1000) {
+                            $userpaymentisfree = true;
+                        }
+
+                        if ($userpaymentisfree) {
+                            $seat->status = 3;
+                            $seat->payed_at = $now;
+
+                            //add coins
+                            $coins = new Coin([
+                                'coins' => config('lanparty')['coins'],
+                                'description' => 'Sitzplatz #' . $request->seatnumber . ' der ' . $lanparty->name . ' wurde automatisch reserviert und bezahlt, da eine 1000ender-Grenze GnB-Coins erreicht wurde.'
+                            ]);
+                            Auth::user()->coins()->save($coins);
+                        }
+                        else {
+                            $seat->status = 1;
+                            $seat->marked_at = $now;
+                        }
 						$lanparty->seats()->save($seat);
-						
-						flash('Die Reservierung wurde erfolgreich durchgeführt.', 'success');
-						return redirect(route('lanparty.reservation'));
+
+                        if ($userpaymentisfree) {
+                            flash('Die Reservierung wurde erfolgreich durchgeführt und direkt bezahlt, da du durch deine gesammelten GnB-Coins einen Sitzplatz auf der LAN kostenlos hast.', 'success');
+                        }
+                        else {
+                            flash('Die Reservierung wurde erfolgreich durchgeführt.', 'success');
+                        }
+                        return redirect(route('lanparty.reservation'));
 					}
 					else {
 						flash('Die Reservierung konnte nicht gespeichert werden.', 'danger');

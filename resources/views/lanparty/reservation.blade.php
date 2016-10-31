@@ -52,9 +52,11 @@
                                                         @if (config('lanparty')['paywithcode'])
                                                             <button class="btn btn-success" data-container="body" data-toggle="modal" data-target="#code-{{ $seat->seatnumber }}"><i class="fa fa-fw fa-qrcode"></i> Gutschein</button>
                                                         @endif
+                                                        {{--
                                                         @if ($user->coins()->lists('coins')->sum() >= config('lanparty')['paybycoins'])
                                                             <button class="btn btn-success" data-container="body" data-toggle="modal" data-target="#coins-{{ $seat->seatnumber }}"><i class="fa fa-fw fa-gg-circle"></i> mit GnB-Coins bezahlen</button>
                                                         @endif
+                                                        --}}
                                                         <button class="btn btn-danger pull-right" data-container="body" data-toggle="modal" data-target="#modal-{{ $seat->seatnumber }}" ><i class="fa fa-fw fa-close"></i></button>
                                                     </p>
                                                 @elseif ($seat->status == 2)
