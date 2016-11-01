@@ -50,8 +50,8 @@ set('shared_files', ['.env']);
 set('writable_dirs', ['bootstrap/cache', 'storage']);
 
 server('gunsnbits.de', 'gunsnbits.de', 22)
-    ->user('root')
-    ->password('Aktegunsnbits_0815')
+    ->user('gunsnbits')
+    ->password('gun$nb1t$_0815')
     ->env('deploy_path', $deployPath['gunsnbits.de'])
     ->env('environment_file', '.env.production');
 

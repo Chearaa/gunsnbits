@@ -162,7 +162,7 @@
                             <div>
                                 <figure>
                                     <a href="{{ route('sponsor.show', [$sponsor->slug]) }}">
-                                        <img src="images/sponsors/{{ $sponsor->logo }}" class="img-responsive">
+                                        <img src="/images/sponsors/{{ $sponsor->logo }}" class="img-responsive">
                                     </a>
                                 </figure>
                             </div>

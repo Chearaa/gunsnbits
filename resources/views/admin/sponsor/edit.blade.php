@@ -22,6 +22,8 @@
                                     <span>Bild auswählen</span>
                                     <input type="file" id="upload" class="croppie-upload" value="Choose a file" name="logo" accept="image/*" />
                                 </a>
+                            </div>
+                            <div class="col-sm-12">
                                 <div id="upload-image" class="" style="width: 100%; height: 300px;"></div>
                                 <textarea id="cropped-image" name="cropped_image" style="display: none;"></textarea>
                                 <input id="org-image-file" type="text" value="{{ $sponsor->logo }}" style="display: none;">
