@@ -19,7 +19,7 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="">
-                                        <img class="media-object img-thumbnail img-responsive" alt="" src="{!! ($sponsor->logo) ? '../images/sponsors/' . $sponsor->logo : 'images/sponsors/default.png' !!}" width="300">
+                                        <img class="media-object img-thumbnail img-responsive" alt="" src="{!! ($sponsor->logo) ? '/images/sponsors/' . $sponsor->logo : '/images/sponsors/default.png' !!}" width="300">
                                     </a>
                                 </div>
                                 <div class="media-body">

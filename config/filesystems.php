@@ -56,13 +56,13 @@ return [
 
         'catering' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/images/catering'),
+            'root' => public_path('images/catering'),
             'visibility' => 'public',
         ],
 
         'sponsors' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/images/sponsors'),
+            'root' => public_path('images/sponsors'),
             'visibility' => 'public',
         ],
 

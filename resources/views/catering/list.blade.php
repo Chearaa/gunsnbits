@@ -15,7 +15,7 @@
                         @foreach($caterings as $catering)
                             <div class="row catering">
                                 <div class="col-sm-6">
-                                    <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '../images/catering/' . $catering->image : 'images/catering/default.png' !!}">
+                                    <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '/images/catering/' . $catering->image : '/images/catering/default.png' !!}">
                                 </div>
                                 <div class="col-sm-6">
                                     <h4>{{ $catering->title }}</h4>
@@ -34,7 +34,7 @@
                         <h6>[GNB]Pati</h6>
                     </div>
                     <div class="panel-body">
-                        <img class="img-thumbnail img-responsive center-block" alt="" src="images/gnbmember/pati.png" width="200"><br/>
+                        <img class="img-thumbnail img-responsive center-block" alt="" src="/images/gnbmember/pati.png" width="200"><br/>
                         <p>Unsere Pati ist jede Lan für euch von früh bis spät hinterm Tresen!<br/>Ob Cocktail, Fritten oder Frühstück. Sie ist immer für euch da.</p>
                     </div>
                 </div>
