@@ -77,7 +77,7 @@
             $uploadCrop = $('#upload-image').croppie({
                 viewport: {
                     width: 720,
-                    height: 150,
+                    height: 250,
                     type: 'square'
                 },
                 enableExif: true

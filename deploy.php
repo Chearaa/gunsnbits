@@ -3,8 +3,7 @@ require_once 'recipe/common.php';
 require 'vendor/deployphp/recipes/recipes/rsync.php';
 
 $deployPath = [
-    'dedi2992_adventskalender.news' => '/usr/www/users/advent/gewinnspiele_production',
-    'dedi2992_weiss-intermedia.de' => '/usr/www/users/jyccyq/gewinnspiele_demo'
+    'gunsnbits.de' => '/var/www/vhosts/gunsnbits.de'
 ];
 
 set('rsync', [
@@ -26,7 +25,7 @@ set('rsync', [
         'storage/logs/*',
 
         // this folder is a symlink in production mode
-        'public/uploads'
+        'public/images'
     ],
     'exclude-file' => false,
     'include'      => [],
@@ -50,19 +49,11 @@ set('shared_files', ['.env']);
 // Laravel writable dirs
 set('writable_dirs', ['bootstrap/cache', 'storage']);
 
-server('dedi2992_adventskalender.news', 'dedi2992.your-server.de', 222)
-    ->user('advent')
-    ->forwardAgent()
-    ->env('deploy_path', $deployPath['dedi2992_adventskalender.news'])
+server('gunsnbits.de', 'gunsnbits.de', 22)
+    ->user('root')
+    ->password('Aktegunsnbits_0815')
+    ->env('deploy_path', $deployPath['gunsnbits.de'])
     ->env('environment_file', '.env.production');
-
-server('dedi2992_weiss-intermedia.de', 'dedi2992.your-server.de', 222)
-    ->user('jyccyq')
-    ->forwardAgent()
-    ->env('deploy_path', $deployPath['dedi2992_weiss-intermedia.de'])
-    ->env('environment_file', '.env.demo');
-
-
 
 // --------------------------------------------------
 
@@ -86,13 +77,13 @@ task('deploy:symlink', function() {
  */
 task('deploy:public_disk', function() {
     // Remove from source.
-    run('if [ -d $(echo {{release_path}}/public/uploads) ]; then rm -rf {{release_path}}/public/uploads; fi');
+    run('if [ -d $(echo {{release_path}}/public/images) ]; then rm -rf {{release_path}}/public/images; fi');
 
     // Create shared dir if it does not exist.
-    run('mkdir -p {{deploy_path}}/shared/public/uploads');
+    run('mkdir -p {{deploy_path}}/shared/public/images');
 
     // Symlink shared dir to release dir
-    run('ln -nfs {{deploy_path}}/shared/public/uploads {{release_path}}/public/uploads');
+    run('ln -nfs {{deploy_path}}/shared/public/images {{release_path}}/public/images');
 })->desc('Make symlink for public disk');
 
 
@@ -103,7 +94,7 @@ task('laravel:production', function() {
     run('mv {{release_path}}/' . env('environment_file') . ' {{release_path}}/.env');
     writeln('Laravel environment file "' . env('environment_file') . '" moved to .env!');
     // delete other environment files
-    run('rm {{release_path}}/.env.*');
+    //run('rm {{release_path}}/.env.*');
 
     run('php {{release_path}}/artisan down');
     writeln('Laravel app is now down!');
