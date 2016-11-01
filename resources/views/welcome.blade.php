@@ -221,7 +221,7 @@
                                                         @endif
                                                     </div>
                                                 @endif
-                                                <div class="post-excerpt">{!! $post->message !!}</div>
+                                                <div class="post-excerpt">{!! nl2br($post->message) !!}</div>
                                             </div>
                                         </article>
                                     </div>
