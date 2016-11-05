@@ -44,6 +44,7 @@ class LanpartyController extends Controller
 	public function reservation() {
 		$reservedseats = null;
         $usercanreserveseats = 0;
+        $next_lan_free = false;
 
         //get next lanparty
 		$lanparty = Lanparty::getNextLan();
@@ -52,13 +53,19 @@ class LanpartyController extends Controller
 		if ($lanparty instanceof Lanparty) {
 			$reservedseats = $lanparty->getReservedSeats();
             $usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count()) : 0;
+
+            //check if next lan is free for user
+            if (Auth::user()->coins()->sum('coins')%1000 < config('lanparty')['coins'] && Auth::user()->coins()->sum('coins') >= 1000) {
+                $next_lan_free = true;
+            }
 		}
 
 		return view('lanparty.reservation')
 			->with('lanparty', $lanparty)
 			->with('user', $user)
 			->with('usercanreserveseats', $usercanreserveseats)
-			->with('reservedseats', $reservedseats);
+			->with('reservedseats', $reservedseats)
+            ->with('next_lan_free', $next_lan_free);
 	}
 	
 	/**

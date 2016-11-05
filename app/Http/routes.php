@@ -109,6 +109,31 @@ Route::get('/impressum', [
 
 
 /*
+ * UserController
+ */
+Route::get('/profile', [
+    'as'        => 'user.profile',
+    'uses'      => 'UserController@getProfile'
+]);
+
+Route::get('/profile/edit', [
+    'as'        => 'user.profile.edit',
+    'uses'      => 'UserController@editProfile'
+]);
+
+Route::post('/profile/edit', [
+    'before'    => 'csrf',
+    'as'        => 'user.editprofile.post',
+    'uses'      => 'UserController@postEditProfile'
+]);
+
+Route::get('/profile/coins', [
+    'as'        => 'user.profile.coins',
+    'uses'      => 'UserController@coins'
+]);
+
+
+/*
  * AdminUserController
  */
 Route::get('/admin/user/permissions', [

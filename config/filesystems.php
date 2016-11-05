@@ -66,6 +66,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'avatar' => [
+            'driver' => 'local',
+            'root' => public_path('images/avatar'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

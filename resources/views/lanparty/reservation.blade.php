@@ -29,6 +29,14 @@
                                                 @else
                                                     <p>Du kannst noch bis zu <span class="text-success">{{ $usercanreserveseats }} weitere Plätze</span> reservieren.</p>
                                                 @endif
+
+                                                @if ($next_lan_free)
+                                                    <div class="well well-sm bg-info">
+                                                        <h5>Herzlichen Glückwunsch!</h5>
+                                                        Weil du so oft bei uns warst und schon <span class="text-primary">{{ $user->coins()->sum('coins') }} GnB-Coins</span> gesammelt hast, ist deine nächste Sitzplatzreservierung <span class="text-success">sofort bezahlt</span> und <span class="text-success">reserviert</span>!<br/>
+                                                        Wir freuen uns auf dich!
+                                                    </div>
+                                                @endif
                                             @else
                                                 <p>Leider kannst du <span class="text-danger">keinen weiteren</span> Sitzplatz reservieren.</p>
                                                 <p>Brauchst du jedoch noch mehr Plätze, melde dich bitte bei unserem <a href="{{ route('service.contact') }}">Support-Team</a>!</p>

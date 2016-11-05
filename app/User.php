@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'active', 'first_name', 'last_name', 'street', 'postcode', 'city', 'country', 'geo_lat', 'geo_long', 'phone', 'birthday', 'avatar', 'maxseats'
     ];
 
     /**
@@ -27,6 +27,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    protected $dates = [
+        'created_at', 'deleted_at', 'birthday'
+    ];
+
+    /**
+     * Related objects loaded with.
+     *
+     * @var array
+     */
     protected $with = [
         'coins'
     ];
