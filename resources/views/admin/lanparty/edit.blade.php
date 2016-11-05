@@ -10,16 +10,16 @@
 						<h6>Lanparty bearbeiten</h6>
 					</div>
 					<div class="panel-body">
-						{!! BootForm::openHorizontal(['sm'=>[4,8]])->post()->action(route('admin.lanparty.edit.post',[$lanparty['id']])) !!}
+						{!! BootForm::openHorizontal(['sm'=>[4,8]])->post()->action(route('admin.lanparty.edit.post', [$lanparty->id])) !!}
 						{!! BootForm::bind($lanparty) !!}
 						{!! csrf_field() !!}
 						{!! BootForm::text('Titel', 'title')->placeholder('Titel der Lanparty')->required() !!}
 						{!! BootForm::text('Untertitel', 'subtitle')->placeholder('Untertitel / Motto') !!}
 						{!! BootForm::textarea('Beschreibung', 'description') !!}
-						{!! BootForm::text('Start', 'start')->class('form-control dtp dtp-start')->id('start')->required() !!}
-						{!! BootForm::text('Ende', 'end')->class('form-control dtp dtp-end')->id('end')->required() !!}
-						{!! BootForm::text('Anmeldung ab dem', 'registrationstart')->class('form-control dtp dtp-regstart')->id('registrationstart')->required() !!}
-						{!! BootForm::text('Anmeldung bis zum', 'registrationend')->class('form-control dtp dtp-regend')->id('registrationend')->required() !!}
+						{!! BootForm::text('Start', 'start')->class('form-control dtp dtp-start')->id('start')->value($lanparty->start->format('d.m.Y H:i'))->required() !!}
+						{!! BootForm::text('Ende', 'end')->class('form-control dtp dtp-end')->id('end')->value($lanparty->end->format('d.m.Y H:i'))->required() !!}
+						{!! BootForm::text('Anmeldung ab dem', 'registrationstart')->class('form-control dtp dtp-regstart')->id('registrationstart')->value($lanparty->registrationstart->format('d.m.Y H:i'))->required() !!}
+						{!! BootForm::text('Anmeldung bis zum', 'registrationend')->class('form-control dtp dtp-regend')->id('registrationend')->value($lanparty->registrationend->format('d.m.Y H:i'))->required() !!}
 						{!! BootForm::text('Verwendungszweck', 'reasonforpayment')->required()->placeholder('GNBXX') !!}
 						{!! BootForm::submit('<i class="fa fa-fw fa-download"></i> speichern') !!}
 						{!! BootForm::close() !!}
@@ -40,8 +40,6 @@
                 $dtpregstartvalue = moment($('.dtp-regstart').val()).format('DD.MM.YYYY HH:mm'),
                 $dtpregendvalue = moment($('.dtp-regend').val()).format('DD.MM.YYYY HH:mm');
 
-            var $dtpstartfirstopen = true;
-
             $('.dtp').datetimepicker({
                 locale: 'de',
                 format: 'DD.MM.YYYY HH:mm',
@@ -50,10 +48,9 @@
             });
 
 			$('.dtp-start').datetimepicker({
-				useCurrent: false,
-                defaultDate: moment($('.dtp-start').val()).format('DD.MM.YYYY HH:mm'),
-                viewDate: true
+                defaultDate: $dtpstartvalue
 			});
+
             $('.dtp-end').datetimepicker({
                 defaultDate: $dtpendvalue
             });
@@ -77,8 +74,6 @@
 			$('.dtp-regstart').on('dp.change', function (e) {
 				$('.dtp-regend').data('DateTimePicker').minDate(e.date);
 			});
-
-
 		});
 	</script>
 @endsection
