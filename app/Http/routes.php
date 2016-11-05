@@ -102,10 +102,32 @@ Route::get('/bankaccountcheck', [
     'uses' => 'HomeController@bankaccountcheck'
 ]);
 
+
+
+/*
+ * SERVICE ROUTES
+ */
 Route::get('/impressum', [
-    'as' => 'impressum',
-    'uses' => 'HomeController@impressum'
+    'as'        => 'service.impressum',
+    'uses'      => 'ServiceController@impressum'
 ]);
+
+Route::get('/contact', [
+    'as'        => 'service.contact',
+    'uses'      => 'ServiceController@contact'
+]);
+
+Route::post('/contact', [
+    'before'    => 'csrf',
+    'as'        => 'service.contact.post',
+    'uses'      => 'ServiceController@postContact'
+]);
+
+Route::get('/teamspeak', [
+    'as'        => 'teamspeak.viewer',
+    'uses'      => 'ServiceController@teamspeak'
+]);
+
 
 
 /*

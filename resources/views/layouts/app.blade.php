@@ -109,8 +109,7 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-right">
-                <li><a href="{{ route('impressum') }}">Impressum</a></li>
-                <!-- <li><a href="{{ route('impressum') }}">Datenschutz</a></li> -->
+                <li><a href="{{ route('service.impressum') }}">Impressum</a></li>
                 <li><a href="{{ route('service.contact') }}">Kontakt</a></li>
             </ul>
         </div>
