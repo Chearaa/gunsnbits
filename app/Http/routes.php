@@ -286,6 +286,23 @@ Route::post('/admin/lanparty/{lanpartyid}/memberlist', [
     'uses'      => 'LanpartyController@postMemberlist'
 ]);
 
+Route::get('/admin/lanparty/user/settings', [
+    'as'        => 'admin.lanparty.user.settings',
+    'uses'      => 'LanpartyController@usersettings'
+]);
+
+Route::get('/admin/lanparty/user/{user}/settings/edit', [
+    'as'        => 'admin.lanparty.user.settings.edit',
+    'uses'      => 'LanpartyController@usersettingsEdit'
+]);
+
+Route::post('/admin/lanparty/user/{user}/settings/update', [
+    'as'        => 'admin.lanparty.user.settings.update',
+    'uses'      => 'LanpartyController@usersettingsUpdate'
+]);
+
+
+
 /*
  * SponsorController
  */

@@ -840,4 +840,48 @@ class LanpartyController extends Controller
     	return redirect(route('admin.lanparty.memberlist', [$id]));
     }
 
+    public function usersettings() {
+        $users = User::all();
+        return view('admin.lanparty.usersettings', compact(
+            'users'
+        ));
+    }
+
+    public function usersettingsEdit($id) {
+        $user = User::findOrFail($id);
+        return view('admin.lanparty.useredit', compact(
+            'user'
+        ));
+    }
+
+    public function usersettingsUpdate(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $messages = [
+            'maxseats.required' => 'Du musst eine maximale Anzahl Sitzplätze angeben.',
+            'maxseats.min' => 'Ein Benutzer muss mindestens 1 Sitzplatz reservieren können.',
+            'maxseats.max' => 'Es können maximal 20 Sitzplätze durch eine Person reserviert werden.',
+            'maxseats.integer' => 'Bitte gebe eine Zahl zwischen 1 und 20 ein.'
+        ];
+
+        $rules = [
+            'maxseats' => 'required|min:1|max:20|integer'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect(route('admin.lanparty.user.settings.edit', [$user->id]))
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else {
+            $user->maxseats = $request->maxseats;
+            $user->save();
+        }
+
+        flash('Die maximalen Sitzplätze wurden aktualisiert.', 'success');
+        return redirect(route('admin.lanparty.user.settings.edit', [$user->id]));
+    }
+
 }

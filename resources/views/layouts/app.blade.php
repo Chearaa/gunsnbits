@@ -75,6 +75,7 @@
                                 <li><a href="{{ route('admin.coin.user') }}"><i class="fa fa-btn fa-gg-circle"></i> GnB-Coins</a></li>
                                 <li><a href="{{ route('admin.code.list') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
                                 <li><a href="{{ route('admin.sponsor.list') }}"><i class="fa fa-btn fa-star"></i> Sponsoren</a></li>
+                                <li><a href="{{ route('admin.lanparty.user.settings') }}"><i class="fa fa-btn fa-users"></i> Benutzer-Einstellungen</a></li>
                                 @endrole
                                 @role('cateringmanager')
                                 <li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>
