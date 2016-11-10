@@ -77,13 +77,13 @@
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
                     <li><a href="{{ route('lanparty.location') }}">Location</a></li>
+                    <li><a href="http://challonge.com/" target="_blank">Turniere</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="social-icon" href="https://www.facebook.com/gunsnbits/" target="_blank"><img class="img-responsive" src="/images/icons/fb.png"></a></li>
                     <li><a class="social-icon" href="https://www.youtube.com/user/Gunsnbits" target="_blank"><img class="img-responsive" src="/images/icons/yt.png"></a></li>
-                    <li><a class="social-icon" href="http://challonge.com/" target="_blank"><img class="img-responsive" src="/images/icons/challonge.png"></a></li>
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
