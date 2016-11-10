@@ -265,8 +265,6 @@
                     <dl class="dl-horizontal iconlist">
                         <dt><i class="fa fa-fw fa-users"></i></dt>
                         <dd>wir haben insgesamt <span class="text-warning">{{ $users->count() }}</span> registrierte Benutzer</dd>
-                        <dt><i class="fa fa-fw fa-circle-thin"></i></dt>
-                        <dd><span class="text-warning">{{ $max_coins->name }}</span> hat mit <span class="text-warning">{{ $max_coins->coins()->sum('coins') }}</span> Coins bisher die meisten GnB-Coins gesammelt</dd>
                     </dl>
 
                 </div>

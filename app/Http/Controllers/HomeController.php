@@ -95,19 +95,6 @@ class HomeController extends Controller
 
         $users = User::all()->where('deleted_at', null);
 
-        $max_coins = null;
-        foreach ($users as $user) {
-
-            if (is_null($max_coins)) {
-                $max_coins = $user;
-            }
-
-            if ($max_coins->coins()->sum('coins') < $user->coins->sum('coins')) {
-                $max_coins = $user;
-            }
-
-        }
-
         return view('welcome', compact(
             'posts',
             'lanparty',
@@ -117,8 +104,7 @@ class HomeController extends Controller
             'progress',
             'last_bankaccount_check',
             'sponsors',
-            'users',
-            'max_coins'
+            'users'
         ));
     }
 

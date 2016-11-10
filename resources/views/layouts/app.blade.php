@@ -46,8 +46,10 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
-                    <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
+                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->reservationstart > \Carbon\Carbon::now())
+                        <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
+                        <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
+                    @endif
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
                     <li><a href="{{ route('lanparty.location') }}">Location</a></li>

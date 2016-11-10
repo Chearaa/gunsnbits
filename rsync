@@ -1,0 +1,1 @@
+rsync -avz -e "ssh" . gunsnbits@gunsnbits.de:/var/www/vhosts/gunsnbits.de/laravel/. --exclude=".env" --exclude=".env.example" --exclude=".env.production" --exclude="config/database.php" --exclude="config/app.php" --exclude=".git" --exclude=".idea" --exclude="node_modules" --exclude="vendor" --exclude="storage/*" --exclude="deploy.php" --exclude="deployer.phar" --exclude="rsync"
