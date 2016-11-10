@@ -1,0 +1,13 @@
+.navbar-nav {
+  > li {
+    > a {
+      &.social-icon {
+        padding: 16px 5px;
+
+        > img {
+          height: 16px;
+        }
+      }
+    }
+  }
+}

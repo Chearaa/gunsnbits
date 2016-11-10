@@ -25,6 +25,12 @@
 
     <title>Guns'n Bits e.V.</title>
 
+    <meta property="og:url"                content="http://gunsnbits.de" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Guns'n Bits e.V. - Die Lan der Region Köln-Düren-Aachen" />
+    <meta property="og:description"        content="Die größte Lanparty in der Region mit maximal 220 Teilnehmern, Internet-Anbindung, vielen Turnieren und super Preisen! Dazu gibt es wie immer die Kaffee-Flat, Catering rund um die Uhr und viel, viel Spass!" />
+    <meta property="og:image"              content="http://gunsnbits.de/images/gnb/logo.png" />
+
     <!-- Styles -->
     <link href="/css/owl.carousel.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
@@ -75,6 +81,10 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a class="social-icon" href="https://www.facebook.com/gunsnbits/" target="_blank"><img class="img-responsive" src="/images/icons/fb.png"></a></li>
+                    <li><a class="social-icon" href="https://www.youtube.com/user/Gunsnbits" target="_blank"><img class="img-responsive" src="/images/icons/yt.png"></a></li>
+                    <li><a class="social-icon" href="http://challonge.com/" target="_blank"><img class="img-responsive" src="/images/icons/challonge.png"></a></li>
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ route('auth.login') }}"><i class="fa fa-sign-in"></i></a></li>
