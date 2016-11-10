@@ -19,18 +19,7 @@
                                         <h6>Bühne</h6>
 
                                         <div class="text-center seatingrow">
-                                            @for ($i=201; $i<=210; $i++)
-                                                <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
-                                                        @if (isset($regularseats[$i]))
-                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                        @else
-                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                        @endif
-                                                >{{ $i }}</button>
-                                            @endfor
-                                        </div>
-                                        <div class="text-center seatingrow">
-                                            @for ($i=211; $i<=220; $i++)
+                                            @for ($i=209; $i<=220; $i++)
                                                 <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
                                                         data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -59,7 +48,7 @@
                                                     <!-- ROW 1 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=1; $i<=25; $i++)
+                                                        @for ($i=1; $i<=26; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }} pull-right"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -73,7 +62,7 @@
                                                     <!-- ROW 2 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=26; $i<=50; $i++)
+                                                        @for ($i=27; $i<=52; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -92,7 +81,7 @@
                                                     <!-- ROW 3 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=51; $i<=75; $i++)
+                                                        @for ($i=53; $i<=78; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }} pull-right"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -106,7 +95,7 @@
                                                     <!-- ROW 4 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=76; $i<=100; $i++)
+                                                        @for ($i=79; $i<=104; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -125,7 +114,7 @@
                                                     <!-- ROW 5 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=101; $i<=125; $i++)
+                                                        @for ($i=105; $i<=130; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }} pull-right"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -139,7 +128,7 @@
                                                     <!-- ROW 6 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=126; $i<=150; $i++)
+                                                        @for ($i=131; $i<=156; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -158,7 +147,7 @@
                                                     <!-- ROW 7 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=151; $i<=175; $i++)
+                                                        @for ($i=157; $i<=182; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }} pull-right"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
@@ -172,7 +161,7 @@
                                                     <!-- ROW 8 -->
                                                     <div class="col-lg-6">
 
-                                                        @for ($i=176; $i<=200; $i++)
+                                                        @for ($i=183; $i<=208; $i++)
                                                             <button class="btn btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                                     @if (isset($regularseats[$i]))
                                                                     data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $regularseats[$i]->user->name }} (ID: {{ $regularseats[$i]->user->id }})<br/>{{ ($regularseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($regularseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"

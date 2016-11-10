@@ -196,25 +196,7 @@
                                                 <h6>Bühne</h6>
 
                                                 <div class="text-center seatingrow">
-                                                    @for ($i=201; $i<=210; $i++)
-                                                        <button class="btn {{ ($usercanreserveseats > 0 && Auth::check() && (Auth::user()->hasRole('gnb') || Auth::user()->hasRole('admin'))) ? 'btn-success' : 'btn-default' }} seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                                                                @if (isset($reservedseats[$i]))
-                                                                @if ($reservedseats[$i]->status == -1)
-                                                                data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                @else
-                                                                data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                @endif
-                                                                @else
-                                                                @if ($usercanreserveseats > 0 && Auth::check() && (Auth::user()->hasRole('gnb') || Auth::user()->hasRole('admin')))
-                                                                data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                @endif
-                                                                @endif
-                                                        >{{ $i }}</button>
-                                                    @endfor
-                                                </div>
-
-                                                <div class="text-center seatingrow">
-                                                    @for ($i=211; $i<=220; $i++)
+                                                    @for ($i=209; $i<=220; $i++)
                                                         <button class="btn {{ ($usercanreserveseats > 0 && Auth::check() && (Auth::user()->hasRole('gnb') || Auth::user()->hasRole('admin'))) ? 'btn-success' : 'btn-default' }} seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                 @if (isset($reservedseats[$i]))
                                                                 @if ($reservedseats[$i]->status == -1)
@@ -248,7 +230,7 @@
                                                             <!-- ROW 1 -->
                                                             <p class="hidden-lg text-center">Reihe 1</p>
                                                             <div class="col-xs-6 leftside">
-                                                                @for ($i=1; $i<=25; $i++)
+                                                                @for ($i=1; $i<=26; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -266,7 +248,7 @@
                                                             </div>
                                                             <!-- ROW 2 -->
                                                             <div class="col-xs-6 rightside">
-                                                                @for ($i=26; $i<=50; $i++)
+                                                                @for ($i=27; $i<=52; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -289,7 +271,7 @@
                                                             <!-- ROW 3 -->
                                                             <p class="hidden-lg text-center">Reihe 2</p>
                                                             <div class="col-xs-6 leftside">
-                                                                @for ($i=51; $i<=75; $i++)
+                                                                @for ($i=53; $i<=78; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -307,7 +289,7 @@
                                                             </div>
                                                             <!-- ROW 4 -->
                                                             <div class="col-xs-6 rightside">
-                                                                @for ($i=76; $i<=100; $i++)
+                                                                @for ($i=79; $i<=104; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -330,7 +312,7 @@
                                                             <!-- ROW 5 -->
                                                             <p class="hidden-lg text-center">Reihe 3</p>
                                                             <div class="col-xs-6 leftside">
-                                                                @for ($i=101; $i<=125; $i++)
+                                                                @for ($i=105; $i<=130; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -348,7 +330,7 @@
                                                             </div>
                                                             <!-- ROW 6 -->
                                                             <div class="col-xs-6 rightside">
-                                                                @for ($i=126; $i<=150; $i++)
+                                                                @for ($i=131; $i<=156; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -371,7 +353,7 @@
                                                             <!-- ROW 7 -->
                                                             <p class="hidden-lg text-center">Reihe 4</p>
                                                             <div class="col-xs-6 leftside">
-                                                                @for ($i=151; $i<=175; $i++)
+                                                                @for ($i=157; $i<=182; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)
@@ -389,7 +371,7 @@
                                                             </div>
                                                             <!-- ROW 8 -->
                                                             <div class="col-xs-6 rightside">
-                                                                @for ($i=176; $i<=200; $i++)
+                                                                @for ($i=183; $i<=208; $i++)
                                                                     <button class="btn btn-default seat {{ ($usercanreserveseats > 0) ? 'btn-success' : 'btn-default' }} {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                                             @if (isset($reservedseats[$i]))
                                                                             @if ($reservedseats[$i]->status == -1)

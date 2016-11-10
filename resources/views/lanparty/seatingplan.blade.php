@@ -13,25 +13,7 @@
         <div class="row stage">
             <h5>Bühne</h5>
             <div class="col-sm-12 text-center seatingrow">
-                @for ($i=201; $i<=210; $i++)
-                <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                    @if (isset($reservedseats[$i]))
-                        data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
-                        @if ($reservedseats[$i]->status == -1)
-                        data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                        @elseif ($reservedseats[$i]->status == 1)
-                        data-content="{{ $user->name }} (ID: {{ $user->id }})<br/><span class='text-warning'>vorgemerkt</span>"
-                        @elseif ($reservedseats[$i]->status == 2)
-                        data-content="{{ $user->name }} (ID: {{ $user->id }})<br/><span class='text-success'>reserviert</span>"
-                        @elseif ($reservedseats[$i]->status == 3)
-                        data-content="{{ $user->name }} (ID: {{ $user->id }})<br/><span class='text-success'>reserviert</span> und <span class='text-success'>bezahlt</span>"
-                        @endif
-                    @endif
-                >{{ $i }}</button>
-                @endfor
-            </div>
-            <div class="col-sm-12 text-center seatingrow">
-                @for ($i=211; $i<=220; $i++)
+                @for ($i=209; $i<=220; $i++)
                 <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                     @if (isset($reservedseats[$i]))
                         data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -55,7 +37,7 @@
             <div class="col-xs-6 col-sm-3 seatingrow">
                 <div class="row">
                     <div class="col-xs-6 leftrow">
-                        @for ($i=1; $i<=25; $i++)
+                        @for ($i=1; $i<=26; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -73,7 +55,7 @@
                         @endfor
                     </div>
                     <div class="col-xs-6 rightrow">
-                        @for ($i=26; $i<=50; $i++)
+                        @for ($i=27; $i<=52; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -96,7 +78,7 @@
             <div class="col-xs-6 col-sm-3 seatingrow">
                 <div class="row">
                     <div class="col-xs-6 leftrow">
-                        @for ($i=51; $i<=75; $i++)
+                        @for ($i=53; $i<=78; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -114,7 +96,7 @@
                         @endfor
                     </div>
                     <div class="col-xs-6 rightrow">
-                        @for ($i=76; $i<=100; $i++)
+                        @for ($i=79; $i<=104; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -137,7 +119,7 @@
             <div class="col-xs-6 col-sm-3 seatingrow">
                 <div class="row">
                     <div class="col-xs-6 leftrow">
-                        @for ($i=101; $i<=125; $i++)
+                        @for ($i=105; $i<=130; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -155,7 +137,7 @@
                         @endfor
                     </div>
                     <div class="col-xs-6 rightrow">
-                        @for ($i=126; $i<=150; $i++)
+                        @for ($i=131; $i<=156; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -178,7 +160,7 @@
             <div class="col-xs-6 col-sm-3 seatingrow">
                 <div class="row">
                     <div class="col-xs-6 leftrow">
-                        @for ($i=151; $i<=175; $i++)
+                        @for ($i=157; $i<=182; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
@@ -196,7 +178,7 @@
                         @endfor
                     </div>
                     <div class="col-xs-6 rightrow">
-                        @for ($i=176; $i<=200; $i++)
+                        @for ($i=183; $i<=208; $i++)
                         <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                             @if (isset($reservedseats[$i]))
                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}"
