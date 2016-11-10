@@ -1,30 +1,41 @@
-@extends('layouts.gnb')
-
-@section('title', 'Teamspeak')
-@section('bodyclass', 'bgpic-1')
-@section('contentclass', 'container bg-dark')
+@extends('layouts.app')
 
 @section('content')
 
-    <h1>TeamSpeak</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8">
 
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <p>
-                Habt ihr nicht nur Bock zu zocken,<br/>sondern wollt auch ein paar Gleichgesinnte kennenlernen?!<br/>
-                Dann startet euer <a href="http://www.teamspeak.de" target="_blank">TeamSpeak</a> und kommt auf unseren Server!<br/><br/>
-            </p>
-            <dl>
-                <dd>Server-IP:</dd>
-                <dt>85.214.156.40</dt>
-                <dd>Port:</dd>
-                <dt>10011</dt>
-            </dl>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            {!! $ts3_VirtualServer->getViewer(new TeamSpeak3_Viewer_Html("images/viewericons/", "images/countryflags/", "data:image")) !!}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6>Teamspeak</h6>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>
+                                    Habt ihr nicht nur Bock zu zocken,<br/>sondern wollt auch ein paar Gleichgesinnte kennenlernen?!<br/>
+                                    Dann startet euer <a href="http://www.teamspeak.de" target="_blank">TeamSpeak</a> und kommt auf unseren Server!<br/><br/>
+                                </p>
+                                <dl>
+                                    <dt>Server-IP:</dt>
+                                    <dd>85.214.156.40</dd>
+                                    <dt>Port:</dt>
+                                    <dd>10011</dd>
+                                </dl>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="teamspeak-viewer">
+                                    {!! $ts3_VirtualServer->getViewer(new TeamSpeak3_Viewer_Html("/images/ts3/", "/images/countryflags/", "data:image")) !!}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 
 @endsection
