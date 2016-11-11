@@ -16,9 +16,16 @@
                             <div class="col-lg-6">
                                 <h5>Angaben gemäß §5 TMG</h5>
                                 <p>
-                                    Christian Röhl<br/>
+                                    Guns'n Bits e.V.<br/>
+                                    Josef-Schwarz-Straße 14<br/>
+                                    52379 Langerwehe
+                                </p>
+                                <h5>Postanschrift</h5>
+                                <p>
+                                    Guns'n Bits e.V.<br/>
+                                    c/o Christian Röhl<br/>
                                     Waldorfer Straße 4<br/>
-                                    50969 Köln
+                                    50969 Köln<br/>
                                 </p>
                                 <h5>Kontakt</h5>
                                 <p>
@@ -29,9 +36,13 @@
                             <div class="col-lg-6">
                                 <h5>Verantwortlich für den Inhalt<br/>(§55 Abs. 2 RStV)</h5>
                                 <p>
-                                    Christian Röhl<br/>
-                                    Waldorfer Straße 4<br/>
-                                    50969 Köln
+                                    Guns'n Bits e.V.
+                                </p>
+                                <h5>Verein</h5>
+                                <p>
+                                    Vertreten durch: 2 Vorstandsmitglieder des Vereins<br/>
+                                    Registernummer: 2609<br/>
+                                    Eintragung beim Amtsgericht Düren
                                 </p>
                             </div>
                         </div>
