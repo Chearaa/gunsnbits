@@ -22,7 +22,7 @@
 								<th></th>
 								<th></th>
 							</tr>
-							@foreach ($lanparty->seats()->get() as $seat)
+							@foreach ($lanparty->seats()->get()->sortBy('seatnumber') as $seat)
 								<tr>
 									<td>{{ $seat->seatnumber }}</td>
 									<td>{{ ($seat->user instanceof App\User) ? $seat->user->name : '' }}</td>
