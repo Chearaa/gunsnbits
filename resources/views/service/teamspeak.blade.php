@@ -20,9 +20,9 @@
                                 </p>
                                 <dl>
                                     <dt>Server-IP:</dt>
-                                    <dd>85.214.156.40</dd>
+                                    <dd>gunsnbits.de</dd>
                                     <dt>Port:</dt>
-                                    <dd>10011</dd>
+                                    <dd>9987</dd>
                                 </dl>
                             </div>
                             <div class="col-lg-6">
