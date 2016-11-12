@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'info@gunsnbits.de', 'name' => 'Guns`s Bits e.V.'],
 
     /*
     |--------------------------------------------------------------------------

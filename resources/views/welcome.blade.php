@@ -98,7 +98,7 @@
                             <div id="countdown" data-timer="{{ $lanparty->registrationstart->format('Y/m/d H:i:s') }}" style="margin-bottom: 30px;"></div>
                             <p><span class="text-warning">Macht euch bereit!</span></p>
                             <p>Es gibt wie immer die beste Unterhaltung, besondere Turniere, großartige Preise und die einzigartige Atmosphäre der Guns'n Bits.</p>
-                            <p>Einen kleinen Vorgeschmack findet ihr in unserer Bilder-Galerie oder direkt und persönlich in unserem TeamSpeak.</p>
+                            <p>Einen kleinen Vorgeschmack findet ihr in unserer Bilder-Galerie oder direkt und persönlich in unserem <a href="{{ route('teamspeak.viewer') }}">TeamSpeak</a>.</p>
                             <p><span class="text-warning">Also kommt vorbei!</span></p>
 
                         @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start > \Carbon\Carbon::now())
