@@ -55,7 +55,7 @@ class LanpartyController extends Controller
             $usercanreserveseats = (!is_null($user) && $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count() < $user->maxseats) ? ($user->maxseats - $user->seats()->where('lanparty_id', $lanparty->id)->where('status', '>', 0)->get()->count()) : 0;
 
             //check if next lan is free for user
-            if (Auth::user()->coins()->sum('coins')%1000 < config('lanparty')['coins'] && Auth::user()->coins()->sum('coins') >= 1000) {
+            if (!is_null($user) && $user->coins()->sum('coins')%1000 < config('lanparty')['coins'] && $user->coins()->sum('coins') >= 1000) {
                 $next_lan_free = true;
             }
 		}

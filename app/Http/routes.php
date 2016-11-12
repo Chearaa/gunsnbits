@@ -11,6 +11,17 @@
 |
 */
 
+$this->get('/regularseats', function() {
+    $user = \App\User::findOrFail(1);
+    $lanparty = \App\Lanparty::getNextLan();
+    $regularseats = $user->regularseats;
+    return view('email.regularseats', compact(
+        'user',
+        'lanparty',
+        'regularseats'
+    ));
+});
+
 /*
  * Authentication Routes
  */
