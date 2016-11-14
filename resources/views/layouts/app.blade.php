@@ -70,9 +70,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->reservationstart > \Carbon\Carbon::now())
+                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart < \Carbon\Carbon::now())
                         <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                         <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
+                    @elseif(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart > \Carbon\Carbon::now())
+                        <li><a href="{{ route('lanparty.seatingplan') }}">Sitzplan</a></li>
                     @endif
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
@@ -107,6 +109,9 @@
                                 <li><a href="{{ route('admin.code.list') }}"><i class="fa fa-btn fa-qrcode"></i> Gutscheine</a></li>
                                 <li><a href="{{ route('admin.sponsor.list') }}"><i class="fa fa-btn fa-star"></i> Sponsoren</a></li>
                                 <li><a href="{{ route('admin.lanparty.user.settings') }}"><i class="fa fa-btn fa-users"></i> Benutzer-Einstellungen</a></li>
+                                @endrole
+                                @role('imagemanager')
+                                <li><a href="{{ route('admin.gallery.list') }}"><i class="fa fa-btn fa-picture-o"></i> Bilder-Galerien</a></li>
                                 @endrole
                                 @role('cateringmanager')
                                 <li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>

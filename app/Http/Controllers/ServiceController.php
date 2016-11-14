@@ -7,7 +7,7 @@ use Auth;
 use Mockery\CountValidator\Exception;
 use Validator;
 use App\User;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -55,8 +55,11 @@ class ServiceController extends Controller
     	else {
     		Mail::send('email.contact', ['request' => $request], function ($m) use ($request) {
     			$m->from($request->email, $request->email);
-    		
-    			$m->to('chearaa@googlemail.com', 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
+    			$m->to('info@gunsnbits.de', 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
+                $m->bcc([
+                    'chearaa@googlemail.com',
+                    'fata@gunsnbits.de'
+                ], 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
     		});
     		
     		$request->session()->flash('alert-success', 'Die Nachricht wurde erfolgreich versendet.');

@@ -38,7 +38,10 @@
 												@elseif ($reservedseat->status == 2)
 													<span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
 												@elseif ($reservedseat->status == 3)
-													<span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span> und <span class="text-success">bezahlt</span>
+													<span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
+                                                    @role('lanpartymanager')
+                                                        und <span class="text-success">bezahlt</span>
+                                                    @endrole
 												@endif
 											</td>
 										</tr>

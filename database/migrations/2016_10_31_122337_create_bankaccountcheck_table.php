@@ -33,8 +33,6 @@ class CreateBankaccountcheckTable extends Migration
      */
     public function down()
     {
-        Schema::table('bankaccountcheck', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('bankaccountcheck');
     }
 }

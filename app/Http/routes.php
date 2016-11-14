@@ -11,17 +11,6 @@
 |
 */
 
-$this->get('/regularseats', function() {
-    $user = \App\User::findOrFail(1);
-    $lanparty = \App\Lanparty::getNextLan();
-    $regularseats = $user->regularseats;
-    return view('email.regularseats', compact(
-        'user',
-        'lanparty',
-        'regularseats'
-    ));
-});
-
 /*
  * Authentication Routes
  */
@@ -359,6 +348,34 @@ Route::post('/admin/sponsors', [
     'as'        => 'admin.sponsor.delete.post',
     'uses'      => 'SponsorController@adminPostDelete'
 ]);
+
+
+/*
+ * ImageController
+ */
+Route::get('/admin/galleries', [
+    'as'        => 'admin.gallery.list',
+    'uses'      => 'GalleryController@adminGalleryList'
+]);
+Route::get('/admin/galleries/add', [
+    'as'        => 'admin.gallery.add',
+    'uses'      => 'GalleryController@adminGalleryAdd'
+]);
+Route::post('/admin/galleries/add', [
+    'as'        => 'admin.gallery.add.post',
+    'uses'      => 'GalleryController@adminGalleryAddPost'
+]);
+Route::post('/admin/galleries/delete', [
+    'as'        => 'admin.gallery.delete',
+    'uses'      => 'GalleryController@adminGalleryDelete'
+]);
+
+Route::get('/admin/gallery/{gallery}/albums/list', [
+    'as'        => 'admin.gallery.albums.list',
+    'uses'      => 'GalleryController@adminAlbumList'
+]);
+
+
 
 /*
  * CateringController

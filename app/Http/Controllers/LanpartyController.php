@@ -311,18 +311,7 @@ class LanpartyController extends Controller
 	 */
 	public function plan() {
 
-	    $reservedseats = null;
-		$lanparty = Lanparty::getNextLan();
-		$user = (Auth::check()) ? Auth::user() : null;
-
-        if ($lanparty instanceof Lanparty) {
-            $reservedseats = $lanparty->getReservedSeats();
-        }
-
-		return view('lanparty.seatingplan')
-		->with('lanparty', $lanparty)
-		->with('user', $user)
-		->with('reservedseats', $reservedseats);
+		return view('lanparty.seatingplan');
 	}
 	
 	/**
