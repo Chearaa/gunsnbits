@@ -71,7 +71,7 @@ class Seat extends Model
     		$color = 'success';
     	}
     	if ($this->status == 1) {
-    		$color = 'warning';
+    		$color = 'danger';
     	}
     	elseif ($this->status == 2) {
     		$color = 'danger';
@@ -80,7 +80,7 @@ class Seat extends Model
     		$color = 'danger';
     	}
     	elseif ($this->status == -1) {
-    		$color = 'info';
+    		$color = 'danger';
     	}
     	
     	return $color;

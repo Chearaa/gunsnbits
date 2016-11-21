@@ -154,11 +154,16 @@ class LanpartyController extends Controller
 		}
 		
 		$seat = Seat::findOrFail($request->id);
-		if ($seat->user_id == $request->user_id) {
-			$seat->delete();
-		}
+
+        if ($seat instanceof Seat) {
+            // delete reservation
+            if ($seat->user_id == $request->user_id) {
+                $seat->delete();
+                flash('Die Reservierung wurde storniert.', 'success');
+            }
+        }
 		
-		flash('Die Reservierung wurde storniert.', 'success');
+
 		return redirect(route('lanparty.reservation'));
 	}
 	
@@ -824,6 +829,30 @@ class LanpartyController extends Controller
     				flash('Der Sitzplatz wurde bezahlt.', 'success');
     			}
     		}
+
+    		// delete payed reservation (freepay)
+            if ($request->action == 'freepay') {
+                $seat = Seat::findOrFail($request->seat);
+                if ($seat instanceof \App\Seat) {
+                    if ($seat->status == 3) {
+
+                        // remove gnb coins
+                        $coin = new Coin();
+                        $coin->coins = '-' . config('lanparty')['coins'];
+                        $coin->description = 'Sitzplatz #' . $seat->seatnumber . ' der ' . $lanparty->title . ' wurde durch einen Administrator wieder gelöscht.';
+
+                        //delete reservation
+                        $seat->delete();
+
+                        $user = User::findOrFail($request->user);
+                        if ($user instanceof \App\User) {
+                            $user->coins()->save($coin);
+                        }
+
+                        flash('Der Sitzplatz wurde wieder freigegeben. ' . config('lanparty')['coins'] . ' wurden wieder abgezogen.', 'success');
+                    }
+                }
+            }
     	}
     	
     	return redirect(route('admin.lanparty.memberlist', [$id]));

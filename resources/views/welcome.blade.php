@@ -24,9 +24,11 @@
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="progress">
 
+                                        {{--
                                         <div class="progress-bar progress-bar-info progress-bar-striped" style="width: {{ $progress['deactivated']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['deactivated']['value'] }} Plätze sind bisher noch deaktiviert">
                                             <span class="sr-only">{{ $progress['deactivated']['value'] }} reserviert</span>
                                         </div>
+                                        --}}
                                         <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: {{ $progress['reserved']['percent'] }}%" data-toggle="tooltip" title="{{ $progress['reserved']['value'] }} Plätze sind bereits reserviert">
                                             <span class="sr-only">{{ $progress['reserved']['value'] }} reserviert</span>
                                         </div>

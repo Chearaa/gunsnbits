@@ -202,7 +202,7 @@
                                                                 @if ($reservedseats[$i]->status == -1)
                                                                 data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
                                                                 @else
-                                                                data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3 && Auth::check() && Auth::user()->hasRole('lanpartymanager')) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                                data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-success">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3 && Auth::check() && Auth::user()->hasRole('lanpartymanager')) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
                                                                 @endif
                                                                 @else
                                                                 @if ($usercanreserveseats > 0 && Auth::check() && (Auth::user()->hasRole('gnb') || Auth::user()->hasRole('lanpartymanager')))
@@ -412,11 +412,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
 
             @for ($i=1; $i<=220; $i++)
                 @if (!isset($reservedseats[$i]))

@@ -74,10 +74,10 @@ class HomeController extends Controller
 
             $progress['max'] = config('lanparty')['maxseats'];
 
-            $progress['reserved']['value'] = count($lanparty->getReservations()['reserved']);
-            $progress['marked']['value'] = count($lanparty->getReservations()['marked']);
             $progress['deactivated']['value'] = count($lanparty->getReservations()['deactivated']);
-            $progress['free']['value'] = $progress['max'] - $progress['reserved']['value'] - $progress['marked']['value'] - $progress['deactivated']['value'];
+            $progress['marked']['value'] = count($lanparty->getReservations()['marked']);
+            $progress['reserved']['value'] = count($lanparty->getReservations()['reserved']) + $progress['deactivated']['value']; //added deactived to reserved to show as reserved in progress bar!
+            $progress['free']['value'] = $progress['max'] - $progress['reserved']['value'] - $progress['marked']['value'];
 
             $progress['reserved']['percent'] = (100/$progress['max']) * $progress['reserved']['value'];
             $progress['marked']['percent'] = (100/$progress['max']) * $progress['marked']['value'];
