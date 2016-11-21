@@ -56,10 +56,8 @@ class ServiceController extends Controller
     		Mail::send('email.contact', ['request' => $request], function ($m) use ($request) {
     			$m->from($request->email, $request->email);
     			$m->to('info@gunsnbits.de', 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
-                $m->bcc([
-                    'chearaa@googlemail.com',
-                    'fata@gunsnbits.de'
-                ], 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
+                $m->bcc('chearaa@googlemail.com', 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
+                $m->bcc('fata@gunsnbits.de', 'Guns\'n Bits - Support')->subject('Kontaktanfrage');
     		});
     		
     		$request->session()->flash('alert-success', 'Die Nachricht wurde erfolgreich versendet.');
