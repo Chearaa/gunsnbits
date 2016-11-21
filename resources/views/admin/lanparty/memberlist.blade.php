@@ -77,6 +77,14 @@
 											{!! BootForm::hidden('action')->value('pay') !!}
 											<button class="btn btn-success"><i class="fa fa-fw fa-money"></i></button>
 											{!! BootForm::close() !!}
+										@elseif ($seat->status == 3)
+											{!! BootForm::open()->post()->action(route('admin.lanparty.memberlist.post', [$lanparty->id])) !!}
+											{!! csrf_field() !!}
+											{!! BootForm::hidden('seat')->value($seat->id) !!}
+											{!! BootForm::hidden('user')->value($seat->user->id) !!}
+											{!! BootForm::hidden('action')->value('freepay') !!}
+											<button class="btn btn-danger"><i class="fa fa-fw fa-close"></i></button>
+											{!! BootForm::close() !!}
 										@endif
 									</td>
 								</tr>
