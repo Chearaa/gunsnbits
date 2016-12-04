@@ -141,23 +141,28 @@
     <div class="row">
         <div class="col-md-4">
             <div class="panel panel-default" data-mh="row2">
-                <div class="panel-heading">Spiele & Turniere</div>
+                <div class="panel-heading">Unsere Turniere</div>
                 <div class="panel-body">
                     <ul>
-                        <li>CounterStrike GO</li>
-                        <li>League of Legens</li>
-                        <li>DOTA2</li>
-                        <li>Starcraft 2 - Wings of Liberty</li>
-                        <li>Trackmania Nations</li>
-                        <li>Blobby Volley</li>
-                        <li>...</li>
+                        <li><a href="http://gnb.challonge.com/Hearthstone">Hearthstone</a></li>
+                        <li><a href="http://gnb.challonge.com/CSGO5on5">Counter-Strike Global Offensive</a></li>
+                        <li><a href="http://gnb.challonge.com/fifa16_1vs1">Fifa 16</a></li>
+                        <li><a href="http://gnb.challonge.com/RainbowSix">RainbowSix: Siege</a></li>
+                        <li><a href="http://gnb.challonge.com/Xonotic">Xonotic</a></li>
+                        <li><a href="http://gnb.challonge.com/RocketLeague">Rocket League</a></li>
+                        <li><a href="http://gnb.challonge.com/Trackmania">Trackmania Forever</a></li>
+                        <li><a href="http://gnb.challonge.com/Blur">Blur</a></li>
+                        <li><a href="http://gnb.challonge.com/CallOfDuty4">Call of Duty 4</a></li>
+                        <li><a href="http://gnb.challonge.com/BlobbyVolley">Blobby Volley</a></li>
+                        <li><a href="http://gnb.challonge.com/FlunkyBall">Flunky Ball</a></li>
+                        <li><a href="http://gnb.challonge.com/beerpong">Beer Pong</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
             <div class="panel panel-default" data-mh="row2">
-                <div class="panel-heading">Unsere Sponsoren</div>
+                <div class="panel-heading">Und ein Danke an alle unsere Sponsoren!</div>
                 <div class="panel-body">
                     <div class="owl-carousel owl-theme owl-sponsors">
                         @foreach($sponsors as $sponsor)
