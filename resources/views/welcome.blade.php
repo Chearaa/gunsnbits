@@ -68,16 +68,16 @@
                                         <dd>{{ config('lanparty')['maxseats'] }}</dd>
 
                                         <dt><i class="fa fa-fw fa-calendar-check-o"></i> Start</dt>
-                                        <dd>{{ $lanparty->start->format('d.m.Y') }} - 16:00 Uhr</dd>
+                                        <dd>{{ $lanparty->start->format('d.m.Y') }} - 14:00 Uhr</dd>
 
                                         <dt><i class="fa fa-fw fa-calendar"></i> Ende</dt>
-                                        <dd>{{ $lanparty->end->format('d.m.Y') }} - 14:00 Uhr</dd>
+                                        <dd>{{ $lanparty->end->format('d.m.Y') }} - 12:00 Uhr</dd>
                                     </dl>
                                 </div>
                                 <div class="col-lg-6">
                                     <dl>
                                         <dt><i class="fa fa-fw fa-map-marker"></i> Wo?</dt>
-                                        <dd>{{ config('lanparty')['location']['name'] }}<br/>{{ config('lanparty')['location']['address'] }}</dd>
+                                        <dd>{{ config('lanparty')['location']['name'] }}<br/>{!! config('lanparty')['location']['address'] !!}</dd>
 
                                         <dt><i class="fa fa-fw fa-money"></i> Kosten</dt>
                                         <dd>{{ config('lanparty')['costs'] }} &euro;</dd>

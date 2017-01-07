@@ -76,7 +76,7 @@
                                                 @elseif ($seat->status == 2)
                                                     <button class="btn btn-lg btn-success pull-left">{{ $seat->seatnumber }}</button>
                                                     <p>Platz <span class="text-success">{{ $seat->seatnumber }}</span> wurde am {{ $seat->reserved_at->format('d.m.Y H:i') }} Uhr <span class="text-success">reserviert</span> aber <span class="text-danger">noch nicht bezahlt</span>.<p>
-                                                    <p>Gerne kannst du den Teilnehmerbetrag schon jetzt überweisen, oder erst vor Ort auf unserer Lan.</p>
+                                                    <p>Bitte überweise den Teilnehmerbetrag schnellstmöglich auf das angegebene Konto.</p>
 
                                                     <div class="well well-sm">
                                                         <h6>Überweisungs-Infos für Platz #{{ $seat->seatnumber }}</h6>

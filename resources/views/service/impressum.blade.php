@@ -44,6 +44,13 @@
                                     Registernummer: 2609<br/>
                                     Eintragung beim Amtsgericht Düren
                                 </p>
+                                <h5>Bankverbindung</h5>
+                                <p>
+                                    Inhaber: {{ config('lanparty.accountholder') }}<br/>
+                                    IBAN: {{ config('lanparty.iban') }}<br/>
+                                    BIC: {{ config('lanparty.bic') }}<br/>
+                                    Bank: Deutsche Bank
+                                </p>
                             </div>
                         </div>
 

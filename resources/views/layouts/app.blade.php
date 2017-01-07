@@ -87,6 +87,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="social-icon" href="https://www.facebook.com/gunsnbits/" target="_blank"><img class="img-responsive" src="/images/icons/fb.png"></a></li>
                     <li><a class="social-icon" href="https://www.youtube.com/user/Gunsnbits" target="_blank"><img class="img-responsive" src="/images/icons/yt.png"></a></li>
+                    <li><a class="social-icon" href="https://www.twitch.tv/gunsn_bits" target="_blank"><img class="img-responsive" src="/images/icons/twitch.png" style="height: 19px;"></a></li>
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
@@ -96,7 +97,7 @@
                         @hasanyrole(\App\Role::all())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-shield"></i> Administration <span class="caret"></span>
+                                <i class="fa fa-shield"></i> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 @role('permissionmanager')
