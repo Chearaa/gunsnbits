@@ -31,18 +31,23 @@
 												@endif
 											</td>
 											<td>
-												@if ($reservedseat->status == -1)
-													<span class="text-info"><i class="fa fa-fw fa-close"></i> deaktiviert</span>
-												@elseif ($reservedseat->status == 1)
-													<span class="text-warning"><i class="fa fa-fw fa-clock-o"></i> vorgemerkt</span>
-												@elseif ($reservedseat->status == 2)
-													<span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
-												@elseif ($reservedseat->status == 3)
-													<span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
-                                                    @role('lanpartymanager')
-                                                        und <span class="text-success">bezahlt</span>
-                                                    @endrole
-												@endif
+                                                @role('lanpartymanager')
+                                                    @if ($reservedseat->status == -1)
+                                                        <span class="text-info"><i class="fa fa-fw fa-close"></i> deaktiviert</span>
+                                                    @elseif ($reservedseat->status == 1)
+                                                        <span class="text-warning"><i class="fa fa-fw fa-clock-o"></i> vorgemerkt</span>
+                                                    @elseif ($reservedseat->status == 2)
+                                                        <span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
+                                                    @elseif ($reservedseat->status == 3)
+                                                        <span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span> und <span class="text-success">bezahlt</span>
+                                                    @endif
+                                                @else
+                                                    @if ($reservedseat->status == -1)
+                                                        <span class="text-info"><i class="fa fa-fw fa-close"></i> deaktiviert</span>
+                                                    @elseif ($reservedseat->status > 0)
+                                                        <span class="text-success"><i class="fa fa-fw fa-check"></i> reserviert</span>
+                                                    @endif
+                                                @endrole
 											</td>
 										</tr>
 									@endforeach
