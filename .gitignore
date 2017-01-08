@@ -12,6 +12,8 @@ public/css/*
 public/css/app.css
 public/css/app.css.map
 public/images/catering/*
+public/images/facebook/*
+public/images/sponsors/*
 
 public/js/all.js
 public/js/all.js.map
@@ -20,5 +22,7 @@ public/js/all.js.map
 !/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
 
 .idea/
-public/images/facebook/
+
 /.env
+public/images/catering/
+public/images/sponsors/
