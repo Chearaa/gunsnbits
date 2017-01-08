@@ -349,6 +349,12 @@ Route::post('/admin/sponsors', [
     'uses'      => 'SponsorController@adminPostDelete'
 ]);
 
+Route::get('/admin/sponsors/{sponsor_id}/active', [
+    'as'        => 'admin.sponsor.active',
+    'uses'      => 'SponsorController@adminActive'
+]);
+
+
 
 /*
  * ImageController

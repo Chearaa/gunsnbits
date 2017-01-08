@@ -18,7 +18,7 @@ class SponsorController extends Controller
      * get sponsor list view
      */
 	public function listing() {
-		$sponsors = Sponsor::all()->shuffle();
+		$sponsors = Sponsor::where('active', true)->get()->shuffle();
 
 		return view('sponsor.list')
 			->with('sponsors', $sponsors->shuffle());
@@ -206,7 +206,13 @@ class SponsorController extends Controller
     		return redirect(route('admin.sponsor.list'));
     	}
     }
-    
+
+    /**
+     * delete sponsor
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function adminPostDelete(Request $request) {
     	
     	//find sponsor
@@ -221,5 +227,30 @@ class SponsorController extends Controller
     	}
     	
     	return redirect(route('admin.sponsor.list'));
+    }
+
+    /**
+     * activate / deactivate sponsor
+     *
+     * @param int $sponsor_id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function adminActive($sponsor_id = 0) {
+        if (!Auth::check() || !Auth::user()->hasRole('lanpartymanager')) {
+            return redirect(route('home'));
+        }
+
+        $sponsor = Sponsor::find($sponsor_id);
+        if ($sponsor instanceof Sponsor) {
+            if ($sponsor->active == true) {
+                $sponsor->active = false;
+            }
+            else {
+                $sponsor->active = true;
+            }
+            $sponsor->save();
+        }
+
+        return redirect(route('admin.sponsor.list'));
     }
 }
