@@ -17,6 +17,7 @@ public/images/sponsors/*
 
 public/js/all.js
 public/js/all.js.map
+!public/js/masonry.pkgd.min.js
 
 !/vendor/adamwathan/bootforms/src/AdamWathan/BootForms/Elements/CheckGroup.php
 !/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
@@ -26,3 +27,5 @@ public/js/all.js.map
 /.env
 public/images/catering/
 public/images/sponsors/
+public/images/facebook/
+public/images/galleries/
