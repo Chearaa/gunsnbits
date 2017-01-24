@@ -49,7 +49,7 @@
                                     Inhaber: {{ config('lanparty.accountholder') }}<br/>
                                     IBAN: {{ config('lanparty.iban') }}<br/>
                                     BIC: {{ config('lanparty.bic') }}<br/>
-                                    Bank: Deutsche Bank
+                                    Bank: Deutsche Skatbank
                                 </p>
                             </div>
                         </div>
