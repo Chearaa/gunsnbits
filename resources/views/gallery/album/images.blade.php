@@ -8,7 +8,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h6>Bilder des Albums "{{ $album->title }}"</h6>
+                        <h6><a href="{{ route('gallery.list') }}">Bilder</a> / <a href="{{ route('gallery.album.list', [$gallery]) }}">{{ $gallery->title }}</a> / {{ $album->title }}</h6>
                     </div>
                     <div class="panel-body">
 

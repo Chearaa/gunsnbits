@@ -18,7 +18,12 @@
                                     @if ($gallery->albums()->first() instanceof \App\Album && $gallery->albums()->first()->images()->first() instanceof \App\Image)
                                         <div class="grid-item" style="margin-bottom: 15px;">
                                             <a href="{{ route('gallery.album.list', [$gallery]) }}">
-                                                <img class="img-thumbnail img-responsive" alt="" src="/images/galleries/{{ $gallery->id }}/{{ $gallery->albums()->first()->id }}/small/{{ $gallery->albums()->first()->images()->first()->filename }}">
+                                                <figure>
+                                                    <img class="img-thumbnail img-responsive" alt="" src="/images/galleries/{{ $gallery->id }}/{{ $gallery->albums()->first()->id }}/small/{{ $gallery->albums()->first()->images()->first()->filename }}">
+                                                    <figcaption class="text-center">
+                                                        <strong>{{ $gallery->title }}</strong>{!! !empty($gallery->subtitle) ? '<br/><small>' . $gallery->subtitle . '</small>' : '' !!}
+                                                    </figcaption>
+                                                </figure>
                                             </a>
                                         </div>
                                     @endif
