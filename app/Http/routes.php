@@ -359,6 +359,20 @@ Route::get('/admin/sponsors/{sponsor_id}/active', [
 /*
  * GalleryController
  */
+Route::get('/galleries', [
+    'as'        => 'gallery.list',
+    'uses'      => 'GalleryController@galleryList'
+]);
+Route::get('/galleries/{gallery}/albums', [
+    'as'        => 'gallery.album.list',
+    'uses'      => 'GalleryController@albumList'
+]);
+Route::get('/galleries/{gallery}/albums/{album}/images', [
+    'as'        => 'gallery.album.images.list',
+    'uses'      => 'GalleryController@imagesList'
+]);
+
+
 Route::get('/admin/galleries', [
     'as'        => 'admin.gallery.list',
     'uses'      => 'GalleryController@adminGalleryList'

@@ -11,18 +11,6 @@
                     </div>
                     <div class="panel-body">
 
-                        <!--
-                        <div class="row grid" style="padding-left: 15px;">
-                            @foreach($album->images as $image)
-                                <div class="grid-item" style="margin-bottom: 15px;">
-                                    <a href="{{ '/images/galleries/' . $gallery->id . DIRECTORY_SEPARATOR . $album->id . DIRECTORY_SEPARATOR . $image->filename }}" data-lightbox="album-{{ $album->id }}" data-title="{{ $image->caption }}">
-                                        <img class="img-thumbnail" src="{{ '/images/galleries/' . $gallery->id . DIRECTORY_SEPARATOR . $album->id . DIRECTORY_SEPARATOR . 'small' . DIRECTORY_SEPARATOR . $image->filename }}">
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                        -->
-
                         {!! BootForm::open()->post()->action(route('admin.gallery.album.pictures.edit', [$gallery, $album])) !!}
                             <table class="table table-condensed">
                                 @foreach($album->images as $image)
@@ -44,19 +32,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 210,
-            gutter: 15
-        });
-
-        lightbox.option({
-            'albumLabel': "Bild %1 von %2"
-        });
-    </script>
 @endsection

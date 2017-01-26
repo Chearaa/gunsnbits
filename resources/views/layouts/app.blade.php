@@ -81,6 +81,7 @@
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
                     <li><a href="{{ route('lanparty.location') }}">Location</a></li>
                     <li><a href="http://gnb.challonge.com/" target="_blank">Turniere</a></li>
+                    <li><a href="{{ route('gallery.list') }}">Bilder</a></li>
                     <li><a href="{{ route('teamspeak.viewer') }}">TeamSpeak</a></li>
                 </ul>
 

@@ -24,6 +24,33 @@ class GalleryController extends Controller
 
     }
 
+    public function galleryList() {
+        $galleries = Gallery::all();
+
+        return view('gallery.list', compact(
+            'galleries'
+        ));
+    }
+
+    public function albumList(Gallery $gallery) {
+        $albums = $gallery->albums;
+
+        return view('gallery.album.list', compact(
+            'gallery',
+            'albums'
+        ));
+    }
+
+    public function imagesList(Gallery $gallery, Album $album) {
+        $images = $album->images;
+
+        return view('gallery.album.images', compact(
+            'gallery',
+            'album',
+            'images'
+        ));
+    }
+
     /**
      * Admin gallery list view.
      *
