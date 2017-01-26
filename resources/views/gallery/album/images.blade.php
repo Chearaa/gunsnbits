@@ -13,10 +13,10 @@
                     <div class="panel-body">
 
                         @if (!empty($images))
-                            <div class="row grid" style="padding-left: 15px;">
+                            <div class="row">
                                 @foreach($images as $image)
                                     @if ($image instanceof \App\Image)
-                                        <div class="grid-item" style="margin-bottom: 15px;">
+                                        <div class="col-md-3 col-sm-6 col-xs-12 text-center" style="margin-bottom: 30px;">
                                             <a href="/images/galleries/{{ $gallery->id }}/{{ $album->id }}/{{ $image->filename }}" data-lightbox="images" data-title="{{ $image->caption }}">
                                                 <img class="img-thumbnail img-responsive" alt="{{ $image->caption }}" src="/images/galleries/{{ $gallery->id }}/{{ $album->id }}/small/{{ $image->filename }}">
                                             </a>
@@ -38,13 +38,6 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 210,
-            gutter: 15
-        });
-
         lightbox.option({
             'albumLabel': "Bild %1 von %2"
         });

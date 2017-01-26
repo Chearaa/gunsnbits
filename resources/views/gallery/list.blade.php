@@ -13,14 +13,14 @@
                     <div class="panel-body">
 
                         @if (!empty($galleries))
-                            <div class="row grid" style="padding-left: 15px;">
+                            <div class="row">
                                 @foreach($galleries as $gallery)
                                     @if ($gallery->albums()->first() instanceof \App\Album && $gallery->albums()->first()->images()->first() instanceof \App\Image)
-                                        <div class="grid-item" style="margin-bottom: 15px;">
+                                        <div class="col-sm-3">
                                             <a href="{{ route('gallery.album.list', [$gallery]) }}">
-                                                <figure>
+                                                <figure class="text-center">
                                                     <img class="img-thumbnail img-responsive" alt="" src="/images/galleries/{{ $gallery->id }}/{{ $gallery->albums()->first()->id }}/small/{{ $gallery->albums()->first()->images()->first()->filename }}">
-                                                    <figcaption class="text-center">
+                                                    <figcaption>
                                                         <strong>{{ $gallery->title }}</strong>{!! !empty($gallery->subtitle) ? '<br/><small>' . $gallery->subtitle . '</small>' : '' !!}
                                                     </figcaption>
                                                 </figure>
@@ -39,19 +39,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 210,
-            gutter: 15
-        });
-
-        lightbox.option({
-            'albumLabel': "Bild %1 von %2"
-        });
-    </script>
 @endsection

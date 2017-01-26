@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
+
 class GalleryController extends Controller
 {
     /**
@@ -468,7 +469,7 @@ class GalleryController extends Controller
             // path and new filename
             $path = $gallery->id . DIRECTORY_SEPARATOR . $album->id . DIRECTORY_SEPARATOR;
             $fullpath = public_path() . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'galleries' . DIRECTORY_SEPARATOR . $path;
-            $filename = sha1(time() . time()) . '.' .strtolower($image->getClientOriginalExtension());
+            $filename = 'img_' . $gallery->id . '_' . $album->id . '_' . sha1($image->getFilename()) . '_' . time() . '.' .strtolower($image->getClientOriginalExtension());
 
             // create resized image and save it
             Image::make($image->getRealPath())->resize($newWidth, $newHeight)->save($fullpath . $filename, 60);

@@ -25,7 +25,6 @@ elixir(function(mix) {
         '../../../node_modules/jquery-match-height/jquery.matchHeight.js',
         '../libs/owl/owl.carousel.js',
         '../libs/lightbox/lightbox.js',
-        '../libs/masonry/masonry.pkgd.min.js'
     ]);
 
     mix.version([
