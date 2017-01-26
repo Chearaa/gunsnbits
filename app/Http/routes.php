@@ -357,7 +357,7 @@ Route::get('/admin/sponsors/{sponsor_id}/active', [
 
 
 /*
- * ImageController
+ * GalleryController
  */
 Route::get('/admin/galleries', [
     'as'        => 'admin.gallery.list',
@@ -370,6 +370,14 @@ Route::get('/admin/galleries/add', [
 Route::post('/admin/galleries/add', [
     'as'        => 'admin.gallery.add.post',
     'uses'      => 'GalleryController@adminGalleryAddPost'
+]);
+Route::get('/admin/galleries/{gallery}/edit', [
+    'as'        => 'admin.gallery.edit',
+    'uses'      => 'GalleryController@adminGalleryEdit'
+]);
+Route::post('/admin/galleries/{gallery}/edit', [
+    'as'        => 'admin.gallery.edit.post',
+    'uses'      => 'GalleryController@adminGalleryUpdate'
 ]);
 Route::post('/admin/galleries/delete', [
     'as'        => 'admin.gallery.delete',
@@ -388,6 +396,14 @@ Route::get('/admin/gallery/{gallery}/album/add', [
 Route::post('/admin/gallery/{gallery}/album/add', [
     'as'        => 'admin.gallery.album.add.post',
     'uses'      => 'GalleryController@adminAlbumAddPost'
+]);
+Route::get('/admin/galleries/{gallery}/album/{album}/edit', [
+    'as'        => 'admin.gallery.album.edit',
+    'uses'      => 'GalleryController@adminAlbumEdit'
+]);
+Route::post('/admin/galleries/{gallery}/album/{album}/edit', [
+    'as'        => 'admin.gallery.album.edit.post',
+    'uses'      => 'GalleryController@adminAlbumUpdate'
 ]);
 Route::post('/admin/gallery/{gallery}/album/delete', [
     'as'        => 'admin.gallery.album.delete',

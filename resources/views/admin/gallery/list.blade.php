@@ -27,6 +27,7 @@
                                 <tr>
                                     <td>{{ $gallery->title }}</td>
                                     <td class="text-right">
+                                        <a href="{{ route('admin.gallery.edit', [$gallery]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-edit"></i></a>
                                         <a href="{{ route('admin.gallery.album.list', [$gallery]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-list"></i></a>
                                     </td>
                                     <td>

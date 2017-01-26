@@ -98,6 +98,59 @@ class GalleryController extends Controller
     }
 
     /**
+     * @param Gallery $gallery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function adminGalleryEdit(Gallery $gallery) {
+        if (!Auth::check() || !Auth::user()->hasRole('imagemanager')) {
+            return redirect(route('home'));
+        }
+
+        return view('admin.gallery.edit', compact([
+            'gallery'
+        ]));
+    }
+
+    /**
+     * @param Gallery $gallery
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function adminGalleryUpdate(Gallery $gallery, Request $request) {
+        if (!Auth::check() || !Auth::user()->hasRole('imagemanager')) {
+            return redirect(route('home'));
+        }
+
+        $rules = [
+            'title' => 'required|max:255',
+            'subtitle' => 'max:255'
+        ];
+
+        $messages = [
+            'title.required' => 'Bitte gebe einen Titel an.',
+            'title.max' => 'Der Titel darf nicht länger als 255 Zeichen lang sein.',
+            'subtitle.max' => 'Der Untertitel darf nicht länger als 255 Zeichen lang sein.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect(route('admin.gallery.edit', [$gallery]))
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else {
+            $gallery->title = $request->title;
+            $gallery->subtitle = $request->subtitle;
+            $gallery->description = $request->description;
+            $gallery->save();
+
+            flash('Die Galerie wurde aktualisiert.', 'success');
+            return redirect(route('admin.gallery.list'));
+        }
+    }
+
+    /**
      * Delete a gallery.
      *
      * @param Request $request
@@ -197,6 +250,67 @@ class GalleryController extends Controller
         }
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function adminAlbumEdit(Gallery $gallery, Album $album) {
+        if (!Auth::check() || !Auth::user()->hasRole('imagemanager')) {
+            return redirect(route('home'));
+        }
+
+        return view('admin.gallery.album.edit', compact(
+            'gallery',
+            'album'
+        ));
+    }
+
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function adminAlbumUpdate(Gallery $gallery, Album $album, Request $request) {
+        if (!Auth::check() || !Auth::user()->hasRole('imagemanager')) {
+            return redirect(route('home'));
+        }
+
+        $rules = [
+            'title' => 'required|max:255',
+            'subtitle' => 'max:255'
+        ];
+
+        $messages = [
+            'title.required' => 'Bitte gebe einen Titel an.',
+            'title.max' => 'Der Titel darf nicht länger als 255 Zeichen lang sein.',
+            'subtitle.max' => 'Der Untertitel darf nicht länger als 255 Zeichen lang sein.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect(route('admin.gallery.album.edit', [$gallery, $album]))
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else {
+            $album->title = $request->title;
+            $album->subtitle = $request->subtitle;
+            $album->description = $request->description;
+            $album->save();
+
+            flash('Das Album wurde aktualisiert.', 'success');
+            return redirect(route('admin.gallery.album.list', [$gallery]));
+        }
+    }
+
+    /**
+     * @param Gallery $gallery
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function adminAlbumDelete(Gallery $gallery, Request $request) {
         //find album
         $album = Album::findOrFail($request->album_id);
@@ -228,6 +342,12 @@ class GalleryController extends Controller
         ));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function adminPicturesEdit(Gallery $gallery, Album $album, Request $request) {
         if (is_array($request->title)) {
             foreach ($request->title as $id=>$value) {
@@ -243,6 +363,12 @@ class GalleryController extends Controller
         return redirect(route('admin.gallery.album.pictures.list', [$gallery, $album]));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @param \App\Image $image
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function adminPicturesDelete(Gallery $gallery, Album $album, \App\Image $image) {
         if ($image instanceof \App\Image) {
             $image->delete();
@@ -252,6 +378,11 @@ class GalleryController extends Controller
         return redirect(route('admin.gallery.album.pictures.list', [$gallery, $album]));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function adminPicturesAdd(Gallery $gallery, Album $album) {
         if (!Auth::check() || !Auth::user()->hasRole('imagemanager')) {
             return redirect(route('home'));
@@ -263,6 +394,12 @@ class GalleryController extends Controller
         ));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function adminPicturesUpload(Gallery $gallery, Album $album, Request $request) {
         $image = Input::file('file');
 

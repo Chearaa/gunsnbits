@@ -28,6 +28,7 @@
                                     <td>{{ $album->id }}</td>
                                     <td>{{ $album->title }}</td>
                                     <td class="text-right">
+                                        <a href="{{ route('admin.gallery.album.edit', [$gallery, $album]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-edit"></i></a>
                                         <a href="{{ route('admin.gallery.album.pictures.list', [$gallery, $album]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-th-large"></i></a>
                                         <a href="{{ route('admin.gallery.album.pictures.add', [$gallery, $album]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-upload"></i></a>
                                     </td>
