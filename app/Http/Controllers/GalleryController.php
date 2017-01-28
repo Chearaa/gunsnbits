@@ -25,14 +25,21 @@ class GalleryController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function galleryList() {
-        $galleries = Gallery::all();
+        $galleries = Gallery::all()->sortBy('title');
 
         return view('gallery.list', compact(
             'galleries'
         ));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function albumList(Gallery $gallery) {
         $albums = $gallery->albums;
 
@@ -42,6 +49,11 @@ class GalleryController extends Controller
         ));
     }
 
+    /**
+     * @param Gallery $gallery
+     * @param Album $album
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function imagesList(Gallery $gallery, Album $album) {
         $images = $album->images;
 
@@ -51,6 +63,10 @@ class GalleryController extends Controller
             'images'
         ));
     }
+
+
+
+
 
     /**
      * Admin gallery list view.
