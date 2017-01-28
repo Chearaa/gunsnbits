@@ -13,7 +13,7 @@
                     <div class="panel-body">
 
                         @foreach($caterings as $catering)
-                            <div class="row catering">
+                            <div class="row catering" style="margin-bottom: 20px;">
                                 <div class="col-sm-6">
                                     <img class="img-thumbnail img-responsive" alt="" src="{!! ($catering->image) ? '/images/catering/' . $catering->image : '/images/catering/default.png' !!}">
                                 </div>

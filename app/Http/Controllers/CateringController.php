@@ -25,6 +25,8 @@ class CateringController extends Controller
             ->with('caterings', $caterings);
     }
 
+
+
     /**
      * catering admin list view
      *
@@ -141,11 +143,6 @@ class CateringController extends Controller
         }
 
         return '';
-    }
-
-    public function adminAjaxFileUpload(Request $request) {
-        dd($request);
-        return true;
     }
 
     /**
