@@ -466,6 +466,18 @@
                 </div>
             </div>
 
+        @elseif ($lanparty->start < \Carbon\Carbon::now() && $lanparty->end > \Carbon\Carbon::now())
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        Jetzt gehts rund!
+
+                    </div>
+                </div>
+            </div>
+
         @endif
     @else
 

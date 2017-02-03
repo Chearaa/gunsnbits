@@ -115,13 +115,17 @@
                                 </div>
                             </div>
 
-                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start > \Carbon\Carbon::now())
+                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start <= \Carbon\Carbon::now() && $lanparty->end >= \Carbon\Carbon::now())
 
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <h6>Gleich gehts los!</h6>
+                                        <h6>Die Zockerhallen sind gefüllt!</h6>
+
+                                        <p>
+                                            <a href="{{ route('lanparty.seatingplan') }}">Hier geht's zum Sitzplan</a>
+                                        </p>
 
 
                                     </div>

@@ -71,10 +71,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart < \Carbon\Carbon::now())
+
+                    @if($lanparty instanceof \App\Lanparty && $lanparty->registrationstart <= \Carbon\Carbon::now() && $lanparty->registrationend >= \Carbon\Carbon::now())
                         <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                         <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
-                    @elseif(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart > \Carbon\Carbon::now())
+                    @elseif($lanparty instanceof \App\Lanparty && $lanparty->end >= \Carbon\Carbon::now())
                         <li><a href="{{ route('lanparty.seatingplan') }}">Sitzplan</a></li>
                     @endif
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
