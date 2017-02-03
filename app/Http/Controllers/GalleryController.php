@@ -29,7 +29,7 @@ class GalleryController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function galleryList() {
-        $galleries = Gallery::all()->sortBy('title');
+        $galleries = Gallery::all()->sortByDesc('title');
 
         return view('gallery.list', compact(
             'galleries'
