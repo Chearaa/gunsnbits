@@ -3,7 +3,7 @@ node_modules/
 bootstrap/cache/
 public/build/*
 
-.env
+.env*
 .idea/*
 **/artisan
 readme.md
@@ -12,13 +12,24 @@ public/css/*
 public/css/app.css
 public/css/app.css.map
 public/images/catering/*
+public/images/facebook/*
+public/images/sponsors/*
 
 public/js/all.js
 public/js/all.js.map
+!public/js/masonry.pkgd.min.js
 
 !/vendor/adamwathan/bootforms/src/AdamWathan/BootForms/Elements/CheckGroup.php
 !/vendor/adamwathan/form/src/AdamWathan/Form/Elements/Label.php
 
 .idea/
+
+
+public/images/catering/
+public/images/sponsors/
 public/images/facebook/
-/.env
+public/images/galleries/
+public/images/avatar/*
+
+storage/framework/*
+storage/logs/*
