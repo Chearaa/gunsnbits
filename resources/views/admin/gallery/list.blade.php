@@ -27,7 +27,8 @@
                                 <tr>
                                     <td>{{ $gallery->title }}</td>
                                     <td class="text-right">
-                                        <a href="{{ route('admin.gallery.albums.list', [$gallery]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-list"></i></a>
+                                        <a href="{{ route('admin.gallery.edit', [$gallery]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-edit"></i></a>
+                                        <a href="{{ route('admin.gallery.album.list', [$gallery]) }}" class="btn btn-sm btn-default"><i class="fa fa-fw fa-list"></i></a>
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger pull-right" data-container="body" data-toggle="modal" data-target="#modal-{{ $gallery->id }}"><i class="fa fa-fw fa-close"></i></button>
@@ -57,7 +58,7 @@
                     <div class="modal-footer">
                         {!! BootForm::openHorizontal(['sm'=>[4,8]])->post()->action(route('admin.gallery.delete')) !!}
                         {!! csrf_field() !!}
-                        {!! BootForm::hidden('id')->value($gallery->id) !!}
+                        {!! BootForm::hidden('gallery_id')->value($gallery->id) !!}
                         {!! BootForm::hidden('action')->value('delete') !!}
                         <button type="submit" class="btn btn-danger"><i class="fa fa-fw fa-check"></i> ja</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close"><i class="fa fa-fw fa-close"></i> nein</button>

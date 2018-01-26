@@ -68,16 +68,16 @@
                                         <dd>{{ config('lanparty')['maxseats'] }}</dd>
 
                                         <dt><i class="fa fa-fw fa-calendar-check-o"></i> Start</dt>
-                                        <dd>{{ $lanparty->start->format('d.m.Y') }} - 16:00 Uhr</dd>
+                                        <dd>{{ $lanparty->start->format('d.m.Y') }} - 14:00 Uhr</dd>
 
                                         <dt><i class="fa fa-fw fa-calendar"></i> Ende</dt>
-                                        <dd>{{ $lanparty->end->format('d.m.Y') }} - 14:00 Uhr</dd>
+                                        <dd>{{ $lanparty->end->format('d.m.Y') }} - 12:00 Uhr</dd>
                                     </dl>
                                 </div>
                                 <div class="col-lg-6">
                                     <dl>
                                         <dt><i class="fa fa-fw fa-map-marker"></i> Wo?</dt>
-                                        <dd>{{ config('lanparty')['location']['name'] }}<br/>{{ config('lanparty')['location']['address'] }}</dd>
+                                        <dd>{{ config('lanparty')['location']['name'] }}<br/>{!! config('lanparty')['location']['address'] !!}</dd>
 
                                         <dt><i class="fa fa-fw fa-money"></i> Kosten</dt>
                                         <dd>{{ config('lanparty')['costs'] }} &euro;</dd>
@@ -115,13 +115,17 @@
                                 </div>
                             </div>
 
-                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start > \Carbon\Carbon::now())
+                        @elseif ($lanparty->registrationend < \Carbon\Carbon::now() && $lanparty->start <= \Carbon\Carbon::now() && $lanparty->end >= \Carbon\Carbon::now())
 
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <h6>Gleich gehts los!</h6>
+                                        <h6>Die Zockerhallen sind gefüllt!</h6>
+
+                                        <p>
+                                            <a href="{{ route('lanparty.seatingplan') }}">Hier geht's zum Sitzplan</a>
+                                        </p>
 
 
                                     </div>
@@ -146,9 +150,8 @@
                     <ul>
                         <li><a href="http://gnb.challonge.com/Hearthstone">Hearthstone</a></li>
                         <li><a href="http://gnb.challonge.com/CSGO5on5">Counter-Strike Global Offensive</a></li>
-                        <li><a href="http://gnb.challonge.com/fifa16_1vs1">Fifa 16</a></li>
+                        <li><a href="http://gnb.challonge.com/fifa18_1vs1">Fifa 18</a></li>
                         <li><a href="http://gnb.challonge.com/RainbowSix">RainbowSix: Siege</a></li>
-                        <li><a href="http://gnb.challonge.com/Xonotic">Xonotic</a></li>
                         <li><a href="http://gnb.challonge.com/RocketLeague">Rocket League</a></li>
                         <li><a href="http://gnb.challonge.com/Trackmania">Trackmania Forever</a></li>
                         <li><a href="http://gnb.challonge.com/Blur">Blur</a></li>
@@ -272,6 +275,21 @@
                     <dl class="dl-horizontal iconlist">
                         <dt><i class="fa fa-fw fa-users"></i></dt>
                         <dd>wir haben insgesamt <span class="text-warning">{{ $users->count() }}</span> registrierte Benutzer</dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Unsere Lanparty Termine</div>
+                <div class="panel-body">
+
+                    <dl class="dl-horizontal iconlist">
+                        <dt><i class="fa fa-fw fa-users"></i></dt>
+                        <dd>GnB #64: <span class="text-warning">06.10.2017 - 08.10.2017</span></dd>
+                        <dd>GnB #65: <span class="text-warning">01.12.2017 - 03.12.2017</span></dd>
                     </dl>
 
                 </div>

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -68,8 +69,10 @@ class Lanparty extends Model
     public static function getNextLan() {
     	$now = new Carbon();
     	$lanparty = Lanparty::where('start', '>=', $now)
-    		->orWhere('start', '<=', $now)
-    		->where('end', '>=', $now)
+            ->orWhere(function($query) use ($now) {
+                $query->where('start', '<=', $now)
+                    ->where('end', '>=', $now);
+            })
     		->orderBy('start', 'asc')
     		->first();
     	if ($lanparty instanceof \App\Lanparty) {

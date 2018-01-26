@@ -27,7 +27,7 @@
                                         {{ $sponsor->name }}
                                         <button type="button" data-container="body" data-toggle="modal" data-target="#modal-{{ $sponsor->id }}" class="btn btn-danger pull-right"><i class="fa fa-fw fa-close"></i></button>
                                         <a href="{{ route('admin.sponsor.edit', [$sponsor->id]) }}" class="btn btn-default pull-right" style="margin-right: 5px;"><i class="fa fa-fw fa-edit"></i></a>
-
+										<a href="{{ route('admin.sponsor.active', [$sponsor->id]) }}" class="btn btn-default pull-right" style="margin-right: 5px;"><i class="fa fa-fw {{ $sponsor->active ? 'fa-check-square-o text-success' : 'fa-close text-danger' }}"></i></a>
                                     </h4>
 
                                 </div>

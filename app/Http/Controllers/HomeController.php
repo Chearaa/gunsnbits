@@ -91,7 +91,7 @@ class HomeController extends Controller
         $posts = Fbpost::all()
             ->sortByDesc('created_time')->take(5);
 
-        $sponsors = Sponsor::all()->shuffle();
+        $sponsors = Sponsor::where('active', true)->get()->shuffle();
 
         $users = User::all()->where('deleted_at', null);
 

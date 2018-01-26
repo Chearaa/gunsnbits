@@ -29,7 +29,8 @@
                                 </p>
                                 <h5>Kontakt</h5>
                                 <p>
-                                    <i class="fa fa-fw fa-phone"></i> 0221 / 936 732 96<br/>
+                                    <i class="fa fa-fw fa-phone"></i> 0221 / 936 732 96 <br />
+				    <b>(Diese Nummer ist nicht für Reservierungen oder Fragen zur LAN gedacht. BITTE NICHT ANRUFEN. Schreiben Sie eine Email wenn Sie fragen haben)</b><br/>
                                     <i class="fa fa-fw fa-envelope"></i> <a href="mailto:info@gunsnbits.de">info@gunsnbits.de</a>
                                 </p>
                             </div>
@@ -43,6 +44,13 @@
                                     Vertreten durch: 2 Vorstandsmitglieder des Vereins<br/>
                                     Registernummer: 2609<br/>
                                     Eintragung beim Amtsgericht Düren
+                                </p>
+                                <h5>Bankverbindung</h5>
+                                <p>
+                                    Inhaber: {{ config('lanparty.accountholder') }}<br/>
+                                    IBAN: {{ config('lanparty.iban') }}<br/>
+                                    BIC: {{ config('lanparty.bic') }}<br/>
+                                    Bank: Deutsche Skatbank
                                 </p>
                             </div>
                         </div>

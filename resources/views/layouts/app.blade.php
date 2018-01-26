@@ -33,6 +33,7 @@
 
     <!-- Styles -->
     <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/lightbox.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -70,16 +71,18 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart < \Carbon\Carbon::now())
+
+                    @if(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart <= \Carbon\Carbon::now() && \App\Lanparty::getNextLan()->registrationend >= \Carbon\Carbon::now())
                         <li><a href="{{ route('lanparty.reservation') }}">Anmeldung</a></li>
                         <li><a href="{{ route('lanparty.member') }}">Teilnehmer</a></li>
-                    @elseif(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->registrationstart > \Carbon\Carbon::now())
+                    @elseif(\App\Lanparty::getNextLan() instanceof \App\Lanparty && \App\Lanparty::getNextLan()->end >= \Carbon\Carbon::now())
                         <li><a href="{{ route('lanparty.seatingplan') }}">Sitzplan</a></li>
                     @endif
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
                     <li><a href="{{ route('catering.list') }}">Catering</a></li>
                     <li><a href="{{ route('lanparty.location') }}">Location</a></li>
                     <li><a href="http://gnb.challonge.com/" target="_blank">Turniere</a></li>
+                    <li><a href="{{ route('gallery.list') }}">Bilder</a></li>
                     <li><a href="{{ route('teamspeak.viewer') }}">TeamSpeak</a></li>
                 </ul>
 
@@ -87,6 +90,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="social-icon" href="https://www.facebook.com/gunsnbits/" target="_blank"><img class="img-responsive" src="/images/icons/fb.png"></a></li>
                     <li><a class="social-icon" href="https://www.youtube.com/user/Gunsnbits" target="_blank"><img class="img-responsive" src="/images/icons/yt.png"></a></li>
+                    <li><a class="social-icon" href="https://www.twitch.tv/gunsn_bits" target="_blank"><img class="img-responsive" src="/images/icons/twitch.png" style="height: 19px;"></a></li>
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
@@ -96,7 +100,7 @@
                         @hasanyrole(\App\Role::all())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-shield"></i> Administration <span class="caret"></span>
+                                <i class="fa fa-shield"></i> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 @role('permissionmanager')

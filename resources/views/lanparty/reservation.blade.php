@@ -58,7 +58,7 @@
 
                                                     <div class="well well-sm">
                                                         <h6>Überweisungs-Infos für Platz #{{ $seat->seatnumber }}</h6>
-                                                        <p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>
+                                                        <p>Bitte überweise <span class='text-success'>{{ config('lanparty')['costs'] }}</span> &euro; an</p><p>{{ config('lanparty')['accountholder'] }}<br/>IBAN: {{ config('lanparty')['iban'] }}<br/>BIC: {{ config('lanparty')['bic'] }}</p><p>Verwendungszweck: <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p><br /><h6>!!!! NEU !!!!</h6><p>Alternativ sende das Geld mit Paypal an:<br/>info@gunsnbits.de</p><p>Als Mitteilung hinzufügen (WICHTIG!): <span class='text-success'>{{ $lanparty->reasonforpayment }}-{{ $user->id }}-{{ $seat->seatnumber }}</span></p>
                                                     </div>
 
                                                     <p>
@@ -76,7 +76,7 @@
                                                 @elseif ($seat->status == 2)
                                                     <button class="btn btn-lg btn-success pull-left">{{ $seat->seatnumber }}</button>
                                                     <p>Platz <span class="text-success">{{ $seat->seatnumber }}</span> wurde am {{ $seat->reserved_at->format('d.m.Y H:i') }} Uhr <span class="text-success">reserviert</span> aber <span class="text-danger">noch nicht bezahlt</span>.<p>
-                                                    <p>Gerne kannst du den Teilnehmerbetrag schon jetzt überweisen, oder erst vor Ort auf unserer Lan.</p>
+                                                    <p>Bitte überweise den Teilnehmerbetrag schnellstmöglich auf das angegebene Konto.</p>
 
                                                     <div class="well well-sm">
                                                         <h6>Überweisungs-Infos für Platz #{{ $seat->seatnumber }}</h6>
@@ -461,6 +461,18 @@
                     <div class="col-lg-12">
 
                         Gleich gehts los!
+
+                    </div>
+                </div>
+            </div>
+
+        @elseif ($lanparty->start < \Carbon\Carbon::now() && $lanparty->end > \Carbon\Carbon::now())
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        Jetzt gehts rund!
 
                     </div>
                 </div>

@@ -349,10 +349,30 @@ Route::post('/admin/sponsors', [
     'uses'      => 'SponsorController@adminPostDelete'
 ]);
 
+Route::get('/admin/sponsors/{sponsor_id}/active', [
+    'as'        => 'admin.sponsor.active',
+    'uses'      => 'SponsorController@adminActive'
+]);
+
+
 
 /*
- * ImageController
+ * GalleryController
  */
+Route::get('/galleries', [
+    'as'        => 'gallery.list',
+    'uses'      => 'GalleryController@galleryList'
+]);
+Route::get('/galleries/{gallery}/albums', [
+    'as'        => 'gallery.album.list',
+    'uses'      => 'GalleryController@albumList'
+]);
+Route::get('/galleries/{gallery}/albums/{album}/images', [
+    'as'        => 'gallery.album.images.list',
+    'uses'      => 'GalleryController@imagesList'
+]);
+
+
 Route::get('/admin/galleries', [
     'as'        => 'admin.gallery.list',
     'uses'      => 'GalleryController@adminGalleryList'
@@ -365,14 +385,65 @@ Route::post('/admin/galleries/add', [
     'as'        => 'admin.gallery.add.post',
     'uses'      => 'GalleryController@adminGalleryAddPost'
 ]);
+Route::get('/admin/galleries/{gallery}/edit', [
+    'as'        => 'admin.gallery.edit',
+    'uses'      => 'GalleryController@adminGalleryEdit'
+]);
+Route::post('/admin/galleries/{gallery}/edit', [
+    'as'        => 'admin.gallery.edit.post',
+    'uses'      => 'GalleryController@adminGalleryUpdate'
+]);
 Route::post('/admin/galleries/delete', [
     'as'        => 'admin.gallery.delete',
     'uses'      => 'GalleryController@adminGalleryDelete'
 ]);
 
-Route::get('/admin/gallery/{gallery}/albums/list', [
-    'as'        => 'admin.gallery.albums.list',
+
+Route::get('/admin/gallery/{gallery}/album/list', [
+    'as'        => 'admin.gallery.album.list',
     'uses'      => 'GalleryController@adminAlbumList'
+]);
+Route::get('/admin/gallery/{gallery}/album/add', [
+    'as'        => 'admin.gallery.album.add',
+    'uses'      => 'GalleryController@adminAlbumAdd'
+]);
+Route::post('/admin/gallery/{gallery}/album/add', [
+    'as'        => 'admin.gallery.album.add.post',
+    'uses'      => 'GalleryController@adminAlbumAddPost'
+]);
+Route::get('/admin/galleries/{gallery}/album/{album}/edit', [
+    'as'        => 'admin.gallery.album.edit',
+    'uses'      => 'GalleryController@adminAlbumEdit'
+]);
+Route::post('/admin/galleries/{gallery}/album/{album}/edit', [
+    'as'        => 'admin.gallery.album.edit.post',
+    'uses'      => 'GalleryController@adminAlbumUpdate'
+]);
+Route::post('/admin/gallery/{gallery}/album/delete', [
+    'as'        => 'admin.gallery.album.delete',
+    'uses'      => 'GalleryController@adminAlbumDelete'
+]);
+
+
+Route::get('/admin/gallery/{gallery}/album/{album}/pictures/list', [
+    'as'        => 'admin.gallery.album.pictures.list',
+    'uses'      => 'GalleryController@adminPicturesList'
+]);
+Route::get('/admin/gallery/{gallery}/album/{album}/pictures/add', [
+    'as'        => 'admin.gallery.album.pictures.add',
+    'uses'      => 'GalleryController@adminPicturesAdd'
+]);
+Route::post('/admin/gallery/{gallery}/album/{album}/pictures/upload', [
+    'as'        => 'admin.gallery.album.pictures.upload',
+    'uses'      => 'GalleryController@adminPicturesUpload'
+]);
+Route::post('/admin/gallery/{gallery}/album/{album}/pictures/edit', [
+    'as'        => 'admin.gallery.album.pictures.edit',
+    'uses'      => 'GalleryController@adminPicturesEdit'
+]);
+Route::get('/admin/gallery/{gallery}/album/{album}/pictures/{image}/delete', [
+    'as'        => 'admin.gallery.album.pictures.delete',
+    'uses'      => 'GalleryController@adminPicturesDelete'
 ]);
 
 

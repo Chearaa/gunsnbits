@@ -23,7 +23,8 @@ elixir(function(mix) {
         '../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js',
         '../../../node_modules/croppie/croppie.js',
         '../../../node_modules/jquery-match-height/jquery.matchHeight.js',
-        '../libs/owl/owl.carousel.js'
+        '../libs/owl/owl.carousel.js',
+        '../libs/lightbox/lightbox.js',
     ]);
 
     mix.version([
@@ -33,7 +34,8 @@ elixir(function(mix) {
 
     mix.copy('resources/assets/libs/fontawesome/fonts', 'public/build/fonts');
     mix.copy('resources/assets/libs/bootstrap/fonts', 'public/build/fonts/bootstrap');
-    mix.copy('resources/assets/libs/countdownTimer/jquery.countdownTimer.min.js', 'public/js')
-    mix.copy('resources/assets/libs/dropzone/dropzone.js', 'public/js')
-    mix.copy('resources/assets/libs/owl/owl.carousel.css', 'public/css')
+    mix.copy('resources/assets/libs/countdownTimer/jquery.countdownTimer.min.js', 'public/js');
+    mix.copy('resources/assets/libs/dropzone/dropzone.js', 'public/js');
+    mix.copy('resources/assets/libs/owl/owl.carousel.css', 'public/css');
+    mix.copy('resources/assets/libs/lightbox/lightbox.css', 'public/css');
 });
