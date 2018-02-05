@@ -1,0 +1,79 @@
+.seatblock {
+  position: relative;
+  float: left;
+
+  &--vertical {
+    width: 85px;
+  }
+
+  &--horizontal {
+    float: right;
+
+    &.row-top {
+      margin-bottom: 4px;
+    }
+
+    &.row-bottom {
+      margin-bottom: 40px;
+    }
+
+    .seat {
+      margin: 0;
+    }
+  }
+}
+
+.seatrow {
+  &--left {
+    text-align: right;
+  }
+}
+
+.seatblocks {
+  width: 765px;
+  height: 410px;
+  margin: auto;
+  margin-bottom: 40px;
+
+  &.stage {
+    height: 80px;
+    margin-bottom: 20px;
+  }
+}
+
+.seat {
+  min-width: 42px;
+  width: 42px !important;
+}
+
+.fa.special {
+  position: absolute;
+
+  &.beergarden {
+    top: 124px;
+    right: 170px;
+  }
+
+  &.bar {
+    top: 995px;
+    left: 170px;
+  }
+
+  &.sleepshowerwc {
+    width: 80px;
+    min-height: 22px;
+    top: 1100px;
+    left: 240px;
+  }
+
+  &.emergencyexit {
+    right: 170px;
+
+    &--1 {
+      top: 415px;
+    }
+    &--2 {
+      top: 862px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <?php
 return [
-	'maxseats' => 220,
+	'maxseats' => 272,
 	'starttime' => '12:00',
 	'endtime' => '14:00',
 	'markeddays' => 14,
@@ -14,6 +14,7 @@ return [
 	'bic' => 'GENODEF1SLR',
 	'reserveregularseats' => true,
 	'paywithcode' => true,
+    'paywithpaypal' => true,
 	'paybycoins' => 101,
     'location' => [
         'name' => 'Kulturhalle Langerwehe',

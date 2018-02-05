@@ -78,6 +78,10 @@ Route::get('/paypal/payment', [
     'as' => 'paypal.payment',
     'uses' => 'PaypalController@postPayment'
 ]);
+Route::post('/paypal/payment', [
+    'as' => 'paypal.payment',
+    'uses' => 'PaypalController@postPayment'
+]);
 Route::get('/paypal/payment/status', [
     'as' => 'paypal.payment.status',
     'uses' => 'PaypalController@getPaymentStatus'

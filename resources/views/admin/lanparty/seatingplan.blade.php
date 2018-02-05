@@ -12,15 +12,34 @@
 					</div>
 					<div class="panel-body">
 
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="panel panel-default">
-									<div class="panel-body bg-darker">
-                                        <h6>Bühne</h6>
+                        <div class="row">
 
-                                        <div class="text-center seatingrow">
-                                            @for ($i=209; $i<=220; $i++)
-                                                <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                            <!-- STAGE -->
+                            <div class="col-lg-12">
+                                <div class="seatblocks stage panel panel-default">
+                                    <div class="panel-body bg-darker text-center">
+                                        <h6>Bühne</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="seatblocks">
+                                        <i class="fa fa-sign-out fa-2x text-success special beergarden" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Ausgang" data-content="zum Biergarten <i class='fa fa-beer'></i>"></i>
+                                        <i class="fa fa-sign-out fa-2x text-danger special emergencyexit emergencyexit--1" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Notausgang" data-content=""></i>
+                                        <i class="fa fa-sign-out fa-2x text-danger special emergencyexit emergencyexit--2" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Notausgang" data-content=""></i>
+                                        <i class="fa fa-sign-out fa-2x text-success special bar" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Eingang" data-content="und Zugang zur Bar <i class='fa fa-cocktail'></i>"></i>
+
+                                        <div class="fa special sleepshowerwc">
+                                            <i class="fa fa-wheelchair fa-2x text-info" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Toiletten und Duschen"></i>
+                                            <i class="fa fa-bed fa-2x text-info" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Schlafbereich"></i>
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=249; $i<=260; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
                                                         @if (isset($reservedseats[$i]))
                                                         @if ($reservedseats[$i]->status == -1)
                                                         data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
@@ -34,192 +53,344 @@
                                             @endfor
                                         </div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body bg-darker">
-                                        <h6>Saal</h6>
-
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="row">
-                                                    <!-- ROW 1 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=1; $i<=26; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                    <!-- ROW 2 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=27; $i<=52; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="row">
-                                                    <!-- ROW 3 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=53; $i<=78; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                    <!-- ROW 4 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=79; $i<=104; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="row">
-                                                    <!-- ROW 5 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=105; $i<=130; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                    <!-- ROW 6 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=131; $i<=156; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="row">
-                                                    <!-- ROW 7 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=157; $i<=182; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }} pull-right"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                    <!-- ROW 8 -->
-                                                    <div class="col-lg-6">
-
-                                                        @for ($i=183; $i<=208; $i++)
-                                                            <button class="btn btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
-                                                                    @if (isset($reservedseats[$i]))
-                                                                    @if ($reservedseats[$i]->status == -1)
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
-                                                                    @endif
-                                                                    @else
-                                                                    data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
-                                                                    @endif
-                                                            >{{ $i }}</button>
-                                                        @endfor
-
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=1; $i<=12; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=25; $i<=36; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
                                         </div>
 
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=49; $i<=60; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=73; $i<=84; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=97; $i<=108; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=121; $i<=132; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=145; $i<=156; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=169; $i<=180; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
 
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body text-center bg-darker">
-                                        <h6>Catering</h6>
+                                    <div class="seatblocks">
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=261; $i<=272; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=13; $i<=24; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=37; $i<=48; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=61; $i<=72; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=85; $i<=96; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=109; $i<=120; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=133; $i<=144; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                            @for ($i=157; $i<=168; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                            @for ($i=181; $i<=192; $i++)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
                                     </div>
+
+                                    <div class="seatblocks">
+
+                                        <div class="seatblock seatblock--horizontal row-top">
+                                            @for ($i=206; $i>=193; $i--)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--horizontal row-bottom">
+                                            @for ($i=220; $i>=207; $i--)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--horizontal row-top">
+                                            @for ($i=234; $i>=221; $i--)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                        <div class="seatblock seatblock--horizontal row-bottom">
+                                            @for ($i=248; $i>=235; $i--)
+                                                <button class="btn btn-sm btn-default seat {{ (isset($reservedseats[$i])) ? 'btn-' . $reservedseats[$i]->color() : '' }}"
+                                                        @if (isset($reservedseats[$i]))
+                                                        @if ($reservedseats[$i]->status == -1)
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="Dieser Sitzplatz ist <span class='text-info'>deaktiviert</span>."
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}" data-popover="true" data-trigger="hover" data-placement="top" data-trigger="focus" title="Sitzplatz #{{ $i }}" data-content="{{ $reservedseats[$i]->user->name }} (ID: {{ $reservedseats[$i]->user->id }})<br/>{{ ($reservedseats[$i]->status > 1) ? '<span class="text-success">reserviert</span>' : '<span class="text-warning">vorgemerkt</span>'}}{{ ($reservedseats[$i]->status == 3) ? '<span> und </span><span class="text-success">bezahlt</span>' : '' }}"
+                                                        @endif
+                                                        @else
+                                                        data-container="body" data-toggle="modal" data-target="#modal-{{ $i }}"
+                                                        @endif
+                                                >{{ $i }}</button>
+                                            @endfor
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -230,7 +401,7 @@
 		</div>
 	</div>
 
-    @for ($i=1; $i<=220; $i++)
+    @for ($i=1; $i<=272; $i++)
 	    @if (isset($reservedseats[$i]) && $reservedseats[$i]->status > 0)
 	    <div class="modal fade" id="modal-{{ $i }}" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">

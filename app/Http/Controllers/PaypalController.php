@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Coin;
+use App\Lanparty;
+use App\Seat;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Paypal;
 use App\Paypalitem;
@@ -43,76 +49,112 @@ class PaypalController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postPayment() {
+    public function postPayment(Request $request) {
 
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
+        $seats = collect();
 
-        $item_1 = new Item();
-        $item_1->setName('GNB63-42-1') // item name
-        ->setCurrency('EUR')
-            ->setQuantity(1)
-            ->setPrice('0.01'); // unit price
-
-        $item_2 = new Item();
-        $item_2->setName('GNB63-42-2') // item name
-        ->setCurrency('EUR')
-            ->setQuantity(1)
-            ->setPrice('0.01'); // unit price
-
-        // add item to list
-        $item_list = new ItemList();
-        $item_list->setItems([$item_1, $item_2]);
-
-        $amount = new Amount();
-        $amount->setCurrency('EUR')
-            ->setTotal(0.02);
-
-        $transaction = new Transaction();
-        $transaction->setAmount($amount)
-            ->setItemList($item_list)
-            ->setDescription('Your transaction description');
-
-        $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(route('paypal.payment.status'))
-            ->setCancelUrl(route('paypal.payment.status'));
-
-        $payment = new Payment();
-        $payment->setIntent('Sale')
-            ->setPayer($payer)
-            ->setRedirectUrls($redirect_urls)
-            ->setTransactions(array($transaction));
-
-        try {
-            $payment->create($this->_api_context);
-        } catch (PayPalConnectionException $ex) {
-            if (\config('app.debug')) {
-                echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                $err_data = json_decode($ex->getData(), true);
-                dump($err_data);
-                exit;
-            } else {
-                Flash::error('Something went wrong, Sorry for inconvenience');
-                return redirect('/');
+        // get request data
+        if (isset($request->user)) {
+            $user = User::find($request->user);
+        }
+        if (isset($request->seat)) {
+            $seat = Seat::find($request->seat);
+            if ($seat instanceof Seat) {
+                $seats->push($seat);
             }
         }
-
-        foreach($payment->getLinks() as $link) {
-            if($link->getRel() == 'approval_url') {
-                $redirect_url = $link->getHref();
-                break;
+        if (isset($request->seats)) {
+            $seatIds = explode('-', $request->seats);
+            $seats = collect();
+            foreach ($seatIds as $id) {
+                $seat = Seat::find($id);
+                if ($seat instanceof Seat) {
+                    $seats->push($seat);
+                }
             }
         }
-
-        // add payment ID to session
-        Session::put('paypal_payment_id', $payment->getId());
-
-        if(isset($redirect_url)) {
-        // redirect to paypal
-            return redirect($redirect_url);
+        if (isset($request->lanparty)) {
+            $lanparty = Lanparty::find($request->lanparty);
         }
-        Flash::error('Unknown error occurred');
-        return redirect('/');
+
+        if ($user instanceof User && $seats instanceof Collection && $lanparty instanceof Lanparty) {
+
+            // create paypal payer
+            $payer = new Payer();
+            $payer->setPaymentMethod('paypal');
+
+            // create items to pay
+            $item_list = new ItemList();
+            $total = 0;
+
+            foreach ($seats as $seat) {
+                $item = new Item();
+                $item->setName($lanparty->reasonforpayment . '-' . $seat->user_id . '-' . $seat->seatnumber)// item name
+                ->setCurrency('EUR')
+                    ->setQuantity(1)
+                    ->setPrice($lanparty->costs); // unit price
+
+                // add item to list
+                $item_list->addItem($item);
+                $total += $lanparty->costs;
+            }
+
+            $amount = new Amount();
+            $amount->setCurrency('EUR')
+                ->setTotal($total);
+
+            $transaction = new Transaction();
+            $transaction->setAmount($amount)
+                ->setItemList($item_list)
+                ->setDescription('Zahlung von ' . $user->name . ' (' . $user->email . ') für Platz ' . implode(', ', $seats->pluck('seatnumber')->toArray()) . ' zur ' . $lanparty->reasonforpayment);
+
+            $redirect_urls = new RedirectUrls();
+            $redirect_urls->setReturnUrl(route('paypal.payment.status'))
+                ->setCancelUrl(route('paypal.payment.status'));
+
+            $payment = new Payment();
+            $payment->setIntent('Sale')
+                ->setPayer($payer)
+                ->setRedirectUrls($redirect_urls)
+                ->setTransactions(array($transaction));
+
+            try {
+                $payment->create($this->_api_context);
+            } catch (PayPalConnectionException $ex) {
+                if (\config('app.debug')) {
+                    echo "Exception: " . $ex->getMessage() . PHP_EOL;
+                    $err_data = json_decode($ex->getData(), true);
+                    dump($err_data);
+                    exit;
+                } else {
+                    Flash::error('Bei der Bezahlung per PayPal gab es leider einen Fehler!');
+                    return redirect(route('lanparty.reservation'));
+                }
+            }
+
+            foreach($payment->getLinks() as $link) {
+                if($link->getRel() == 'approval_url') {
+                    $redirect_url = $link->getHref();
+                    break;
+                }
+            }
+
+            // add payment ID to session
+            Session::put('paypal_payment_id', $payment->getId());
+
+            if(isset($redirect_url)) {
+                // redirect to paypal
+                return redirect($redirect_url);
+            }
+            Flash::error('Es ist ein ubekannter Fehler aufgetreten.');
+            return redirect(route('lanparty.reservation'));
+
+        }
+        else {
+            flash('Es gab einen Fehler!', 'danger');
+            return redirect(route('lanparty.reservation'));
+        }
+
     }
 
     /**
@@ -131,7 +173,7 @@ class PaypalController extends Controller {
 
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             Flash::error('Payment Failed');
-            return redirect('/');
+            return redirect(route('lanparty.reservation'));
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -183,15 +225,41 @@ class PaypalController extends Controller {
                     'quantity' => $item->quantity
                 ]);
 
+                // mark seat as reserved and payed and add gnb coins to the users account
+                $tmp = explode('-', $item->name);
+                $reason = $tmp[0];
+                $userid = $tmp[1];
+                $seatnumber = $tmp[2];
+
+                if (Auth::user()->id == $userid) {
+                    $lanparty = Lanparty::where('reasonforpayment', $reason)->first();
+                    if ($lanparty instanceof Lanparty) {
+                        $seat = Seat::where('user_id', $userid)->where('seatnumber', $seatnumber)->where('lanparty_id', $lanparty->id)->first();
+                        if ($seat instanceof Seat) {
+
+                            $seat->status = 3;
+                            $seat->payed_at = Carbon::now();
+                            $seat->save();
+
+                            //add coins
+                            $coins = new Coin([
+                                'coins' => config('lanparty')['coins'],
+                                'description' => 'Sitzplatz #' . $seatnumber . ' der ' . $lanparty->name . ' wurde reserviert und mit PayPal bezahlt.'
+                            ]);
+                            Auth::user()->coins()->save($coins);
+                        }
+                    }
+                }
+
                 $paypal->paypalitems()->save($paypalitem);
             }
             $paypal->save();
 
             Flash::success('Paypal-Überweisung erfolgreich!');
-            return redirect(route('home'));
+            return redirect(route('lanparty.reservation'));
         }
         Flash::error('Paypal-Überweisung nicht erfolgreich abgeschlossen');
-        return redirect(route('home'));
+        return redirect(route('lanparty.reservation'));
     }
 
 }
