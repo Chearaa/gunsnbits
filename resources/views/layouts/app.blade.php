@@ -80,7 +80,7 @@
                         <li><a href="{{ route('lanparty.seatingplan') }}">Sitzplan</a></li>
                     @endif
                     <li><a href="{{ route('sponsor.list') }}">Sponsoren</a></li>
-                    <li><a href="{{ route('catering.list') }}">Catering</a></li>
+                    <!--<li><a href="{{ route('catering.list') }}">Catering</a></li>-->
                     <li><a href="{{ route('lanparty.location') }}">Location</a></li>
                     <li><a href="http://gnb.challonge.com/" target="_blank">Turniere</a></li>
                     <li><a href="{{ route('gallery.list') }}">Bilder</a></li>
@@ -119,7 +119,7 @@
                                 <li><a href="{{ route('admin.gallery.list') }}"><i class="fa fa-btn fa-picture-o"></i> Bilder-Galerien</a></li>
                                 @endrole
                                 @role('cateringmanager')
-                                <li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>
+                                <!--<li><a href="{{ route('admin.catering.list') }}"><i class="fa fa-btn fa-cutlery"></i> Catering</a></li>-->
                                 @endrole
                             </ul>
                         </li>

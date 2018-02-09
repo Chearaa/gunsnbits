@@ -26,7 +26,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
 
-                                    <div class="seatblocks">
+                                    <div class="seatblocks clearfix">
                                         <i class="fa fa-sign-out fa-2x text-success special beergarden" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Ausgang" data-content="zum Biergarten <i class='fa fa-beer'></i>"></i>
                                         <i class="fa fa-sign-out fa-2x text-danger special emergencyexit emergencyexit--1" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Notausgang" data-content=""></i>
                                         <i class="fa fa-sign-out fa-2x text-danger special emergencyexit emergencyexit--2" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Notausgang" data-content=""></i>
@@ -37,7 +37,7 @@
                                             <i class="fa fa-bed fa-2x text-info" data-container="body" data-popover="true" data-trigger="hover" data-placement="top" data-trigger=focus title="Schlafbereich"></i>
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatrow--bonus seatblock--u">
                                             @for ($i=249; $i<=260; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -49,7 +49,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--a">
                                             @for ($i=1; $i<=12; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -60,7 +60,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--b">
                                             @for ($i=25; $i<=36; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -72,7 +72,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--c">
                                             @for ($i=49; $i<=60; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -83,7 +83,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--d">
                                             @for ($i=73; $i<=84; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -95,7 +95,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--e">
                                             @for ($i=97; $i<=108; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -106,7 +106,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--f">
                                             @for ($i=121; $i<=132; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -118,7 +118,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--g">
                                             @for ($i=145; $i<=156; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -129,7 +129,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--h">
                                             @for ($i=169; $i<=180; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -143,9 +143,9 @@
 
                                     </div>
 
-                                    <div class="seatblocks">
+                                    <div class="seatblocks clearfix">
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--bonus seatblock--v">
                                             @for ($i=261; $i<=272; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -157,7 +157,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--i">
                                             @for ($i=13; $i<=24; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -168,7 +168,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--j">
                                             @for ($i=37; $i<=48; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -180,7 +180,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--k">
                                             @for ($i=61; $i<=72; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -191,7 +191,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--l">
                                             @for ($i=85; $i<=96; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -203,7 +203,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--m">
                                             @for ($i=109; $i<=120; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -214,7 +214,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--n">
                                             @for ($i=133; $i<=144; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -226,7 +226,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--left seatblock--o">
                                             @for ($i=157; $i<=168; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -237,7 +237,7 @@
                                                 >{{ $i }}</button>
                                             @endfor
                                         </div>
-                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right">
+                                        <div class="seatblock seatblock--vertical seatblock--2rows seatrow--right seatblock--p">
                                             @for ($i=181; $i<=192; $i++)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -251,9 +251,9 @@
 
                                     </div>
 
-                                    <div class="seatblocks">
+                                    <div class="seatblocks clearfix">
 
-                                        <div class="seatblock seatblock--horizontal row-top">
+                                        <div class="seatblock seatblock--horizontal row-top seatblock--q">
                                             @for ($i=206; $i>=193; $i--)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -265,7 +265,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--horizontal row-bottom">
+                                        <div class="seatblock seatblock--horizontal row-bottom seatblock--r">
                                             @for ($i=220; $i>=207; $i--)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -277,7 +277,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--horizontal row-top">
+                                        <div class="seatblock seatblock--horizontal row-top seatblock--s">
                                             @for ($i=234; $i>=221; $i--)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
@@ -289,7 +289,7 @@
                                             @endfor
                                         </div>
 
-                                        <div class="seatblock seatblock--horizontal row-bottom">
+                                        <div class="seatblock seatblock--horizontal row-bottom seatblock--t">
                                             @for ($i=248; $i>=235; $i--)
                                                 <button class="btn btn-sm btn-default seat {{ (isset($regularseats[$i])) ? 'btn-danger' : '' }}"
                                                         @if (isset($regularseats[$i]))
